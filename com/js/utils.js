@@ -43,7 +43,7 @@ var isBlank = function(val){
 }
 
 var showLoadingBar = function(){
-    $('body').append('<div id="loadingBar" style="background:url(/com/images/whtTranspImg.png) repeat left top; width:100%; height:100%; position:fixed; top:0; left:0; z-index:9999; text-align:center;" ><img style="margin:300px 0 0;" src="/com/img/loadingImg.GIF" alt="" title="" /></div>')
+    $('body').append('<div id="loadingBar" style="background:url(/com/images/whtTranspImg.png) repeat left top; width:100%; height:100%; position:fixed; top:0; left:0; z-index:9999; text-align:center;" ><img style="margin:300px 0 0;" src="/com/images/loadingImg.GIF" alt="" title="" /></div>')
 }
 
 var showMessage = function(mess,type,options){
