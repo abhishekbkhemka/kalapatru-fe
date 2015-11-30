@@ -16,8 +16,10 @@ angular.module('myApp.dispatch', ['ngRoute'])
   $scope.vanData = undefined
 
     $scope.getForwardingNotes = function(){
+
       kalapatruService.getForwardingNotesList($scope.filter.toDate,$scope.filter.fromDate,$scope.filter.transporterName,function(res){
         $scope.forwardingNotes = res
+        console.log(res)
       },function(err){
         showMessage(err,'error')
       })
@@ -101,11 +103,11 @@ angular.module('myApp.dispatch', ['ngRoute'])
     }
 
   showLoadingBar()
-    var forwardingNotes = []
+    var fNotes = []
     for (var i = 0; i < $scope.vanData.fns.length; i++) {
-      forwardingNotes.push($scope.vanData.fns[i].id)
+      fNotes.push($scope.vanData.fns[i].id)
     }
-    kalapatruService.addDispatch(forwardingNotes, $scope.vanData.vanNo, $scope.vanData.vanDriverName, $scope.vanData.vanDate, $scope.vanData.vanRemarks, function (res) {
+    kalapatruService.addDispatch(fNotes, $scope.vanData.vanNo, $scope.vanData.vanDriverName, $scope.vanData.vanDate, $scope.vanData.vanRemarks, function (res) {
       hideLoadingBar()
       if (isPrint) {
         showMessage('Data Saved, Print preview is processing ', 'success')

@@ -21,7 +21,9 @@ app.filter('daterange', function ()
     // date filters
     var start_date = (start_date && !isNaN(Date.parse(start_date))) ? Date.parse(start_date) : 0;
     var end_date = (end_date && !isNaN(Date.parse(end_date))) ? Date.parse(end_date) : new Date().getTime();
-    console.log(end_date)
+    if(start_date < 1 || end_date < 1){
+      return conversations
+    }
     // if the conversations are loaded
     if (conversations && conversations.length > 0)
     {
