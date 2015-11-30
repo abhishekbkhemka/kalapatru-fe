@@ -1,0 +1,119 @@
+
+@font-face {
+    font-family: 'open_sansregular';
+    src: url('/com/fonts/openSansRegular/opensans-regular-webfont.eot');
+    src: url('/com/fonts/openSansRegular/opensans-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/com/fonts/openSansRegular/opensans-regular-webfont.woff2') format('woff2'),
+         url('/com/fonts/openSansRegular/opensans-regular-webfont.woff') format('woff'),
+         url('/com/fonts/openSansRegular/opensans-regular-webfont.ttf') format('truetype'),
+         url('/com/fonts/openSansRegular/opensans-regular-webfont.svg#open_sansregular') format('svg');
+    font-weight:normal;
+    font-style:normal;
+}
+
+@font-face {
+    font-family: 'open_sansbold';
+    src: url('/com/fonts/openSansBold/opensans-bold-webfont.eot');
+    src: url('/com/fonts/openSansBold/opensans-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/com/fonts/openSansBold/opensans-bold-webfont.woff2') format('woff2'),
+         url('/com/fonts/openSansBold/opensans-bold-webfont.woff') format('woff'),
+         url('/com/fonts/openSansBold/opensans-bold-webfont.ttf') format('truetype'),
+         url('/com/fonts/openSansBold/opensans-bold-webfont.svg#open_sansbold') format('svg');
+    font-weight:normal;
+    font-style:normal;
+}
+
+@font-face {
+    font-family: 'open_sanssemibold';
+    src: url('/com/fonts/openSansSemiBold/opensans-semibold-webfont.eot');
+    src: url('/com/fonts/openSansSemiBold/opensans-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/com/fonts/openSansSemiBold/opensans-semibold-webfont.woff2') format('woff2'),
+         url('/com/fonts/openSansSemiBold/opensans-semibold-webfont.woff') format('woff'),
+         url('/com/fonts/openSansSemiBold/opensans-semibold-webfont.ttf') format('truetype'),
+         url('/com/fonts/openSansSemiBold/opensans-semibold-webfont.svg#open_sanssemibold') format('svg');
+    font-weight:normal;
+    font-style:normal;
+}
+
+body{margin:0; padding:0; font-family: 'open_sansregular'; font-weight:400; font-size:12px; background:#fafafa;}
+
+.flt_L{float:left;}
+.flt_R{float:right;}
+.clrBt{clear:both;}
+
+a, input{-webkit-transition: all 0.3s ease-in-out; -moz-transition: all 0.3s ease-in-out; -o-transition: all 0.3s ease-in-out; -ms-transition: all 0.3s ease-in-out; transition: all 0.3s ease-in-out;}
+
+#pageMainKT{width:100%;}
+
+/* Header CSS */
+.hedMain{background:#dbe1d7; border-bottom:1px solid #dcb39c; box-shadow:0 0 2px #ccb8b8; padding:10px 0;}
+.hedMain .hedInner{max-width:1000px; margin:0 auto;}
+.hedMain .hedRightSec a{color:#2d67a4; text-decoration:none; float:right; margin:15px 0 0;}
+
+.contentAreaMain{margin-top:1px;}
+.contentAreaMain .contentAreaInner{max-width:1000px; margin:0 auto; padding:10px; background:#fff; min-height:500px; border-left:1px solid #f1f1f1; border-right:1px solid #f1f1f1;}
+.pageTitle{font-family: 'open_sanssemibold'; font-size:18px; font-weight:normal; background:#eeead9; border-bottom:1px solid #debf9f; border-radius:5px 0; 
+color:#be4954; line-height:normal; margin:0 0 20px; padding:4px 15px; text-transform:uppercase;}
+.formStyleMain{}
+.formStyleMain .textBox{margin-bottom:10px;}
+.formStyleMain .textBox label{float:left; margin:6px 0 0; font-family: 'open_sanssemibold'; color:#333; width:120px; font-size:13px; font-weight:normal;}
+.formStyleMain .textBox input, .formStyleMain .textBox textarea{float:left; resize:none; font-size:12px; height:20px; font-family: 'open_sansregular'; box-shadow:0 0 2px #ccc inset; border:1px solid #ccc; padding:6px; border-radius:5px;}
+.formStyleMain .textBox input:focus, .formStyleMain .textBox textarea:focus{border:1px solid #4da4cc; box-shadow:0 0 2px #4da4cc inset;}
+.buttonMain{}
+.buttonMain button{border:none; font-family: 'open_sanssemibold'; background:#4da4cc; color:#fff; text-align:center; padding:4px 10px; border-radius:8px;
+display:block; font-size:13px; cursor:pointer;}
+
+.formLRMain{width:503px; margin:0 auto;}
+.formLRMain .textBox input{width:300px;}
+
+.menuMain{}
+.menuMain .menuInner{margin:10px auto 0; width:252px; border-bottom:4px double #aec6dc; padding-bottom:5px;}
+.menuMain a{float:left; padding:5px; font-family: 'open_sanssemibold'; font-weight:normal; text-transform:uppercase; text-decoration:none; color:#256f9c; font-size:15px;}
+.menuMain a:hover, .menuMain a.activeM{color:#be4954;}
+
+.contLeftRightMain{}
+.contLeftRightMain .contLeftMain{width:30%; min-height:470px; background:#fbfbfb; border:1px solid #ccc; border-radius:5px; box-shadow:0 0 2px #ddd; padding:10px;}
+.contLeftRightMain .contRightMain{width:60%; min-height:470px; background:#fbfbfb; border:1px solid #ccc; border-radius:5px; box-shadow:0 0 2px #ddd; padding:10px;}
+.formInvoiceMain{border-bottom:4px double #aec6dc; margin-bottom:15px; padding-bottom:7px;}
+.formInvoiceMain .textBox label{float:none; display:block; margin-bottom:3px;}
+.formInvoiceMain .textBox input{float:none; display:block;}
+
+.checkBoxSectionMain{margin:0; padding:0;}
+.checkBoxSectionMain .chkBox{margin-bottom:10px; list-style:none;}
+.checkBoxSectionMain .chkBox a{float:left; font-size:13px; margin-left:5px; color:#0076bf; text-decoration:none;}
+.checkBoxSectionMain .chkBox a:hover{text-decoration:underline;}
+.checkBoxSectionMain .chkBox input{float:left; margin-top:4px;}
+
+.contRightMain table{border-bottom:1px solid #e6d2d2; border-right:1px solid #e6d2d2;}
+.contRightMain table tr{}
+.contRightMain table tr th{border-top:1px solid #e6d2d2; font-family: 'open_sanssemibold';  background:#f9f1f1; font-weight:normal; border-left:1px solid #e6d2d2; padding:5px;}
+.contRightMain table tr td{border-top:1px solid #e6d2d2; font-family: 'open_sansregular'; border-left:1px solid #e6d2d2; padding:5px;}
+.contRightMain table tr:nth-child(odd) {background-color:#f7f7f7;}
+.contRightMain table tr:nth-child(even) {background-color:#fff;}
+
+/* USE this for all common styling */
+.confirmBoxStyle{background-color:rgba(0, 0, 0, 0.6); position:fixed; top:0; z-index:999; left:0; width:100% !important; height:100% !important;}
+.confirmBoxStyle .confirmBoxOuter{background:#ddd; border:1px solid #e3dede; border-radius:6px; box-shadow:0 0 2px #656565; height:auto; margin:80px auto 0; padding:12px; width:380px;}
+.confirmBoxStyle .confirmBoxStyleInner{background:#fff; border-radius:8px; padding:0 0 10px;}
+.confirmBoxStyle .titleCB{background:#814b27; line-height:normal; border-radius:8px 8px 0 0; margin:0; color:#fff; font-size:22px; font-weight:bold; padding:8px 10px; font-family: 'Roboto', sans-serif !important; font-weight:400;}
+.confirmBoxStyle .titleCB .confTxt{}
+.confirmBoxStyle .titleCB .windowCloseIcon{background:url(../images/closeImg.png) no-repeat right center; cursor:pointer; width:21px; height:22px;}
+.confirmBoxStyle .infoTxtCD{color:#535353; display:block; font-family: 'Roboto', sans-serif !important; font-weight:400; text-align:center; font-size:16px; margin:0 0 13px; padding:25px 0; border-bottom:1px solid #ddd;}
+.confirmBoxStyle .btnMainCB{margin:0 auto; width:150px;}
+.confirmBoxStyle .btnMainCB button{border:none; font-family: 'Roboto', sans-serif !important; font-weight:400; box-shadow:1px 1px 1px #bfbfbf; color:#fff; font-size:14px; width:70px; margin-right:10px; padding:3px 10px; cursor:pointer;}
+.confirmBoxStyle .btnMainCB .btnYes{background:url(../images/greenBtn.png) repeat-x left top;}
+.confirmBoxStyle .btnMainCB .btnCancel{background:url(../images/redBtnBg.png) repeat-x left top; margin-right:0;}
+
+.formLightBoxMain{padding:20px 10px 10px; margin:0 auto; width:292px;}
+.formLightBoxMain .textBox label{width:70px;}
+.formLightBoxMain .textBox input{width:200px;}
+
+.vanDetailsTbl{padding:0 5px 5px 15px;}
+.vanDetailsTbl .textBoxVD{margin-bottom:8px;}
+.vanDetailsTbl .textBoxVD label{float:left; font-family: 'open_sanssemibold'; font-size:13px; color:#594c17;}
+.vanDetailsTbl .textBoxVD span{float:left; font-size:13px; margin-left:5px; color:#953b44;}
+.redBorder {border:1px solid red !important}
+
+
+
+

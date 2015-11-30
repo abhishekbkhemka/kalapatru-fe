@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Forwarding Note</title>
+</head>
+
+<body>
+
+<div id="pageMainKT"> <!-- Page Main Section Start -->
+
+    <header class="hedMain"> <!-- Header Main Start -->
+        <div class="hedInner">
+            <section class="hedLeftSec flt_L">
+                <a href="#"><img src="/com/images/logo.png" style="width:150px;" alt="Home" title="Home" /></a>
+            </section>
+            <section class="hedRightSec flt_R">
+                <a href="#">Welcome User</a>
+                <div class="clrBt"></div>
+            </section>
+            <div class="clrBt"></div>
+        </div>
+    </header> <!-- Header Main End -->
+
+    <div class="menuMain">
+        <div class="menuInner">
+            <a href="#/forwardingNote" style="border-right:1px solid #ccc; margin-right:5px; padding-right:12px;">Forwarding Note</a>
+            <a href="#/dispatch">Dispatch</a>
+            <div class="clrBt"></div>
+        </div>
+    </div>
+
+    <div class="contentAreaMain"> <!-- Content Area Main Start -->
+        <div class="contentAreaInner">
+            <h2 class="pageTitle">Forwarding Note</h2>
+            <form class="formStyleMain formLRMain">
+                <div class="textBox">
+                    <label>Forwarding Date*</label>
+                    <input type="date" ng-class="{'redBorder':isNotFnDate}" ng-model="currentFn.fnDate" />
+                    <div class="clrBt"></div>
+                </div>
+                <div class="textBox">
+                    <label>Transport Name*</label>
+                    <input id="transporter_name_id" ng-class="{'redBorder':isNotTransporter}" ng-disabled="isTransporterDisabled" ng-model="currentFn.transporter.name" type="text" />
+                  <div style="margin-top:4px;" class="buttonMain flt_R">
+                    <button ng-click="clearTransporter()">Clear</button>
+                  </div>
+                    <div class="clrBt"></div>
+                </div>
+                <div class="textBox">
+                    <label>Station/Place*</label>
+                    <input  id="t_station_id" ng-class="{'redBorder':isNotTransporter}" ng-model="currentFn.transporterStation" type="text" />
+                    <div class="clrBt"></div>
+
+                </div>
+                <div class="textBox">
+                    <label>Customer Name*</label>
+                    <input id="customer_name_id" ng-class="{'redBorder':isNotCustomer}" ng-disabled="isCustomerDisabled" ng-model="currentFn.customer.name" type="text" />
+                  <div style="margin-top:4px;" class="buttonMain flt_R">
+                    <button ng-click="clearCustomer()">Clear</button>
+                  </div>
+                    <div class="clrBt"></div>
+                </div>
+                <div class="textBox">
+                    <label>Station/Place*</label>
+                    <input ng-disabled="isCustomerDisabled" ng-class="{'redBorder':isNotCustomer}" ng-model="currentFn.customer.city" type="text" />
+                    <div class="clrBt"></div>
+                </div>
+                <div class="textBox">
+                    <label>Bill No</label>
+                    <input type="text" ng-model="currentFn.billNumber" />
+                    <div class="clrBt"></div>
+                </div>
+
+                <div class="textBox">
+                    <label>Bill Date</label>
+                    <input type="text" ng-model="currentFn.billDate" />
+                    <div class="clrBt"></div>
+                </div>
+
+                <div class="textBox">
+                    <label>Bill Value*</label>
+                    <input ng-change="calculateBillValue()" ng-class="{'redBorder':isNotBillValue}" ng-model="currentFn.billValue" type="text" />
+                    <label style="margin:0; text-align:center; width:67px; color:#3588ae;"><span style="display:block; color:#3588ae;">Total</span> <span style="display:block; color:#3588ae;">{{totalBillValue}}</span></label>
+                    <div class="clrBt"></div>
+                </div>
+                <div class="textBox">
+                    <label>Cases*</label>
+                    <input type="text" ng-class="{'redBorder':isNotCases}" ng-model="currentFn.cases"/>
+                    <div class="clrBt"></div>
+                </div>
+                <div class="textBox">
+                    <label>Pvt. Marka*</label>
+                    <input type="text"  ng-class="{'redBorder':isNotMarka}" ng-model="currentFn.marka" />
+                    <div class="clrBt"></div>
+                </div>
+                <div class="textBox">
+                    <label>Permit No</label>
+                    <input type="text" ng-model="currentFn.permitNo"/>
+                    <div class="clrBt"></div>
+                </div>
+
+                <div class="textBox">
+                    <label>Comments</label>
+                    <input type="text" ng-model="currentFn.comments"/>
+                    <div class="clrBt"></div>
+                </div>
+
+                <div class="textBox">
+                    <label>Company/Division</label>
+                    <input type="text" ng-model="currentFn.company"/>
+                    <div class="clrBt"></div>
+                </div>
+                <div class="clrBt"></div>
+                <div class="buttonMain flt_R" style="margin-right:70px;">
+                    <button ng-click="addForwardingNote()" type="button">Save</button>
+                </div>
+                <div class="clrBt"></div>
+            </form>
+        </div>
+    </div> <!-- Content Area Main End -->
+
+
+</div> <!-- Page Main Section End -->
+
+</body>
+</html>
