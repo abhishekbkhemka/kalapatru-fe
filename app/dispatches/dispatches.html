@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Dispatch Note </title>
-  <script src="/com/js/sorting.js" type="text/javascript"></script>
+  <title>Dispatches</title>
   <script src="/com/js/html2canvas.js" type="text/javascript"></script>
+
 </head>
 
 <body>
@@ -35,80 +35,98 @@
 
   <div class="contentAreaMain"> <!-- Content Area Main Start -->
     <div class="contentAreaInner">
-      <h2 class="pageTitle" style="margin-bottom:12px;">Dispatch</h2>
+      <h2 class="pageTitle" style="margin-bottom:12px;">Dispatches</h2>
 
       <div class="contLeftRightMain">
         <div class="clrBt"></div>
-        <!--<div style="margin:0 0 10px 0;" class="buttonMain flt_L">-->
-          <!--<button type="button" class="flt_L" style="margin-right:10px;">Open</button>-->
-        <!--</div>-->
         <div style="margin:0 0 10px 0;" class="buttonMain flt_R">
           <button type="button" ng-click="showVanDataPopUp()" class="flt_L" style="margin-right:10px;">Add Van Details</button>
         </div>
+        
         <div class="clrBt"></div>
-        <section class="contLeftMain flt_L">
-          <form class="formStyleMain formInvoiceMain">
-            <div class="textBox flt_L" style="padding-left:5px;">
+        
+        <section class="contLeftMain" style="width:98%;">
+          <form class="formStyleMain formInvoiceMain" style="margin:0 auto; width:375px; border-bottom:none; padding-bottom:0;">
+            <div class="textBox flt_L">
               <label>From Date</label>
               <input ng-model="filterFromDate" type="date" style="width:125px;" />
               <div class="clrBt"></div>
             </div>
-            <div class="textBox flt_R" style="margin:0 5px;">
+            <div class="textBox flt_L" style="margin:0 10px;">
               <label>To Date</label>
               <input ng-model="filterToDate" type="date" style="width:125px;" />
               <div class="clrBt"></div>
             </div>
+          <div style="margin:30px 0 0;" class="buttonMain flt_L">
+            <button type="button" ng-click="getDispatches(filterFromDate,filterToDate)" class="flt_L">Apply</button>
+          </div>
             <div class="clrBt"></div>
-            <div class="textBox">
+            <div class="textBox flt_L">
               <label>Filter</label>
-              <input ng-model="transportFilter" type="text" style="width:285px;" />
+              <input ng-model="transportFilter" type="text" style="width:350px;" />
               <div class="clrBt"></div>
             </div>
-<!--          <div style="margin:30px 0 0;" class="buttonMain flt_R">
-            <button type="button" class="flt_L">Apply</button>
-          </div>-->
             <div class="clrBt"></div>
           </form>
-          <ul class="checkBoxSectionMain">
-            <li ng-repeat="fns in forwardingNotes | daterange:filterFromDate:filterToDate| filter:transportFilter" daterange class="chkBox" disabled>
-              <div ng-show="!fns.isDispatched"><input ng-checked="fns.isDisabled" ng-click="addToVanData(fns)" type="checkbox" />
-              <a href="" ng-click="addToVanData(fns)">{{getDisplayNameforFn(fns)}}</a></div>
-              <div class="clrBt"></div>
-
-              <div ng-show="fns.isDispatched">
-                <span >{{getDisplayNameforFn(fns)}}</span></div>
-              <div class="clrBt"></div>
-            </li>
-          </ul>
+          <div class="contRightMain" style="width:100%; border:medium none; box-shadow:none; padding:0;">
+<table cellpadding="0" cellspacing="0" width="100%" class="sortable" >
+            <tr>
+              <th>Date</th>
+              <th>Van No.</th>
+              <th>Driver Name</th>
+              <th>Remarks</th>
+              <th style="width:51px;">Action</th>
+            </tr>
+            <tr ng-repeat="dis in dispacthes">
+              <td>{{dis.date |date:'dd-MM-yyyy'}}</td>
+              <td>{{dis.vanNo}}.</td>
+              <td>{{dis.name}}</td>
+              <td>{{dis.remarks}}</td>
+              <td>
+              	<a href="" class="flt_L" style="margin:0 8px 0 5px;"><img src="/com/images/viewicon.png" ng-click="showDispatch(dis)" style="width:18px;" alt="View" title="View" /></a>
+                <!--<a href="" class="flt_L" style="margin:2px 0 0;"><img src="/com/images/editicon.png" alt="Edit" style="width:15px;" title="Edit" /></a><div class="clrBt"></div>-->
+			  </td>
+            </tr>
+          </table>
+          </div>
         </section>
-        <div  class="contRightMain flt_R">
-<div id="vanDetails_id">
 
+        
+        <div class="clrBt"></div>
+        
+<div  class="confirmBoxStyle" ng-if="isDispatchView"> <!-- Reason for Cancellation Popup Box Style Start -->
+  <div id="vanDetails_id" class="confirmBoxOuter" style="margin:40px auto 0; width:880px;">
+    <div class="confirmBoxStyleInner">
+      <h3 class="titleCB"><span class="confTxt flt_L">Van Details</span> <span  id="close_btn_id" ng-click="closeDispatch()" class="windowCloseIcon flt_R"></span><div class="clrBt"></div></h3>
+        
+        <div class="contRightMain" style="width:98.3%; padding:8px; border:medium none; box-shadow:none;">
+        
         	<div class="logoPartMain">
             	<div class="logoPMain"><img src="/com/images/logo.png" alt="" title="" style="width:120px;" /></div>
                 <div class="adrsLP">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tortor odio</div>
             </div>
-
+        
+<div >
           <div class="vanDetailsTbl">
             <div class="textBoxVD flt_L">
               <label>Date: </label>
-              <span>{{getFormattedDate(vanData.vanDate)}}</span>
+              <span>{{currentDispatch.date | date:'dd-MM-yyyy'}}</span>
               <div class="clrBt"></div>
             </div>
             <div class="textBoxVD flt_R" style="padding-right:10px;">
               <label>Van No.: </label>
-              <span>{{vanData.vanNo}}</span>
+              <span>{{currentDispatch.vanNo}}</span>
               <div class="clrBt"></div>
             </div>
             <div class="clrBt"></div>
             <div class="textBoxVD">
               <label>Driver Name: </label>
-              <span>{{vanData.vanDriverName}}</span>
+              <span>{{currentDispatch.name}}</span>
               <div class="clrBt"></div>
             </div>
             <div class="textBoxVD">
               <label>Remarks: </label>
-              <span style="margin-left:0;">&nbsp;{{vanData.vanRemarks}}</span>
+              <span style="margin-left:3px;">{{currentDispatch.remarks}}</span>
               <div class="clrBt"></div>
             </div>
             <div class="clrBt"></div>
@@ -128,33 +146,46 @@
               <th>Permit No.</th>
               <th>Customer name</th>
               <th>Customer City</th>
-              <th>Action</th>
             </tr>
-            <tr ng-repeat="fn in vanData.fns">
-              <td>{{getFormattedDate(fn.fnDate)}}</td>
+            <tr ng-repeat="fn in currentDispatch.forwardingNote">
+              <td>{{fn.fnDate | date:'dd-MM-yyyy'}}</td>
               <td>{{fn.transporter.name}}</td>
               <td>{{fn.transporter.city}}</td>
               <td>{{fn.billNo}}</td>
-              <td>{{getFormattedDate(fn.billDate)}}</td>
+              <td>{{fn.billDate | date:'dd-MM-yyyy'}}</td>
               <td>{{fn.billValue}}</td>
               <td>{{fn.cases}}</td>
               <td>{{fn.marka}}</td>
               <td>{{fn.permitNo}}</td>
               <td>{{fn.customer.name}}</td>
               <td>{{fn.customer.city}}</td>
-              <td>
-                <a href="#" class="flt_L" style="margin:2px 0 0;"><img src="/com/images/cancelD.png" alt="Delete" style="width:15px;" title="Delete" /></a><div class="clrBt"></div>
-			  </td>
-            </tr>         
+            </tr>
           </table>
           </div>
           <div style="margin:10px 0 0 0;" class="buttonMain flt_R">
-            <button type="button" class="flt_L" ng-click="save()" style="margin-right:10px;">Save</button>
-            <button type="button" ng-click="save(true)" class="flt_L">Save & Print</button>
+            <button id="print_btn_id" type="button" ng-click="print()" class="flt_L">Print</button>
           </div>
         </section>
         <div class="clrBt"></div>
       </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     </div>
@@ -163,40 +194,6 @@
 
 </div> <!-- Page Main Section End -->
 
-<div ng-if="vanDataPopUP" class="confirmBoxStyle"> <!-- Reason for Cancellation Popup Box Style Start -->
-  <div class="confirmBoxOuter">
-    <div class="confirmBoxStyleInner">
-      <h3 class="titleCB"><span class="confTxt flt_L">Enter Van Details</span> <span ng-click="closeVanDataPopUp()" class="windowCloseIcon flt_R"></span><div class="clrBt"></div></h3>
-      <form class="formStyleMain formLightBoxMain">
-        <div class="textBox">
-          <label>Date</label>
-          <input ng-model="vanData.vanDate" type="date" style="width:130px;" />
-          <div class="clrBt"></div>
-        </div>
-        <div class="textBox">
-          <label>Van No.</label>
-          <input ng-model="vanData.vanNo" type="text" />
-          <div class="clrBt"></div>
-        </div>
-        <div class="textBox">
-          <label>Driver Name</label>
-          <input ng-model="vanData.vanDriverName" type="text" />
-          <div class="clrBt"></div>
-        </div>
-        <div class="textBox">
-          <label>Remarks</label>
-          <textarea ng-model="vanData.vanRemarks" style="height:50px; width:200px;"></textarea>
-          <div class="clrBt"></div>
-        </div>
-        <div class="clrBt"></div>
-        <div class="buttonMain" style="margin:0 auto; width:65px;">
-          <button type="button" style="padding:5px 15px;" ng-click="closeVanDataPopUp()">Save</button>
-        </div>
-        <div class="clrBt"></div>
-      </form>
-    </div>
-  </div>
-</div> <!-- Reason for Cancellation Popup Box Style End -->
 
 </body>
 </html>

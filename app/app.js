@@ -4,7 +4,7 @@
 var app = angular.module('myApp', [
   'ngRoute',
   'myApp.forwardingNote',
-  'myApp.dispatch','kalapatru.factory',
+  'myApp.dispatch','kalapatru.factory', 'myApp.dispatches',
   'myApp.version'
 ])
 
