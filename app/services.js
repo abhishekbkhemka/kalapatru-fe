@@ -114,6 +114,27 @@ app.factory('kalapatruService', ['$http',function($http) {
         })
     }
 
+    obj.getDispatches = function(fromDate,toDate,successCB,failCB){
+           var  params ='?fromDate='+serverDate(fromDate)
+        if (toDate){
+            params +='&toDate='+serverDate(toDate)
+        }
+
+        $http.get(DISPATCHES+params).success(function(response){
+            successCB(response);
+
+        }).error(function(err,code){
+            var errMessage = 'Server Error'
+            if(code == HTTP_401 || code == HTTP_403){
+                errMessage = err
+            }
+
+            if(failCB){
+                failCB(errMessage)
+            }
+        })
+    }
+
 
 
     return obj

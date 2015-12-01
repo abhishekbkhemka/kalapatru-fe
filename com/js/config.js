@@ -8,5 +8,6 @@ var GET_CUSTOMERS = CURRENT+'api/customers/'
 var FORWARDING_NOTE = CURRENT+'api/forwardingNote/'
 var FORWARDING_NOTES = CURRENT+'api/forwardingNotes/'
 var DISPATCH = CURRENT+'api/dispatch/'
+var DISPATCHES = CURRENT+'api/dispatches/'
 var HTTP_401 = 401
 var HTTP_403 = 403

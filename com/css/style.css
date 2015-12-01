@@ -67,13 +67,13 @@ display:block; font-size:13px; cursor:pointer;}
 .formLRMain .textBox input{width:300px;}
 
 .menuMain{}
-.menuMain .menuInner{margin:10px auto 0; width:252px; border-bottom:4px double #aec6dc; padding-bottom:5px;}
+.menuMain .menuInner{margin:10px auto 0; width:360px; border-bottom:4px double #aec6dc; padding-bottom:5px;}
 .menuMain a{float:left; padding:5px; font-family: 'open_sanssemibold'; font-weight:normal; text-transform:uppercase; text-decoration:none; color:#256f9c; font-size:15px;}
 .menuMain a:hover, .menuMain a.activeM{color:#be4954;}
 
 .contLeftRightMain{}
 .contLeftRightMain .contLeftMain{width:30%; min-height:470px; background:#fbfbfb; border:1px solid #ccc; border-radius:5px; box-shadow:0 0 2px #ddd; padding:10px;}
-.contLeftRightMain .contRightMain{width:60%; min-height:470px; background:#fbfbfb; border:1px solid #ccc; border-radius:5px; box-shadow:0 0 2px #ddd; padding:10px;}
+.contLeftRightMain .contRightMain{width:64.5%; min-height:470px; background:#fbfbfb; border:1px solid #ccc; border-radius:5px; box-shadow:0 0 2px #ddd; padding:10px;}
 .formInvoiceMain{border-bottom:4px double #aec6dc; margin-bottom:15px; padding-bottom:7px;}
 .formInvoiceMain .textBox label{float:none; display:block; margin-bottom:3px;}
 .formInvoiceMain .textBox input{float:none; display:block;}
@@ -114,6 +114,8 @@ display:block; font-size:13px; cursor:pointer;}
 .vanDetailsTbl .textBoxVD span{float:left; font-size:13px; margin-left:5px; color:#953b44;}
 .redBorder {border:1px solid red !important}
 
-
+.logoPartMain{padding:15px 0; margin:0 auto; width:300px; text-align:center;}
+.logoPartMain .logoPMain{margin-bottom:10px;}
+.logoPartMain .adrsLP{color:#444;}
 
 
