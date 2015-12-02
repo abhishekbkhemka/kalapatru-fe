@@ -37,12 +37,12 @@
             <form class="formStyleMain formLRMain">
                 <div class="textBox">
                     <label>Forwarding Date*</label>
-                    <input type="date" ng-class="{'redBorder':isNotFnDate}" ng-model="currentFn.fnDate" />
+                    <input type="date" ng-class="{'redBorder':isNotFnDate}" format="YYYY-MM-DD" ng-model="currentFn.fnDate" />
                     <div class="clrBt"></div>
                 </div>
                 <div class="textBox">
                     <label>Transport Name*</label>
-                    <input id="transporter_name_id" ng-class="{'redBorder':isNotTransporter}" ng-disabled="isTransporterDisabled" ng-model="currentFn.transporter.name" type="text" />
+                    <input style="text-transform: uppercase" id="transporter_name_id" ng-class="{'redBorder':isNotTransporter}" ng-disabled="isTransporterDisabled" ng-model="currentFn.transporter.name" type="text" />
                   <div style="margin-top:4px;" class="buttonMain flt_R">
                     <button ng-click="clearTransporter()">Clear</button>
                   </div>
@@ -75,13 +75,19 @@
 
                 <div class="textBox">
                     <label>Bill Date</label>
-                    <input type="text" ng-model="currentFn.billDate" />
+                    <input type="date" ng-model="currentFn.billDate" />
+                    <div style="margin-top:4px;" class="buttonMain flt_R">
+                        <button ng-click="addBillDate()">Add</button>
+                    </div>
+                    <div  style="margin-top:4px;float:right;">
+                        <span ng-repeat="dt in currentFn.billDates" style="display:block;float:right;">{{dt | date:'dd/MM/yyyy'}} &nbsp; ,</span>
+                    </div>
                     <div class="clrBt"></div>
                 </div>
 
                 <div class="textBox">
                     <label>Bill Value*</label>
-                    <input ng-change="calculateBillValue()" ng-class="{'redBorder':isNotBillValue}" ng-model="currentFn.billValue" type="text" />
+                    <input ng-change="calculateBillValue()" ng-class="{'redBorder':isNotBillValue}" ng-model="currentFn.billValues" type="text" />
                     <label style="margin:0; text-align:center; width:67px; color:#3588ae;"><span style="display:block; color:#3588ae;">Total</span> <span style="display:block; color:#3588ae;">{{totalBillValue}}</span></label>
                     <div class="clrBt"></div>
                 </div>

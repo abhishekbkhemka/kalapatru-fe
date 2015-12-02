@@ -13,8 +13,9 @@ angular.module('myApp.forwardingNote', ['ngRoute'])
   $scope.transporters = []
   $scope.transportersStations = []
   $scope.customers = []
-  $scope.currentFn = {}
+  $scope.currentFn = {billDates:[]}
   $scope.totalBillValue = 0;
+    $scope.billDates = []
 
     var transporterStationAutoComplete = function(){
         $("#t_station_id").autocomplete({
@@ -35,6 +36,11 @@ angular.module('myApp.forwardingNote', ['ngRoute'])
                 .append("<a class='autoCompTxt'>" + item.label + "</a>")
                 .appendTo(ul);
         };
+    }
+
+    $scope.addBillDate = function(){
+        $scope.currentFn.billDates.push(serverDate($scope.currentFn.billDate))
+        $scope.currentFn.billDate = undefined
     }
 
 var initTransporter = function(){
@@ -109,7 +115,7 @@ var initTransporter = function(){
   })
 
   $scope.calculateBillValue = function(){
-    var values = $scope.currentFn.billValue.split('+')
+    var values = $scope.currentFn.billValues.split('+')
     $scope.totalBillValue = 0;
     for(var i =0 ;i<values.length;i++){
 
@@ -167,14 +173,14 @@ var initTransporter = function(){
           $scope.isNotCustomer = true
           return
       }
-      if(isBlank($scope.currentFn.billValue)){
+      if(isBlank($scope.currentFn.billValues)){
           showMessage('Please enter bill value ','error')
           $scope.isNotBillValue = true
           return
       }
 
       if(isBlank($scope.currentFn.cases)){
-          showMessage('Please enter bill value ','error')
+          showMessage('Please enter cases  ','error')
           $scope.isNotCases = true
           return
       }
@@ -185,7 +191,8 @@ var initTransporter = function(){
       }
     showLoadingBar()
     kalapatruService.addForwardingNote($scope.currentFn,function(res){
-        $scope.currentFn = {}
+        $scope.currentFn = {billDates:[]}
+        $scope.totalBillValue = 0
         showMessage('Forwarding Note Saved','success')
       hideLoadingBar()
     },function(err){

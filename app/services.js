@@ -59,7 +59,7 @@ app.factory('kalapatruService', ['$http',function($http) {
     }
 
     obj.addForwardingNote = function(forwardinNote,successCB,failCB){
-        var params = {fnDate:serverDate(forwardinNote.fnDate),billValue:forwardinNote.billValue,billNo:forwardinNote.billNumber
+        var params = {fnDate:serverDate(forwardinNote.fnDate),billValues:forwardinNote.billValues,billNo:forwardinNote.billNumber
         ,cases:forwardinNote.cases,marka:forwardinNote.marka,permitNo:forwardinNote.permitNo,comments:forwardinNote.comments,company:forwardinNote.company,transporterStation:forwardinNote.transporterStation}
         if(forwardinNote.transporter.id){
             params.transporter_id = forwardinNote.transporter.id
@@ -72,8 +72,8 @@ app.factory('kalapatruService', ['$http',function($http) {
         }else{
             params.customer = forwardinNote.customer
         }
-        if(forwardinNote.billDate){
-           params.billDate = serverDate(forwardinNote.billDate)
+        if(forwardinNote.billDates){
+           params.billDates = forwardinNote.billDates
         }
         $http.post(FORWARDING_NOTE,params).success(function(response){
             successCB(response);

@@ -30,7 +30,7 @@ var deleteCookie = function( name,path ) {
 
 var serverDate = function(dateStr){
     var d = new Date(dateStr)
-    return (d.getMonth()+1)+'-'+ d.getDate()+'-'+ d.getFullYear()
+    return d.getDate()+'-'+(d.getMonth()+1)+'-'+ d.getFullYear()
 }
 var hideLoadingBar = function(){
     $('#loadingBar').remove()
