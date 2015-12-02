@@ -30,7 +30,7 @@ angular.module('myApp.dispatch', ['ngRoute'])
     }
 
   $scope.getDisplayNameforFn = function(fns){
-    return fns.transporter.name +' - '+fns.customer.name+' - '+fns.customer.city+' - '+fns.marka//+' - '+getFormatedDate(fns.fnDate)
+    return fns.transporter.name +' - '+fns.customer.name+' - '+fns.customer.city+' - '+fns.marka
   }
 
   $scope.addToVanData = function(data){
