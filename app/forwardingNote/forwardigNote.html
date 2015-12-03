@@ -80,7 +80,7 @@
                         <button ng-click="addBillDate()">Add</button>
                     </div>
                     <div  style="margin-top:4px;float:right;">
-                        <span ng-repeat="dt in currentFn.billDates" style="display:block;float:right;">{{dt | date:'dd/MM/yyyy'}} &nbsp; ,</span>
+                        <span ng-repeat="dt in currentFn.billDates track by $index" style="display:block;float:right;">{{dt | date:'dd/MM/yyyy'}} &nbsp; ,</span>
                     </div>
                     <div class="clrBt"></div>
                 </div>
