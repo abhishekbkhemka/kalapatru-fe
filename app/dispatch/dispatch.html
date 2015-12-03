@@ -27,7 +27,7 @@
   <div class="menuMain">
     <div class="menuInner">
       <a href="#/forwardingNote" style="border-right:1px solid #ccc; margin-right:5px; padding-right:12px;">Forwarding Note</a>
-      <a href="#/dispatch" style="border-right:1px solid #ccc; margin-right:5px; padding-right:12px;">Dispatch</a>
+      <a href="#/dispatch" class="selectedMenu" style="border-right:1px solid #ccc; margin-right:5px; padding-right:12px;">Dispatch</a>
       <a href="#/dispatches">Dispatches</a>
       <div class="clrBt"></div>
     </div>
@@ -71,12 +71,10 @@
           </form>
           <ul class="checkBoxSectionMain">
             <li ng-repeat="fns in forwardingNotes | daterange:filterFromDate:filterToDate| filter:transportFilter" daterange class="chkBox" disabled>
-              <div ng-show="!fns.isDispatched"><input ng-checked="fns.isDisabled" ng-click="addToVanData(fns)" type="checkbox" />
-              <a href="" ng-click="addToVanData(fns)">{{getDisplayNameforFn(fns)}}</a></div>
+              <div class="linkStyleLst" ng-show="!fns.isDispatched"><input ng-checked="fns.isDisabled" ng-click="addToVanData(fns)" type="checkbox" />
+              <a href="" ng-click="addToVanData(fns)">{{getDisplayNameforFn(fns)}}</a><div class="clrBt"></div></div>
               <div class="clrBt"></div>
-
-              <div ng-show="fns.isDispatched">
-                <span >{{getDisplayNameforFn(fns)}}</span></div>
+              <div class="unlinkStyleLst" ng-show="fns.isDispatched"><img src="/com/images/bulletWhite.png" alt="" title="" class="flt_L" /><span class="flt_L">{{getDisplayNameforFn(fns)}}</span><div class="clrBt"></div></div>
               <div class="clrBt"></div>
             </li>
           </ul>
@@ -143,8 +141,8 @@
               <td>{{fn.permitNo}}</td>
               <td>{{fn.customer.name}}</td>
               <td>{{fn.customer.city}}</td>
-              <td>
-                <a href="" ng-click="removeFN(fn)" class="flt_L" style="margin:2px 0 0;"><img src="/com/images/cancelD.png" alt="Delete" style="width:15px;" title="Delete" /></a><div class="clrBt"></div>
+              <td style="text-align:center;">
+                <a href="" ng-click="removeFN(fn)" style="margin:2px 0 0; display:inline-block;"><img src="/com/images/cancelD.png" alt="Delete" style="width:15px;" title="Delete" /></a><div class="clrBt"></div>
 			  </td>
             </tr>         
           </table>
@@ -156,7 +154,6 @@
         </section>
         <div class="clrBt"></div>
       </div>
-
 
     </div>
   </div> <!-- Content Area Main End -->
