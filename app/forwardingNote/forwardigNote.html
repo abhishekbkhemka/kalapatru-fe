@@ -24,8 +24,8 @@
 
     <div class="menuMain">
         <div class="menuInner">
-            <a href="#/forwardingNote" style="border-right:1px solid #ccc; margin-right:5px; padding-right:12px;">Forwarding Note</a>
-            <a href="#/dispatch">Dispatch</a>
+            <a href="#/forwardingNote" class="selectedMenu" style="border-right:1px solid #ccc; margin-right:5px; padding-right:12px;">Forwarding Note</a>
+            <a href="#/dispatch" style="border-right:1px solid #ccc; margin-right:5px; padding-right:12px;">Dispatch</a>
             <a href="#/dispatches">Dispatches</a>
             <div class="clrBt"></div>
         </div>
@@ -63,7 +63,7 @@
                     <div class="clrBt"></div>
                 </div>
                 <div class="textBox">
-                    <label>Station/Place*</label>
+                    <label>Station/Place<span style="color:red;">*</span></label>
                     <input ng-disabled="isCustomerDisabled" ng-class="{'redBorder':isNotCustomer}" ng-model="currentFn.customer.city" type="text" />
                     <div class="clrBt"></div>
                 </div>
@@ -76,11 +76,11 @@
                 <div class="textBox">
                     <label>Bill Date</label>
                     <input type="date" ng-model="currentFn.billDate" />
-                    <div style="margin-top:4px;" class="buttonMain flt_R">
-                        <button ng-click="addBillDate()">Add</button>
-                    </div>
-                    <div  style="margin-top:4px;float:right;">
-                        <span ng-repeat="dt in currentFn.billDates" style="display:block;float:right;">{{dt | date:'dd/MM/yyyy'}} &nbsp; ,</span>
+                    <div style="margin-top:4px; margin-right:6px;" class="buttonMain flt_R"><button ng-click="addBillDate()">Add</button></div>
+                    <div class="clrBt"></div>
+                    <div class="billDatesBox">
+                        <span ng-repeat="dt in currentFn.billDates" style="display:inline-block; margin-bottom:7px; color:#2c7bb3;">{{dt | date:'dd/MM/yyyy'}} &nbsp; ,</span>
+                        <div class="clrBt"></div>
                     </div>
                     <div class="clrBt"></div>
                 </div>

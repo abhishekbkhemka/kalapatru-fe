@@ -2,7 +2,6 @@
 
 var PROD = 'http://ec2-54-169-108-233.ap-southeast-1.compute.amazonaws.com:8000/'
 var DEV = 'http://127.0.0.1:8080/'
-//var CURRENT = DEV;
 var CURRENT = PROD;
 var GET_TRASPORTERS = CURRENT+'api/transporters/'
 var GET_CUSTOMERS = CURRENT+'api/customers/'
