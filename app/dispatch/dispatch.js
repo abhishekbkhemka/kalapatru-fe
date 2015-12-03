@@ -30,7 +30,7 @@ angular.module('myApp.dispatch', ['ngRoute'])
     }
 
   $scope.getDisplayNameforFn = function(fns){
-    return fns.transporter.name +' - '+fns.customer.name+' - '+fns.customer.city+' - '+fns.marka//+' - '+getFormatedDate(fns.fnDate)
+    return fns.transporter.name +' - '+fns.customer.name+' - '+fns.customer.city+' - '+fns.marka
   }
 
   $scope.addToVanData = function(data){
@@ -91,6 +91,24 @@ angular.module('myApp.dispatch', ['ngRoute'])
 
     })
   }
+
+  $scope.getBillValues = function(values){
+    var values =values.split('+')
+    var totalBillValue = 0;
+    for(var i =0 ;i<values.length;i++){
+
+      totalBillValue += parseInt(values[i])
+    }
+    return totalBillValue
+  }
+
+  $scope.removeFN = function(fn){
+
+    $scope.vanData.fns.splice($scope.vanData.fns.indexOf(fn),1)
+    fn.isDisabled = false
+
+  }
+
 
   $scope.save = function(isPrint) {
     if(!$scope.vanData){

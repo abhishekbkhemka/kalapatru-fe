@@ -86,18 +86,19 @@
 
         	<div class="logoPartMain">
             	<div class="logoPMain"><img src="/com/images/logo.png" alt="" title="" style="width:120px;" /></div>
-                <div class="adrsLP">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tortor odio</div>
+                <div class="adrsLP">Kalpataru Tower Patna Gaya Road Elahibagh Patna-800007</div>
             </div>
 
           <div class="vanDetailsTbl">
-            <div class="textBoxVD flt_L">
-              <label>Date: </label>
-              <span>{{getFormattedDate(vanData.vanDate)}}</span>
+
+            <div class="textBoxVD flt_L" >
+              <label>Van No.: </label>
+              <span>{{vanData.vanNo}}</span>
               <div class="clrBt"></div>
             </div>
             <div class="textBoxVD flt_R" style="padding-right:10px;">
-              <label>Van No.: </label>
-              <span>{{vanData.vanNo}}</span>
+              <label>Date: </label>
+              <span>{{getFormattedDate(vanData.vanDate)}}</span>
               <div class="clrBt"></div>
             </div>
             <div class="clrBt"></div>
@@ -122,7 +123,7 @@
               <th>Station / Place</th>
               <th>Bill No.</th>
               <th>Bill Date.</th>
-              <th>Value</th>
+              <th>Values</th>
               <th>Cases</th>
               <th>Pvt. Marka</th>
               <th>Permit No.</th>
@@ -135,15 +136,15 @@
               <td>{{fn.transporter.name}}</td>
               <td>{{fn.transporter.city}}</td>
               <td>{{fn.billNo}}</td>
-              <td>{{getFormattedDate(fn.billDate)}}</td>
-              <td>{{fn.billValue}}</td>
+              <td>{{fn.billDates}}</td>
+              <td>{{getBillValues(fn.billValues)}}</td>
               <td>{{fn.cases}}</td>
               <td>{{fn.marka}}</td>
               <td>{{fn.permitNo}}</td>
               <td>{{fn.customer.name}}</td>
               <td>{{fn.customer.city}}</td>
               <td>
-                <a href="#" class="flt_L" style="margin:2px 0 0;"><img src="/com/images/cancelD.png" alt="Delete" style="width:15px;" title="Delete" /></a><div class="clrBt"></div>
+                <a href="" ng-click="removeFN(fn)" class="flt_L" style="margin:2px 0 0;"><img src="/com/images/cancelD.png" alt="Delete" style="width:15px;" title="Delete" /></a><div class="clrBt"></div>
 			  </td>
             </tr>         
           </table>
