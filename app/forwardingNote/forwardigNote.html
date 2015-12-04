@@ -50,13 +50,13 @@
                 </div>
                 <div class="textBox">
                     <label>Station/Place*</label>
-                    <input  id="t_station_id" ng-class="{'redBorder':isNotTransporter}" ng-model="currentFn.transporterStation" type="text" />
+                    <input style="text-transform: uppercase"  id="t_station_id" ng-class="{'redBorder':isNotTransporter}" ng-model="currentFn.transporterStation" type="text" />
                     <div class="clrBt"></div>
 
                 </div>
                 <div class="textBox">
                     <label>Customer Name*</label>
-                    <input id="customer_name_id" ng-class="{'redBorder':isNotCustomer}" ng-disabled="isCustomerDisabled" ng-model="currentFn.customer.name" type="text" />
+                    <input style="text-transform: uppercase" id="customer_name_id" ng-class="{'redBorder':isNotCustomer}" ng-disabled="isCustomerDisabled" ng-model="currentFn.customer.name" type="text" />
                   <div style="margin-top:4px;" class="buttonMain flt_R">
                     <button ng-click="clearCustomer()">Clear</button>
                   </div>
@@ -64,7 +64,7 @@
                 </div>
                 <div class="textBox">
                     <label>Station/Place<span style="color:red;">*</span></label>
-                    <input ng-disabled="isCustomerDisabled" ng-class="{'redBorder':isNotCustomer}" ng-model="currentFn.customer.city" type="text" />
+                    <input  style="text-transform: uppercase" ng-disabled="isCustomerDisabled" ng-class="{'redBorder':isNotCustomer}" ng-model="currentFn.customer.city" type="text" />
                     <div class="clrBt"></div>
                 </div>
                 <div class="textBox">
@@ -98,7 +98,7 @@
                 </div>
                 <div class="textBox">
                     <label>Pvt. Marka*</label>
-                    <input type="text"  ng-class="{'redBorder':isNotMarka}" ng-model="currentFn.marka" />
+                    <input style="text-transform: uppercase" type="text"  ng-class="{'redBorder':isNotMarka}" ng-model="currentFn.marka" />
                     <div class="clrBt"></div>
                 </div>
                 <div class="textBox">
@@ -115,7 +115,7 @@
 
                 <div class="textBox">
                     <label>Company/Division</label>
-                    <input type="text" ng-model="currentFn.company"/>
+                    <input style="text-transform: uppercase" type="text" ng-model="currentFn.company"/>
                     <div class="clrBt"></div>
                 </div>
                 <div class="clrBt"></div>

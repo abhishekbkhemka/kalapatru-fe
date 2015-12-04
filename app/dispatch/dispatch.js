@@ -9,7 +9,7 @@ angular.module('myApp.dispatch', ['ngRoute'])
   });
 }])
 
-.controller('DispatchCtrl', ['$scope','kalapatruService',function($scope,kalapatruService) {
+.controller('DispatchCtrl', ['$scope','$location','kalapatruService',function($scope,$location,kalapatruService) {
 
   $scope.forwardingNotes = []
   $scope.filter = {transporterName:''}
@@ -25,8 +25,25 @@ angular.module('myApp.dispatch', ['ngRoute'])
       })
     }
 
+  $scope.getDispatch = function(id){
+    kalapatruService.getDispatch(id,function(res){
+      $scope.vanData = res
+      $scope.vanData.fns = res.forwardingNote
+
+      console.log(res)
+    },function(err){
+      showMessage(err,'error')
+    })
+
+  }
+
+
     $scope.initData = function(){
       $scope.getForwardingNotes()
+      var obj = $location.search()
+      if(obj.id>0){
+        $scope.getDispatch(obj.id)
+      }
     }
 
   $scope.getDisplayNameforFn = function(fns){
@@ -106,6 +123,17 @@ angular.module('myApp.dispatch', ['ngRoute'])
 
     $scope.vanData.fns.splice($scope.vanData.fns.indexOf(fn),1)
     fn.isDisabled = false
+    if($scope.vanData.id>0 && fn.id>0){
+      for(var i=0;i<$scope.forwardingNotes.length;i++){
+        var oFn = $scope.forwardingNotes[i]
+        if(oFn.id == fn.id){
+          //$scope.forwardingNotes.splice($scope.forwardingNotes.indexOf(oFn),1)
+          oFn.isDispatched = false
+          return
+
+        }
+      }
+    }
 
   }
 
@@ -125,7 +153,7 @@ angular.module('myApp.dispatch', ['ngRoute'])
     for (var i = 0; i < $scope.vanData.fns.length; i++) {
       fNotes.push($scope.vanData.fns[i].id)
     }
-    kalapatruService.addDispatch(fNotes, $scope.vanData.vanNo, $scope.vanData.vanDriverName, $scope.vanData.vanDate, $scope.vanData.vanRemarks, function (res) {
+    kalapatruService.addOrUpdateDispatch(fNotes, $scope.vanData.vanNo, $scope.vanData.name, $scope.vanData.date, $scope.vanData.remarks,$scope.vanData.id, function (res) {
       hideLoadingBar()
       if (isPrint) {
         showMessage('Data Saved, Print preview is processing ', 'success')

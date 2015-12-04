@@ -84,7 +84,7 @@
 
         	<div class="logoPartMain">
             	<div class="logoPMain"><img src="/com/images/logo.png" alt="" title="" style="width:120px;" /></div>
-                <div class="adrsLP">Kalpataru Tower Patna Gaya Road Elahibagh Patna-800007</div>
+                <div class="adrsLP">Kalpataru Tower Patna Gaya Road Elahibagh<br/> Patna-800007</div>
             </div>
 
           <div class="vanDetailsTbl">
@@ -96,18 +96,18 @@
             </div>
             <div class="textBoxVD flt_R" style="padding-right:10px;">
               <label>Date: </label>
-              <span>{{getFormattedDate(vanData.vanDate)}}</span>
+              <span>{{getFormattedDate(vanData.date)}}</span>
               <div class="clrBt"></div>
             </div>
             <div class="clrBt"></div>
             <div class="textBoxVD">
               <label>Driver Name: </label>
-              <span>{{vanData.vanDriverName}}</span>
+              <span>{{vanData.name}}</span>
               <div class="clrBt"></div>
             </div>
             <div class="textBoxVD">
               <label>Remarks: </label>
-              <span style="margin-left:0;">&nbsp;{{vanData.vanRemarks}}</span>
+              <span style="margin-left:0;">&nbsp;{{vanData.remarks}}</span>
               <div class="clrBt"></div>
             </div>
             <div class="clrBt"></div>
@@ -168,7 +168,7 @@
       <form class="formStyleMain formLightBoxMain">
         <div class="textBox">
           <label>Date</label>
-          <input ng-model="vanData.vanDate" type="date" style="width:130px;" />
+          <input ng-model="vanData.date" type="date" style="width:130px;" />
           <div class="clrBt"></div>
         </div>
         <div class="textBox">
@@ -178,12 +178,12 @@
         </div>
         <div class="textBox">
           <label>Driver Name</label>
-          <input ng-model="vanData.vanDriverName" type="text" />
+          <input ng-model="vanData.name" type="text" />
           <div class="clrBt"></div>
         </div>
         <div class="textBox">
           <label>Remarks</label>
-          <textarea ng-model="vanData.vanRemarks" style="height:50px; width:200px;"></textarea>
+          <textarea ng-model="vanData.remarks" style="height:50px; width:200px;"></textarea>
           <div class="clrBt"></div>
         </div>
         <div class="clrBt"></div>

@@ -58,6 +58,23 @@ app.factory('kalapatruService', ['$http',function($http) {
         })
     }
 
+    obj.getDispatch = function(id,successCB,failCB){
+        var params = '?id='+id
+        $http.get(DISPATCH+params).success(function(response){
+            successCB(response);
+
+        }).error(function(err,code){
+            var errMessage = 'Server Error'
+            if(code == HTTP_401 || code == HTTP_403){
+                errMessage = err
+            }
+
+            if(failCB){
+                failCB(errMessage)
+            }
+        })
+    }
+
     obj.addForwardingNote = function(forwardinNote,successCB,failCB){
         var params = {fnDate:serverDate(forwardinNote.fnDate),billValues:forwardinNote.billValues,billNo:forwardinNote.billNumber
         ,cases:forwardinNote.cases,marka:forwardinNote.marka,permitNo:forwardinNote.permitNo,comments:forwardinNote.comments,company:forwardinNote.company,transporterStation:forwardinNote.transporterStation}
@@ -90,7 +107,7 @@ app.factory('kalapatruService', ['$http',function($http) {
         })
     }
 
-    obj.addDispatch = function(forwardinNotes,vanNo,vanDriver,vanDate,vanRemarks,successCB,failCB){
+    obj.addOrUpdateDispatch = function(forwardinNotes,vanNo,vanDriver,vanDate,vanRemarks,id,successCB,failCB){
         if(vanDate){
             vanDate = serverDate(vanDate)
         }else{
@@ -98,8 +115,13 @@ app.factory('kalapatruService', ['$http',function($http) {
             vanDate = serverDate(vanDate.toDateString())
         }
         var params = {date:vanDate,vanNo:vanNo,name:vanDriver,remarks:vanRemarks,forwardingNotes:forwardinNotes}
+        var httpCall = $http.post
+        if(id){
+            params.id = id
+            httpCall = $http.put
+        }
 
-        $http.post(DISPATCH,params).success(function(response){
+        httpCall(DISPATCH,params).success(function(response){
             successCB(response);
 
         }).error(function(err,code){
