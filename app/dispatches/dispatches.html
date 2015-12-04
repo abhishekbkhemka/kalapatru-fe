@@ -76,7 +76,7 @@
               <th>Remarks</th>
               <th style="width:51px;">Action</th>
             </tr>
-            <tr ng-repeat="dis in dispacthes">
+            <tr ng-repeat="dis in dispacthes | filter:transportFilter">
               <td>{{dis.date |date:'dd-MM-yyyy'}}</td>
               <td>{{dis.vanNo}}.</td>
               <td>{{dis.name}}</td>
@@ -102,7 +102,7 @@
         
         	<div class="logoPartMain">
             	<div class="logoPMain"><img src="/com/images/logo.png" alt="" title="" style="width:120px;" /></div>
-                <div class="adrsLP">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tortor odio</div>
+                <div class="adrsLP">Kalpataru Tower Patna Gaya Road Elahibagh<br/> Patna-800007</div>
             </div>
         
 <div >
@@ -134,28 +134,28 @@
           <div style="border-bottom:4px double #aec6dc; margin-bottom:15px;"></div>
           <table cellpadding="0" cellspacing="0" width="100%" class="sortable" >
             <tr>
-              <th>Date</th>
-              <th>Transport Name</th>
+              <th ng-show="visibleForDisplay">Date</th>
+              <th >Transport Name</th>
               <th>Station / Place</th>
-              <th>Bill No.</th>
-              <th>Bill Date.</th>
-              <th>Value</th>
+              <th ng-show="visibleForDisplay" >Bill No.</th>
+              <th ng-show="visibleForDisplay">Bill Date.</th>
+              <th ng-show="visibleForDisplay">Value</th>
               <th>Cases</th>
               <th>Pvt. Marka</th>
-              <th>Permit No.</th>
+              <th ng-show="visibleForDisplay">Permit No.</th>
               <th>Customer name</th>
               <th>Customer City</th>
             </tr>
             <tr ng-repeat="fn in currentDispatch.forwardingNote">
-              <td>{{fn.fnDate | date:'dd-MM-yyyy'}}</td>
-              <td>{{fn.transporter.name}}</td>
+              <td ng-show="visibleForDisplay">{{fn.fnDate | date:'dd-MM-yyyy'}}</td>
+              <td >{{fn.transporter.name}}</td>
               <td>{{fn.transporter.city}}</td>
-              <td>{{fn.billNo}}</td>
-              <td>{{fn.billDate | date:'dd-MM-yyyy'}}</td>
-              <td>{{fn.billValue}}</td>
+              <td ng-show="visibleForDisplay">{{fn.billNo}}</td>
+              <td ng-show="visibleForDisplay">{{fn.billDate | date:'dd-MM-yyyy'}}</td>
+              <td ng-show="visibleForDisplay">{{fn.billValue}}</td>
               <td>{{fn.cases}}</td>
               <td>{{fn.marka}}</td>
-              <td>{{fn.permitNo}}</td>
+              <td ng-show="visibleForDisplay">{{fn.permitNo}}</td>
               <td>{{fn.customer.name}}</td>
               <td>{{fn.customer.city}}</td>
             </tr>
