@@ -83,7 +83,7 @@
               <td>{{dis.remarks}}</td>
               <td>
               	<a href="" class="flt_L" style="margin:0 8px 0 5px;"><img src="/com/images/viewicon.png" ng-click="showDispatch(dis)" style="width:18px;" alt="View" title="View" /></a>
-                <a href="#/dispatch?id={{dis.id}}" class="flt_L" style="margin:2px 0 0;"><img src="/com/images/editicon.png" alt="Edit" style="width:15px;" title="Edit" /></a><div class="clrBt"></div>
+                <a href="#/dispatch?id={{dis.id}}" ng-if="!dis.isLocked" class="flt_L" style="margin:2px 0 0;"><img src="/com/images/editicon.png" alt="Edit" style="width:15px;" title="Edit" /></a><div class="clrBt"></div>
 			  </td>
             </tr>
           </table>

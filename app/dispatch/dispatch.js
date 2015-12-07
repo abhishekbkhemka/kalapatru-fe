@@ -137,6 +137,24 @@ angular.module('myApp.dispatch', ['ngRoute'])
 
   }
 
+  $scope.getForwardingNote = function(){
+    showLoadingBar()
+    kalapatruService.getForwardingNote($scope.fnId,function(res){
+      $scope.forwardingNotes = []
+      $scope.forwardingNotes.push(res)
+      hideLoadingBar()
+    },function(er){
+
+      showMessage(er,'error')
+      hideLoadingBar()
+
+    })
+  }
+
+  $scope.reset = function(){
+    $scope.getForwardingNotes()
+  }
+
 
   $scope.save = function(isPrint) {
     if(!$scope.vanData){
@@ -147,6 +165,8 @@ angular.module('myApp.dispatch', ['ngRoute'])
       showMessage('Please enter Van Details first','error')
       return
     }
+
+
 
   showLoadingBar()
     var fNotes = []
