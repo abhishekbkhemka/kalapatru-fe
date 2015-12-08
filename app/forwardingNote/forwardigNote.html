@@ -121,7 +121,7 @@
                 <div class="clrBt"></div>
                 <div class="buttonMain flt_R" style="margin-right:70px;">
                     <button class="flt_L" ng-click="addForwardingNote()" style="margin-right:10px;" type="button">Save</button>
-                    <button class="flt_R" type="button">Save & Print</button>
+                    <button class="flt_R" ng-click="addForwardingNote(true)" type="button">Save & Print</button>
                     	<div class="clrBt"></div>
                 </div>
                 <div class="clrBt"></div>
@@ -130,10 +130,10 @@
     </div> <!-- Content Area Main End -->
     
     
-<div class="confirmBoxStyle" style="display:none;"> <!-- Forwarding Note Popup Box Style Start -->
+<div id="forwardingNote_id" class="confirmBoxStyle" style="display:none;"> <!-- Forwarding Note Popup Box Style Start -->
   <div class="confirmBoxOuter" style="width:650px;">
     <div class="confirmBoxStyleInner">
-      <h3 class="titleCB"><span class="confTxt flt_L">Forwarding Note</span> <span ng-click="closeVanDataPopUp()" class="windowCloseIcon flt_R"></span><div class="clrBt"></div></h3>
+      <h3 class="titleCB"><span class="confTxt flt_L">Forwarding Note</span><div class="clrBt"></div></h3>
       
     <div class="formViewStyleM">
         	<div class="logoPartMain">
@@ -215,7 +215,7 @@
         <div class="clrBt"></div>
     </div>
       
-      
+
       
     </div>
   </div>

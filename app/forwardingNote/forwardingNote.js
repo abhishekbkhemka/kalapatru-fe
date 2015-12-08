@@ -123,6 +123,22 @@ var initTransporter = function(){
     }
   }
 
+    var printFNData = function() {
+        html2canvas([ document.getElementById('forwardingNote_id') ], {
+            onrendered: function (canvas) {
+                var myImage = canvas.toDataURL("image/png");
+                var printWin = window.open('', '', 'width=340,height=260');
+                printWin.moveTo(200, 100);
+                printWin.document.write('<img src="' + myImage + '"/>');
+                printWin.focus();
+                printWin.print();
+                printWin.close();
+                return
+            }
+
+        })
+    }
+
     $scope.clearTransporter = function(){
         $scope.isTransporterDisabled = false
         $scope.currentFn.transporter = {}
@@ -133,9 +149,12 @@ var initTransporter = function(){
         $scope.currentFn.customer = {}
     }
 
-  $scope.addForwardingNote = function(){
+  $scope.addForwardingNote = function(isPrint){
       if(isBlank($scope.currentFn.fnDate)){
           showMessage('Please enter forwarding date ','error')
+          if(isPrint){
+              printFNData()
+          }
           $scope.isNotFnDate = true
           return
       }
