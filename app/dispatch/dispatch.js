@@ -140,7 +140,7 @@ angular.module('myApp.dispatch', ['ngRoute'])
         }
 
       })
-    },250)
+    },500)
     return true
   }
 
