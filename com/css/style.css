@@ -128,3 +128,7 @@ display:block; font-size:13px; cursor:pointer;}
 .formViewStyleM .textBox span{float:left; color:#007bb4; font-family: 'open_sanssemibold'; font-size:14px;}
 
 .billDatesBox span{background:url(../images/removeDate.png) no-repeat right -3px; padding:0 2px 0 0; margin-right:3px; cursor:pointer;}
+
+.afterSaveMessageMain{position:fixed; background:#fff; border:1px solid #ccc; border-radius:3px; bottom:5px; box-shadow:0 0 2px #ccc; padding:10px; right:5px; width:250px;}
+.afterSaveMessageMain .afterSaveMessageInr{}
+.afterSaveMessageMain .afterSaveMessageInr span{display:block;}
