@@ -73,11 +73,11 @@
           <ul class="checkBoxSectionMain">
             <li ng-repeat="fns in forwardingNotes | daterange:filterFromDate:filterToDate| filter:transportFilter" daterange class="chkBox" disabled>
               <div class="linkStyleLst" ng-show="!fns.isDispatched"><input ng-checked="fns.isDisabled" ng-click="addToVanData(fns)" type="checkbox" />
-              <a href="" ng-click="addToVanData(fns)"><span class="flt_L">{{getDisplayNameforFn(fns)}}</span> <img ng-click="printFn($event,fns)"  src="/com/images/viewiconUL.png" alt="" title="" class="flt_R" /><div class="clrBt"></div></a><div class="clrBt"></div></div>
+              <a href="" ng-click="addToVanData(fns)"><span class="flt_L" style="width:255px;">{{getDisplayNameforFn(fns)}}</span> <img ng-click="printFn($event,fns)" src="/com/images/viewiconUL.png" alt="" style="margin:2px 0 0;" title="" class="flt_R" /><div class="clrBt"></div></a><div class="clrBt"></div></div>
               <div class="clrBt"></div>
               <div class="unlinkStyleLst" ng-show="fns.isDispatched">
                   <img src="/com/images/bulletWhite.png" alt="" title="" class="flt_L" />
-                  <span class="flt_L"><div class="flt_L">{{getDisplayNameforFn(fns)}}</div> <img ng-click="printFn($event,fns)" src="/com/images/viewiconUL.png" alt="" title="" class="flt_R" /><div class="clrBt"></div></span>
+                  <span class="flt_L"><div class="flt_L" style="width:255px;">{{getDisplayNameforFn(fns)}}</div> <img ng-click="printFn($event,fns)" src="/com/images/viewiconUL.png" alt="" title="" style="margin:2px 0 0;" class="flt_R" /><div class="clrBt"></div></span>
                   <div class="clrBt"></div>
               </div>
               <div class="clrBt"></div>
