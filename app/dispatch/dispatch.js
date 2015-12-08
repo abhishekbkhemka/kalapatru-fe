@@ -119,6 +119,31 @@ angular.module('myApp.dispatch', ['ngRoute'])
     return totalBillValue
   }
 
+  $scope.printFn = function(eve,fn){
+    $scope.currentFn = fn;
+    $('#pforwardingNote_id').show()
+    var t =  setTimeout(function(){
+      clearTimeout(t)
+      html2canvas([ document.getElementById('forwardingNote_id') ], {
+        onrendered: function (canvas) {
+          var myImage = canvas.toDataURL("image/png");
+          var printWin = window.open('', '', 'width=340,height=260');
+          printWin.moveTo(200, 100);
+          printWin.document.write('<img src="' + myImage + '"/>');
+          printWin.focus();
+          printWin.print();
+          printWin.close();
+          $('#pforwardingNote_id').hide()
+          $scope.currentFn = {billDates:[]}
+          $scope.$apply()
+          return
+        }
+
+      })
+    },250)
+    return true
+  }
+
   $scope.removeFN = function(fn){
 
     $scope.vanData.fns.splice($scope.vanData.fns.indexOf(fn),1)

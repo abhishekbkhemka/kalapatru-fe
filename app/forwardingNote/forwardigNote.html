@@ -79,7 +79,7 @@
                     <div style="margin-top:4px; margin-right:6px;" class="buttonMain flt_R"><button ng-click="addBillDate()">Add</button></div>
                     <div class="clrBt"></div>
                     <div class="billDatesBox">
-                        <span ng-repeat="dt in currentFn.billDates  track by $index" style="display:inline-block; margin-bottom:7px; color:#2c7bb3;">{{dt | date:'dd/MM/yyyy'}} &nbsp; ,</span>
+                        <span ng-click="removeBillDates()" ng-repeat="dt in currentFn.billDates  track by $index" style="display:inline-block;  margin-bottom:7px; color:#2c7bb3;">{{dt | date:'dd/MM/yyyy'}} &nbsp; ,</span>
                         <div class="clrBt"></div>
                     </div>
                     <div class="clrBt"></div>
@@ -130,8 +130,8 @@
     </div> <!-- Content Area Main End -->
     
     
-<div id="forwardingNote_id" class="confirmBoxStyle" style="display:none;"> <!-- Forwarding Note Popup Box Style Start -->
-  <div class="confirmBoxOuter" style="width:650px;">
+<div id="pforwardingNote_id" class="confirmBoxStyle" style="display:none;"> <!-- Forwarding Note Popup Box Style Start -->
+  <div class="confirmBoxOuter" id="forwardingNote_id" style="width:650px;">
     <div class="confirmBoxStyleInner">
       <h3 class="titleCB"><span class="confTxt flt_L">Forwarding Note</span><div class="clrBt"></div></h3>
       
@@ -142,74 +142,74 @@
             </div>
 		<div class="textBox" style="width:auto; border-right:none;">
         	<label>Forwarding Date:</label>
-            <span>12/05/2015</span>
+            <span>{{currentFn.fnDate | date:'dd/MM/yyyy'}}</span>
             	<div class="clrBt"></div>
         </div>
         <div class="clrBt"></div>
 
 		<div class="textBox flt_L">
         	<label>Transport Name:</label>
-            <span>Transport</span>
+            <span>{{currentFn.transporter.name}}</span>
             	<div class="clrBt"></div>
         </div>
 		<div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
         	<label>Station/Place:</label>
-            <span>Pune</span>
+            <span>{{currentFn.transporterStation}}</span>
             	<div class="clrBt"></div>
         </div>
         	<div class="clrBt"></div>
 		<div class="textBox flt_L">
         	<label>Customer Name:</label>
-            <span>Vinit Bhise</span>
+            <span>{{currentFn.customer.name}}</span>
             	<div class="clrBt"></div>
         </div>
 		<div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
         	<label>Station/Place:</label>
-            <span>Pune</span>
+            <span>{{currentFn.customer.city}}</span>
             	<div class="clrBt"></div>
         </div>
         <div class="clrBt"></div>
 		<div class="textBox flt_L">
         	<label>Bill No:</label>
-            <span>1221</span>
+            <span>{{currentFn.billNumber}}</span>
             	<div class="clrBt"></div>
         </div>
 		<div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
         	<label>Bill Date:</label>
-            <span>13/06/2015</span>
+            <span>{{currentFn.billDates}}</span>
             	<div class="clrBt"></div>
         </div>
         <div class="clrBt"></div>
 		<div class="textBox flt_L">
         	<label>Bill Value:</label>
-            <span>None</span>
+            <span>{{currentFn.billValues}}</span>
             	<div class="clrBt"></div>
         </div>
 		<div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
         	<label>Cases:</label>
-            <span>Test</span>
+            <span>{{currentFn.cases}}</span>
             	<div class="clrBt"></div>
         </div>
         <div class="clrBt"></div>
 		<div class="textBox flt_L">
         	<label>Pvt. Marka:</label>
-            <span>Test</span>
+            <span>{{currentFn.marka}}</span>
             	<div class="clrBt"></div>
         </div>
 		<div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
         	<label>Permit No.:</label>
-            <span>5122</span>
+            <span>{{currentFn.permitNo}}</span>
             	<div class="clrBt"></div>
         </div>
         <div class="clrBt"></div>
 		<div class="textBox flt_L">
         	<label>Comments:</label>
-            <span>Dummy</span>
+            <span>{{currentFn.comments}}</span>
             	<div class="clrBt"></div>
         </div>
 		<div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
         	<label>Company/Division:</label>
-            <span>Test</span>
+            <span>{{currentFn.company}}</span>
             	<div class="clrBt"></div>
         </div>
         <div class="clrBt"></div>
@@ -223,6 +223,12 @@
 
 
 </div> <!-- Page Main Section End -->
+
+<div ng-if="afterSaveMessage">
+    <div>
+        <span>{{afterSaveMessage}}</span>
+    </div>
+</div>
 
 </body>
 </html>

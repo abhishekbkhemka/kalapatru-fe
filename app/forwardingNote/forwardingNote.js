@@ -39,6 +39,10 @@ angular.module('myApp.forwardingNote', ['ngRoute'])
     }
 
     $scope.addBillDate = function(){
+        if($scope.currentFn.billDate == undefined){
+            showMessage('Please select date','error')
+            return
+        }
         $scope.currentFn.billDates.push(serverDate($scope.currentFn.billDate))
         $scope.currentFn.billDate = undefined
     }
@@ -124,19 +128,27 @@ var initTransporter = function(){
   }
 
     var printFNData = function() {
-        html2canvas([ document.getElementById('forwardingNote_id') ], {
-            onrendered: function (canvas) {
-                var myImage = canvas.toDataURL("image/png");
-                var printWin = window.open('', '', 'width=340,height=260');
-                printWin.moveTo(200, 100);
-                printWin.document.write('<img src="' + myImage + '"/>');
-                printWin.focus();
-                printWin.print();
-                printWin.close();
-                return
-            }
+        $('#pforwardingNote_id').show()
+       var t =  setTimeout(function(){
+            clearTimeout(t)
+           html2canvas([ document.getElementById('forwardingNote_id') ], {
+               onrendered: function (canvas) {
+                   var myImage = canvas.toDataURL("image/png");
+                   var printWin = window.open('', '', 'width=340,height=260');
+                   printWin.moveTo(200, 100);
+                   printWin.document.write('<img src="' + myImage + '"/>');
+                   printWin.focus();
+                   printWin.print();
+                   printWin.close();
+                   $('#pforwardingNote_id').hide()
+                   $scope.currentFn = {billDates:[]}
+                   $scope.$apply()
+                   return
+               }
 
-        })
+           })
+        },250)
+
     }
 
     $scope.clearTransporter = function(){
@@ -148,13 +160,14 @@ var initTransporter = function(){
         $scope.isCustomerDisabled = false
         $scope.currentFn.customer = {}
     }
+    $scope.removeBillDates = function(dt){
+        $scope.currentFn.billDates.splice($scope.currentFn.billDates.indexOf(dt),1)
+    }
 
   $scope.addForwardingNote = function(isPrint){
       if(isBlank($scope.currentFn.fnDate)){
           showMessage('Please enter forwarding date ','error')
-          if(isPrint){
-              printFNData()
-          }
+
           $scope.isNotFnDate = true
           return
       }
@@ -210,9 +223,16 @@ var initTransporter = function(){
       }
     showLoadingBar()
     kalapatruService.addForwardingNote($scope.currentFn,function(res){
-        $scope.currentFn = {billDates:[]}
+        if(isPrint){
+            printFNData()
+        }else{
+            $scope.currentFn = {billDates:[]}
+
+        }
         $scope.totalBillValue = 0
         showMessage('Forwarding Note Saved','success')
+        $scope.afterSaveMessage = "Your last forwarding save with id: "+res.id
+
       hideLoadingBar()
     },function(err){
       showMessage(err,'error')

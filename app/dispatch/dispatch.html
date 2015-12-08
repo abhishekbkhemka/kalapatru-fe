@@ -73,11 +73,11 @@
           <ul class="checkBoxSectionMain">
             <li ng-repeat="fns in forwardingNotes | daterange:filterFromDate:filterToDate| filter:transportFilter" daterange class="chkBox" disabled>
               <div class="linkStyleLst" ng-show="!fns.isDispatched"><input ng-checked="fns.isDisabled" ng-click="addToVanData(fns)" type="checkbox" />
-              <a href="" ng-click="addToVanData(fns)"><span class="flt_L">{{getDisplayNameforFn(fns)}}</span> <img src="/com/images/viewiconUL.png" alt="" title="" class="flt_R" /><div class="clrBt"></div></a><div class="clrBt"></div></div>
+              <a href="" ng-click="addToVanData(fns)"><span class="flt_L">{{getDisplayNameforFn(fns)}}</span> <img ng-click="printFn($event,fns)"  src="/com/images/viewiconUL.png" alt="" title="" class="flt_R" /><div class="clrBt"></div></a><div class="clrBt"></div></div>
               <div class="clrBt"></div>
               <div class="unlinkStyleLst" ng-show="fns.isDispatched">
                   <img src="/com/images/bulletWhite.png" alt="" title="" class="flt_L" />
-                  <span class="flt_L"><div class="flt_L">{{getDisplayNameforFn(fns)}}</div> <img src="/com/images/viewiconUL.png" alt="" title="" class="flt_R" /><div class="clrBt"></div></span>
+                  <span class="flt_L"><div class="flt_L">{{getDisplayNameforFn(fns)}}</div> <img ng-click="printFn($event,fns)" src="/com/images/viewiconUL.png" alt="" title="" class="flt_R" /><div class="clrBt"></div></span>
                   <div class="clrBt"></div>
               </div>
               <div class="clrBt"></div>
@@ -201,6 +201,98 @@
     </div>
   </div>
 </div> <!-- Enter Van Details Popup Box Style End -->
+  <div id="pforwardingNote_id" class="confirmBoxStyle" style="display:none;"> <!-- Forwarding Note Popup Box Style Start -->
+    <div class="confirmBoxOuter" id="forwardingNote_id" style="width:650px;">
+      <div class="confirmBoxStyleInner">
+        <h3 class="titleCB"><span class="confTxt flt_L">Forwarding Note</span><div class="clrBt"></div></h3>
+
+        <div class="formViewStyleM">
+          <div class="logoPartMain">
+            <div class="logoPMain"><img src="/com/images/logo.png" alt="" title="" style="width:120px;" /></div>
+            <div class="adrsLP">Kalpataru Tower Patna Gaya Road Elahibagh<br/> Patna-800007</div>
+          </div>
+          <div class="textBox" style="width:auto; border-right:none;">
+            <label>Forwarding Date:</label>
+            <span>{{currentFn.fnDate | date:'dd/MM/yyyy'}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="clrBt"></div>
+
+          <div class="textBox flt_L">
+            <label>Transport Name:</label>
+            <span>{{currentFn.transporter.name}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
+            <label>Station/Place:</label>
+            <span>{{currentFn.transporterStation}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="clrBt"></div>
+          <div class="textBox flt_L">
+            <label>Customer Name:</label>
+            <span>{{currentFn.customer.name}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
+            <label>Station/Place:</label>
+            <span>{{currentFn.customer.city}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="clrBt"></div>
+          <div class="textBox flt_L">
+            <label>Bill No:</label>
+            <span>{{currentFn.billNumber}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
+            <label>Bill Date:</label>
+            <span>{{currentFn.billDates}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="clrBt"></div>
+          <div class="textBox flt_L">
+            <label>Bill Value:</label>
+            <span>{{currentFn.billValues}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
+            <label>Cases:</label>
+            <span>{{currentFn.cases}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="clrBt"></div>
+          <div class="textBox flt_L">
+            <label>Pvt. Marka:</label>
+            <span>{{currentFn.marka}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
+            <label>Permit No.:</label>
+            <span>{{currentFn.permitNo}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="clrBt"></div>
+          <div class="textBox flt_L">
+            <label>Comments:</label>
+            <span>{{currentFn.comments}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
+            <label>Company/Division:</label>
+            <span>{{currentFn.company}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="clrBt"></div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div> <!-- Forwarding Note Popup Box Style End -->
+
+
 
 </body>
 </html>
