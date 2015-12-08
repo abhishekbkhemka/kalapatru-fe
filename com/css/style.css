@@ -112,12 +112,23 @@ display:block; font-size:13px; cursor:pointer;}
 
 .vanDetailsTbl{padding:0 5px 5px 15px;}
 .vanDetailsTbl .textBoxVD{margin-bottom:8px;}
-.vanDetailsTbl .textBoxVD label{float:left; font-family: 'open_sanssemibold'; font-size:13px; color:#594c17;}
+.vanDetailsTbl .textBoxVD label{float:left; font-family: 'open_sanssemibold'; font-size:14px; color:#000000;}
 .vanDetailsTbl .textBoxVD span{float:left; font-size:13px; margin-left:5px; color:#953b44;}
 .redBorder {border:1px solid red !important}
 
 .logoPartMain{padding:15px 0; margin:0 auto; width:300px; text-align:center;}
 .logoPartMain .logoPMain{margin-bottom:10px;}
-.logoPartMain .adrsLP{color:#444;}
+.logoPartMain .adrsLP{color:#333;}
 
 .billDatesBox{background:#eaf5f7; border:1px solid #c2ecff; margin-left:120px; margin-top:4px; padding:5px 5px 0 5px; width:301px;}
+
+.formViewStyleM{padding:0 10px 0;}
+.formViewStyleM .textBox{background:#fafafa; border-bottom:1px solid #ededed; border-right:1px solid #d0cfcf; margin:0 0 6px; padding:6px 5px; width:305px;}
+.formViewStyleM .textBox label{float:left; margin-right:8px; font-family: 'open_sanssemibold'; color:#333; font-size:14px;}
+.formViewStyleM .textBox span{float:left; color:#007bb4; font-family: 'open_sanssemibold'; font-size:14px;}
+
+.billDatesBox span{background:url(../images/removeDate.png) no-repeat right -3px; padding:0 2px 0 0; margin-right:3px; cursor:pointer;}
+
+.afterSaveMessageMain{position:fixed; background:#fff; border:1px solid #ccc; border-radius:3px; bottom:5px; box-shadow:0 0 2px #ccc; padding:10px; right:5px; width:250px;}
+.afterSaveMessageMain .afterSaveMessageInr{}
+.afterSaveMessageMain .afterSaveMessageInr span{display:block;}

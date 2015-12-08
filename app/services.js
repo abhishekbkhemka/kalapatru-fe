@@ -157,6 +157,24 @@ app.factory('kalapatruService', ['$http',function($http) {
         })
     }
 
+    obj.getForwardingNote = function(id,successCB,failCB){
+        var  params ='?id='+id
+
+        $http.get(FORWARDING_NOTE+params).success(function(response){
+            successCB(response);
+
+        }).error(function(err,code){
+            var errMessage = 'Server Error'
+            if(code == HTTP_401 || code == HTTP_403){
+                errMessage = err
+            }
+
+            if(failCB){
+                failCB(errMessage)
+            }
+        })
+    }
+
 
 
     return obj

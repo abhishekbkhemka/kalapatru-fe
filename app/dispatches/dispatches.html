@@ -3,11 +3,9 @@
 <head>
   <meta charset="utf-8">
   <title>Dispatches</title>
-  
 </head>
 
 <body>
-
 <div id="pageMainKT" ng-init="initData()"> <!-- Page Main Section Start -->
 
   <header class="hedMain"> <!-- Header Main Start -->
@@ -83,7 +81,7 @@
               <td>{{dis.remarks}}</td>
               <td>
               	<a href="" class="flt_L" style="margin:0 8px 0 5px;"><img src="/com/images/viewicon.png" ng-click="showDispatch(dis)" style="width:18px;" alt="View" title="View" /></a>
-                <a href="#/dispatch?id={{dis.id}}" class="flt_L" style="margin:2px 0 0;"><img src="/com/images/editicon.png" alt="Edit" style="width:15px;" title="Edit" /></a><div class="clrBt"></div>
+                <a href="#/dispatch?id={{dis.id}}" ng-if="!dis.isLocked" class="flt_L" style="margin:2px 0 0;"><img src="/com/images/editicon.png" alt="Edit" style="width:15px;" title="Edit" /></a><div class="clrBt"></div>
 			  </td>
             </tr>
           </table>
@@ -93,7 +91,7 @@
         
         <div class="clrBt"></div>
         
-<div  class="confirmBoxStyle" ng-if="isDispatchView"> <!-- Reason for Cancellation Popup Box Style Start -->
+<div class="confirmBoxStyle" ng-if="isDispatchView"> <!-- Van Details Popup Box Style Start -->
   <div id="vanDetails_id" class="confirmBoxOuter" style="margin:40px auto 0; width:880px;">
     <div class="confirmBoxStyleInner">
       <h3 class="titleCB"><span class="confTxt flt_L">Van Details</span> <span  id="close_btn_id" ng-click="closeDispatch()" class="windowCloseIcon flt_R"></span><div class="clrBt"></div></h3>

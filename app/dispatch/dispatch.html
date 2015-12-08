@@ -2,14 +2,10 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Dispatch Note </title>
-
+  <title>Dispatch Note</title>
 </head>
-
 <body>
-
 <div id="pageMainKT" ng-init="initData()"> <!-- Page Main Section Start -->
-
   <header class="hedMain"> <!-- Header Main Start -->
     <div class="hedInner">
       <section class="hedLeftSec flt_L">
@@ -22,7 +18,6 @@
       <div class="clrBt"></div>
     </div>
   </header> <!-- Header Main End -->
-
   <div class="menuMain">
     <div class="menuInner">
       <a href="#/forwardingNote" style="border-right:1px solid #ccc; margin-right:5px; padding-right:12px;">Forwarding Note</a>
@@ -31,16 +26,26 @@
       <div class="clrBt"></div>
     </div>
   </div>
-
   <div class="contentAreaMain"> <!-- Content Area Main Start -->
     <div class="contentAreaInner">
       <h2 class="pageTitle" style="margin-bottom:12px;">Dispatch</h2>
-
       <div class="contLeftRightMain">
         <div class="clrBt"></div>
-        <!--<div style="margin:0 0 10px 0;" class="buttonMain flt_L">-->
-          <!--<button type="button" class="flt_L" style="margin-right:10px;">Open</button>-->
-        <!--</div>-->
+        
+        <div class="forwNumIdMain flt_L formStyleMain">
+        	<div class="flt_L textBox">
+            	<label class="flt_L" style="width:155px;">Forwarding Number Id</label>
+                <input class="flt_L" ng-model="fnId" type="number" style="width:125px;" />
+                	<div class="clrBt"></div>
+			</div>
+            <div class="buttonMain flt_L" style="margin:3px 0 0 10px;">
+                <button type="button" class="flt_L" ng-click="getForwardingNote()" style="margin-right:10px;">Apply</button>
+                <button type="button" class="flt_L" ng-click="reset()" style="margin-right:10px;">Reset</button>
+                	<div class="clrBt"></div>
+			</div>
+            	<div class="clrBt"></div>
+        </div>
+
         <div style="margin:0 0 10px 0;" class="buttonMain flt_R">
           <button type="button" ng-click="showVanDataPopUp()" class="flt_L" style="margin-right:10px;">Add Van Details</button>
         </div>
@@ -63,24 +68,25 @@
               <input ng-model="transportFilter" type="text" style="width:285px;" />
               <div class="clrBt"></div>
             </div>
-<!--          <div style="margin:30px 0 0;" class="buttonMain flt_R">
-            <button type="button" class="flt_L">Apply</button>
-          </div>-->
             <div class="clrBt"></div>
           </form>
           <ul class="checkBoxSectionMain">
             <li ng-repeat="fns in forwardingNotes | daterange:filterFromDate:filterToDate| filter:transportFilter" daterange class="chkBox" disabled>
               <div class="linkStyleLst" ng-show="!fns.isDispatched"><input ng-checked="fns.isDisabled" ng-click="addToVanData(fns)" type="checkbox" />
-              <a href="" ng-click="addToVanData(fns)">{{getDisplayNameforFn(fns)}}</a><div class="clrBt"></div></div>
+              <a href="" ng-click="addToVanData(fns)"><span class="flt_L" style="width:255px;">{{getDisplayNameforFn(fns)}}</span> <img ng-click="printFn($event,fns)" src="/com/images/viewiconUL.png" alt="" style="margin:2px 0 0;" title="" class="flt_R" /><div class="clrBt"></div></a><div class="clrBt"></div></div>
               <div class="clrBt"></div>
-              <div class="unlinkStyleLst" ng-show="fns.isDispatched"><img src="/com/images/bulletWhite.png" alt="" title="" class="flt_L" /><span class="flt_L">{{getDisplayNameforFn(fns)}}</span><div class="clrBt"></div></div>
+              <div class="unlinkStyleLst" ng-show="fns.isDispatched">
+                  <img src="/com/images/bulletWhite.png" alt="" title="" class="flt_L" />
+                  <span class="flt_L"><div class="flt_L" style="width:255px;">{{getDisplayNameforFn(fns)}}</div> <img ng-click="printFn($event,fns)" src="/com/images/viewiconUL.png" alt="" title="" style="margin:2px 0 0;" class="flt_R" /><div class="clrBt"></div></span>
+                  <div class="clrBt"></div>
+              </div>
               <div class="clrBt"></div>
             </li>
           </ul>
         </section>
-        <div  class="contRightMain flt_R">
-<div id="vanDetails_id">
 
+       <div class="contRightMain flt_R">
+<div id="vanDetails_id">
         	<div class="logoPartMain">
             	<div class="logoPMain"><img src="/com/images/logo.png" alt="" title="" style="width:120px;" /></div>
                 <div class="adrsLP">Kalpataru Tower Patna Gaya Road Elahibagh<br/> Patna-800007</div>
@@ -145,7 +151,8 @@
 			  </td>
             </tr>         
           </table>
-          </div>
+</div>
+
           <div style="margin:10px 0 0 0;" class="buttonMain flt_R">
             <button type="button" class="flt_L" ng-click="save()" style="margin-right:10px;">Save</button>
             <button type="button" ng-click="save(true)" class="flt_L">Save & Print</button>
@@ -160,7 +167,7 @@
 
 </div> <!-- Page Main Section End -->
 
-<div ng-if="vanDataPopUP" class="confirmBoxStyle"> <!-- Reason for Cancellation Popup Box Style Start -->
+<div ng-if="vanDataPopUP" class="confirmBoxStyle"> <!-- Enter Van Details Popup Box Style Start -->
   <div class="confirmBoxOuter">
     <div class="confirmBoxStyleInner">
       <h3 class="titleCB"><span class="confTxt flt_L">Enter Van Details</span> <span ng-click="closeVanDataPopUp()" class="windowCloseIcon flt_R"></span><div class="clrBt"></div></h3>
@@ -193,7 +200,99 @@
       </form>
     </div>
   </div>
-</div> <!-- Reason for Cancellation Popup Box Style End -->
+</div> <!-- Enter Van Details Popup Box Style End -->
+  <div id="pforwardingNote_id" class="confirmBoxStyle" style="display:none;"> <!-- Forwarding Note Popup Box Style Start -->
+    <div class="confirmBoxOuter" id="forwardingNote_id" style="width:650px;">
+      <div class="confirmBoxStyleInner">
+        <h3 class="titleCB"><span class="confTxt flt_L">Forwarding Note</span><div class="clrBt"></div></h3>
+
+        <div class="formViewStyleM">
+          <div class="logoPartMain">
+            <div class="logoPMain"><img src="/com/images/logo.png" alt="" title="" style="width:120px;" /></div>
+            <div class="adrsLP">Kalpataru Tower Patna Gaya Road Elahibagh<br/> Patna-800007</div>
+          </div>
+          <div class="textBox" style="width:auto; border-right:none;">
+            <label>Forwarding Date:</label>
+            <span>{{currentFn.fnDate | date:'dd/MM/yyyy'}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="clrBt"></div>
+
+          <div class="textBox flt_L">
+            <label>Transport Name:</label>
+            <span>{{currentFn.transporter.name}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
+            <label>Station/Place:</label>
+            <span>{{currentFn.transporterStation}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="clrBt"></div>
+          <div class="textBox flt_L">
+            <label>Customer Name:</label>
+            <span>{{currentFn.customer.name}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
+            <label>Station/Place:</label>
+            <span>{{currentFn.customer.city}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="clrBt"></div>
+          <div class="textBox flt_L">
+            <label>Bill No:</label>
+            <span>{{currentFn.billNumber}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
+            <label>Bill Date:</label>
+            <span>{{currentFn.billDates}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="clrBt"></div>
+          <div class="textBox flt_L">
+            <label>Bill Value:</label>
+            <span>{{currentFn.billValues}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
+            <label>Cases:</label>
+            <span>{{currentFn.cases}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="clrBt"></div>
+          <div class="textBox flt_L">
+            <label>Pvt. Marka:</label>
+            <span>{{currentFn.marka}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
+            <label>Permit No.:</label>
+            <span>{{currentFn.permitNo}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="clrBt"></div>
+          <div class="textBox flt_L">
+            <label>Comments:</label>
+            <span>{{currentFn.comments}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
+            <label>Company/Division:</label>
+            <span>{{currentFn.company}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="clrBt"></div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div> <!-- Forwarding Note Popup Box Style End -->
+
+
 
 </body>
 </html>
