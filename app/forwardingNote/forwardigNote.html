@@ -36,12 +36,12 @@
             <h2 class="pageTitle">Forwarding Note</h2>
             <form class="formStyleMain formLRMain">
                 <div class="textBox">
-                    <label>Forwarding Date*</label>
+                    <label>Forwarding Date<span style="color:red;">*</span></label>
                     <input type="date" ng-class="{'redBorder':isNotFnDate}" format="YYYY-MM-DD" ng-model="currentFn.fnDate" />
                     <div class="clrBt"></div>
                 </div>
                 <div class="textBox">
-                    <label>Transport Name*</label>
+                    <label>Transport Name<span style="color:red;">*</span></label>
                     <input style="text-transform: uppercase" id="transporter_name_id" ng-class="{'redBorder':isNotTransporter}" ng-disabled="isTransporterDisabled" ng-model="currentFn.transporter.name" type="text" />
                   <div style="margin-top:4px;" class="buttonMain flt_R">
                     <button ng-click="clearTransporter()">Clear</button>
@@ -49,13 +49,13 @@
                     <div class="clrBt"></div>
                 </div>
                 <div class="textBox">
-                    <label>Station/Place*</label>
+                    <label>Station/Place<span style="color:red;">*</span></label>
                     <input style="text-transform: uppercase"  id="t_station_id" ng-class="{'redBorder':isNotTransporter}" ng-model="currentFn.transporterStation" type="text" />
                     <div class="clrBt"></div>
 
                 </div>
                 <div class="textBox">
-                    <label>Customer Name*</label>
+                    <label>Customer Name<span style="color:red;">*</span></label>
                     <input style="text-transform: uppercase" id="customer_name_id" ng-class="{'redBorder':isNotCustomer}" ng-disabled="isCustomerDisabled" ng-model="currentFn.customer.name" type="text" />
                   <div style="margin-top:4px;" class="buttonMain flt_R">
                     <button ng-click="clearCustomer()">Clear</button>
@@ -64,7 +64,7 @@
                 </div>
                 <div class="textBox">
                     <label>Station/Place<span style="color:red;">*</span></label>
-                    <input  style="text-transform: uppercase" ng-disabled="isCustomerDisabled" ng-class="{'redBorder':isNotCustomer}" ng-model="currentFn.customer.city" type="text" />
+                    <input style="text-transform: uppercase" ng-disabled="isCustomerDisabled" ng-class="{'redBorder':isNotCustomer}" ng-model="currentFn.customer.city" type="text" />
                     <div class="clrBt"></div>
                 </div>
                 <div class="textBox">
@@ -86,46 +86,140 @@
                 </div>
 
                 <div class="textBox">
-                    <label>Bill Value*</label>
+                    <label>Bill Value<span style="color:red;">*</span></label>
                     <input ng-change="calculateBillValue()" ng-class="{'redBorder':isNotBillValue}" ng-model="currentFn.billValues" type="text" />
                     <label style="margin:0; text-align:center; width:67px; color:#3588ae;"><span style="display:block; color:#3588ae;">Total</span> <span style="display:block; color:#3588ae;">{{totalBillValue}}</span></label>
                     <div class="clrBt"></div>
                 </div>
                 <div class="textBox">
-                    <label>Cases*</label>
-                    <input type="text" ng-class="{'redBorder':isNotCases}" ng-model="currentFn.cases"/>
+                    <label>Cases<span style="color:red;">*</span></label>
+                    <input type="text" ng-class="{'redBorder':isNotCases}" ng-model="currentFn.cases" />
                     <div class="clrBt"></div>
                 </div>
                 <div class="textBox">
-                    <label>Pvt. Marka*</label>
+                    <label>Pvt. Marka<span style="color:red;">*</span></label>
                     <input style="text-transform: uppercase" type="text"  ng-class="{'redBorder':isNotMarka}" ng-model="currentFn.marka" />
                     <div class="clrBt"></div>
                 </div>
                 <div class="textBox">
                     <label>Permit No</label>
-                    <input type="text" ng-model="currentFn.permitNo"/>
+                    <input type="text" ng-model="currentFn.permitNo" />
                     <div class="clrBt"></div>
                 </div>
 
                 <div class="textBox">
                     <label>Comments</label>
-                    <input type="text" ng-model="currentFn.comments"/>
+                    <input type="text" ng-model="currentFn.comments" />
                     <div class="clrBt"></div>
                 </div>
 
                 <div class="textBox">
                     <label>Company/Division</label>
-                    <input style="text-transform: uppercase" type="text" ng-model="currentFn.company"/>
+                    <input style="text-transform:uppercase;" type="text" ng-model="currentFn.company" />
                     <div class="clrBt"></div>
                 </div>
                 <div class="clrBt"></div>
                 <div class="buttonMain flt_R" style="margin-right:70px;">
-                    <button ng-click="addForwardingNote()" type="button">Save</button>
+                    <button class="flt_L" ng-click="addForwardingNote()" style="margin-right:10px;" type="button">Save</button>
+                    <button class="flt_R" type="button">Save & Print</button>
+                    	<div class="clrBt"></div>
                 </div>
                 <div class="clrBt"></div>
             </form>
         </div>
     </div> <!-- Content Area Main End -->
+    
+    
+<div class="confirmBoxStyle" style="display:none;"> <!-- Forwarding Note Popup Box Style Start -->
+  <div class="confirmBoxOuter" style="width:650px;">
+    <div class="confirmBoxStyleInner">
+      <h3 class="titleCB"><span class="confTxt flt_L">Forwarding Note</span> <span ng-click="closeVanDataPopUp()" class="windowCloseIcon flt_R"></span><div class="clrBt"></div></h3>
+      
+    <div class="formViewStyleM">
+        	<div class="logoPartMain">
+            	<div class="logoPMain"><img src="/com/images/logo.png" alt="" title="" style="width:120px;" /></div>
+                <div class="adrsLP">Kalpataru Tower Patna Gaya Road Elahibagh<br/> Patna-800007</div>
+            </div>
+		<div class="textBox" style="width:auto; border-right:none;">
+        	<label>Forwarding Date:</label>
+            <span>12/05/2015</span>
+            	<div class="clrBt"></div>
+        </div>
+        <div class="clrBt"></div>
+
+		<div class="textBox flt_L">
+        	<label>Transport Name:</label>
+            <span>Transport</span>
+            	<div class="clrBt"></div>
+        </div>
+		<div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
+        	<label>Station/Place:</label>
+            <span>Pune</span>
+            	<div class="clrBt"></div>
+        </div>
+        	<div class="clrBt"></div>
+		<div class="textBox flt_L">
+        	<label>Customer Name:</label>
+            <span>Vinit Bhise</span>
+            	<div class="clrBt"></div>
+        </div>
+		<div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
+        	<label>Station/Place:</label>
+            <span>Pune</span>
+            	<div class="clrBt"></div>
+        </div>
+        <div class="clrBt"></div>
+		<div class="textBox flt_L">
+        	<label>Bill No:</label>
+            <span>1221</span>
+            	<div class="clrBt"></div>
+        </div>
+		<div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
+        	<label>Bill Date:</label>
+            <span>13/06/2015</span>
+            	<div class="clrBt"></div>
+        </div>
+        <div class="clrBt"></div>
+		<div class="textBox flt_L">
+        	<label>Bill Value:</label>
+            <span>None</span>
+            	<div class="clrBt"></div>
+        </div>
+		<div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
+        	<label>Cases:</label>
+            <span>Test</span>
+            	<div class="clrBt"></div>
+        </div>
+        <div class="clrBt"></div>
+		<div class="textBox flt_L">
+        	<label>Pvt. Marka:</label>
+            <span>Test</span>
+            	<div class="clrBt"></div>
+        </div>
+		<div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
+        	<label>Permit No.:</label>
+            <span>5122</span>
+            	<div class="clrBt"></div>
+        </div>
+        <div class="clrBt"></div>
+		<div class="textBox flt_L">
+        	<label>Comments:</label>
+            <span>Dummy</span>
+            	<div class="clrBt"></div>
+        </div>
+		<div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
+        	<label>Company/Division:</label>
+            <span>Test</span>
+            	<div class="clrBt"></div>
+        </div>
+        <div class="clrBt"></div>
+    </div>
+      
+      
+      
+    </div>
+  </div>
+</div> <!-- Forwarding Note Popup Box Style End -->
 
 
 </div> <!-- Page Main Section End -->
