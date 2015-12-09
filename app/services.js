@@ -77,7 +77,7 @@ app.factory('kalapatruService', ['$http',function($http) {
 
     obj.addForwardingNote = function(forwardinNote,successCB,failCB){
         var params = {fnDate:serverDate(forwardinNote.fnDate),billValues:forwardinNote.billValues,billNo:forwardinNote.billNumber
-        ,cases:forwardinNote.cases,marka:forwardinNote.marka,permitNo:forwardinNote.permitNo,comments:forwardinNote.comments,company:forwardinNote.company,transporterStation:forwardinNote.transporterStation}
+        ,cases:forwardinNote.cases,marka:forwardinNote.marka,permitNo:forwardinNote.permitNo,comments:forwardinNote.comments,companyId:forwardinNote.companyId,transporterStation:forwardinNote.transporterStation}
         if(forwardinNote.transporter.id){
             params.transporter_id = forwardinNote.transporter.id
         }else{
@@ -161,6 +161,23 @@ app.factory('kalapatruService', ['$http',function($http) {
         var  params ='?id='+id
 
         $http.get(FORWARDING_NOTE+params).success(function(response){
+            successCB(response);
+
+        }).error(function(err,code){
+            var errMessage = 'Server Error'
+            if(code == HTTP_401 || code == HTTP_403){
+                errMessage = err
+            }
+
+            if(failCB){
+                failCB(errMessage)
+            }
+        })
+    }
+
+    obj.getCompanies = function(successCB,failCB){
+
+        $http.get(COMPANIES).success(function(response){
             successCB(response);
 
         }).error(function(err,code){

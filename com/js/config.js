@@ -6,6 +6,7 @@ var CURRENT = PROD;
 var GET_TRASPORTERS = CURRENT+'api/transporters/'
 var GET_CUSTOMERS = CURRENT+'api/customers/'
 var FORWARDING_NOTE = CURRENT+'api/forwardingNote/'
+var COMPANIES = CURRENT+'api/companies/'
 var FORWARDING_NOTES = CURRENT+'api/forwardingNotes/'
 var DISPATCH = CURRENT+'api/dispatch/'
 var DISPATCHES = CURRENT+'api/dispatches/'

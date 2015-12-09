@@ -104,19 +104,29 @@ var initTransporter = function(){
     };
   }
 
-  kalapatruService.getTrasporterList(function(res){
-    $scope.transporters = res
-    initTransporter()
-  },function(err){
+    $scope.initData  = function(){
+        kalapatruService.getTrasporterList(function(res){
+            $scope.transporters = res
+            initTransporter()
+        },function(err){
 
-  })
+        })
 
-  kalapatruService.getCustomersList(function(res){
-    $scope.customers = res
-    initCustomer()
-  },function(err){
+        kalapatruService.getCustomersList(function(res){
+            $scope.customers = res
+            initCustomer()
+        },function(err){
 
-  })
+        })
+
+        kalapatruService.getCompanies(function(res){
+            $scope.companies = res
+        },function(err){
+
+        })
+    }
+
+
 
   $scope.calculateBillValue = function(){
     var values = $scope.currentFn.billValues.split('+')
