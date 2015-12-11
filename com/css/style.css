@@ -58,7 +58,7 @@ color:#be4954; line-height:normal; margin:0 0 20px; padding:4px 15px; text-trans
 .formStyleMain .textBox{margin-bottom:10px;}
 .formStyleMain .textBox label{float:left; margin:6px 0 0; font-family: 'open_sanssemibold'; color:#333; width:120px; font-size:13px; font-weight:normal;}
 .formStyleMain .textBox input, .formStyleMain .textBox textarea{float:left; resize:none; font-size:12px; height:20px; font-family: 'open_sansregular'; box-shadow:0 0 2px #ccc inset; border:1px solid #ccc; padding:6px; border-radius:5px;}
-.formStyleMain .textBox input:focus, .formStyleMain .textBox textarea:focus{border:1px solid #4da4cc; box-shadow:0 0 2px #4da4cc inset;}
+.formStyleMain .textBox input:focus, .formStyleMain .textBox textarea:focus, .selectSty1 select:focus{border:1px solid #4da4cc; box-shadow:0 0 2px #4da4cc inset;}
 .buttonMain{}
 .buttonMain button{border:none; font-family: 'open_sanssemibold'; background:#4da4cc; color:#fff; text-align:center; padding:4px 10px; border-radius:8px;
 display:block; font-size:13px; cursor:pointer;}
@@ -123,12 +123,24 @@ display:block; font-size:13px; cursor:pointer;}
 .billDatesBox{background:#eaf5f7; border:1px solid #c2ecff; margin-left:120px; margin-top:4px; padding:5px 5px 0 5px; width:301px;}
 
 .formViewStyleM{padding:0 10px 0;}
-.formViewStyleM .textBox{background:#fafafa; border-bottom:1px solid #ededed; border-right:1px solid #d0cfcf; margin:0 0 6px; padding:6px 5px; width:305px;}
+.formViewStyleM .textBox{background:#fafafa; border-bottom:1px solid #ededed; border-right:1px solid #d0cfcf; margin:0; padding:6px 5px; width:305px;}
 .formViewStyleM .textBox label{float:left; margin-right:8px; font-family: 'open_sanssemibold'; color:#333; font-size:14px;}
-.formViewStyleM .textBox span{float:left; color:#007bb4; font-family: 'open_sanssemibold'; font-size:14px;}
+.formViewStyleM .textBox span{float:left; color:#007bb4; font-family: 'open_sanssemibold'; font-size:14px; word-break:break-all;}
 
 .billDatesBox span{background:url(../images/removeDate.png) no-repeat right -3px; padding:0 2px 0 0; margin-right:3px; cursor:pointer;}
 
 .afterSaveMessageMain{position:fixed; background:#fff; border:1px solid #ccc; border-radius:3px; bottom:5px; box-shadow:0 0 2px #ccc; padding:10px; right:5px; width:250px;}
 .afterSaveMessageMain .afterSaveMessageInr{}
 .afterSaveMessageMain .afterSaveMessageInr span{display:block;}
+
+/* Select CSS */
+.posCss{position:relative;}
+.selectSty1{height:56px;}
+.selectSty1 label{position:relative; display:block;}
+.selectSty1 select{outline:none; font-weight:normal; cursor:pointer; -webkit-appearance:none; -moz-appearance:none; -o-appearance:none; -ms-appearance:none; appearance:none; width:100%; border:1px solid #ccc; border-radius:6px; box-shadow:0 0 2px #ccc inset; color:#34495e; font-family: Lato,Helvetica,Arial,sans-serif; font-size:13px; height:33px; line-height:1.467; padding:5px 10px; resize:none; 
+transition:border 0.25s linear 0s, color 0.25s linear 0s, background-color 0.25s linear 0s;}
+.selectSty1 span{ position:absolute; top:0; width:100%;}
+.selectSty1 span:after{content:'<>'; font:15px "Consolas", monospace; color:#444; -webkit-transform:rotate(90deg); -moz-transform:rotate(90deg); -ms-transform:rotate(90deg); transform:rotate(90deg); padding:0 0 2px; border-bottom:1px solid #ddd; position:absolute; pointer-events:none; right:6px; top:5px;}
+.selectSty1 span:before{content:''; height:34px; pointer-events:none; position:absolute; width:30px; }
+.selectSty1 select option{padding:5px 3px; background:#EFEDED; border:none; outline:none; display:block; font-weight:normal;}
+.selectSty1 select option:hover{background:#ccc;}

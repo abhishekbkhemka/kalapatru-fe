@@ -93,15 +93,14 @@
             </div>
 
           <div class="vanDetailsTbl">
-
-            <div class="textBoxVD flt_L" >
-              <label>Van No.: </label>
-              <span>{{vanData.vanNo}}</span>
+            <div class="textBoxVD flt_L">
+              <label>Date: </label>
+              <span>{{getFormattedDate(vanData.date)}}</span>
               <div class="clrBt"></div>
             </div>
             <div class="textBoxVD flt_R" style="padding-right:10px;">
-              <label>Date: </label>
-              <span>{{getFormattedDate(vanData.date)}}</span>
+              <label>Van No.: </label>
+              <span>{{vanData.vanNo}}</span>
               <div class="clrBt"></div>
             </div>
             <div class="clrBt"></div>
@@ -173,13 +172,13 @@
       <h3 class="titleCB"><span class="confTxt flt_L">Enter Van Details</span> <span ng-click="closeVanDataPopUp()" class="windowCloseIcon flt_R"></span><div class="clrBt"></div></h3>
       <form class="formStyleMain formLightBoxMain">
         <div class="textBox">
-          <label>Date</label>
-          <input ng-model="vanData.date" type="date" style="width:130px;" />
+          <label>Van No.</label>
+          <input ng-model="vanData.vanNo" type="text" />
           <div class="clrBt"></div>
         </div>
         <div class="textBox">
-          <label>Van No.</label>
-          <input ng-model="vanData.vanNo" type="text" />
+          <label>Date</label>
+          <input ng-model="vanData.date" type="date" style="width:130px;" />
           <div class="clrBt"></div>
         </div>
         <div class="textBox">
