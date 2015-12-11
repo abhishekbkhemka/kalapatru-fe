@@ -110,6 +110,7 @@ angular.module('myApp.dispatch', ['ngRoute'])
   }
 
   $scope.getBillValues = function(values){
+    if(values == undefined){return 0}
     var values =values.split('+')
     var totalBillValue = 0;
     for(var i =0 ;i<values.length;i++){
