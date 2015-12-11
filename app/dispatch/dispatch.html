@@ -200,6 +200,97 @@
     </div>
   </div>
 </div> <!-- Enter Van Details Popup Box Style End -->
+  <!--<div id="pforwardingNote_id" class="confirmBoxStyle" style="display:none;"> &lt;!&ndash; Forwarding Note Popup Box Style Start &ndash;&gt;-->
+    <!--<div class="confirmBoxOuter" id="forwardingNote_id" style="width:650px;">-->
+      <!--<div class="confirmBoxStyleInner">-->
+        <!--<h3 class="titleCB"><span class="confTxt flt_L">Forwarding Note</span><div class="clrBt"></div></h3>-->
+
+        <!--<div class="formViewStyleM">-->
+          <!--<div class="logoPartMain">-->
+            <!--<div class="logoPMain"><img src="/com/images/logo.png" alt="" title="" style="width:120px;" /></div>-->
+            <!--<div class="adrsLP">Kalpataru Tower Patna Gaya Road Elahibagh<br/> Patna-800007</div>-->
+          <!--</div>-->
+          <!--<div class="textBox" style="width:auto; border-right:none;">-->
+            <!--<label>Forwarding Date:</label>-->
+            <!--<span>{{currentFn.fnDate | date:'dd/MM/yyyy'}}</span>-->
+            <!--<div class="clrBt"></div>-->
+          <!--</div>-->
+          <!--<div class="clrBt"></div>-->
+
+          <!--<div class="textBox flt_L">-->
+            <!--<label>Transport Name:</label>-->
+            <!--<span>{{currentFn.transporter.name}}</span>-->
+            <!--<div class="clrBt"></div>-->
+          <!--</div>-->
+          <!--<div class="textBox flt_L" style="padding-right:0; padding-left:8px;">-->
+            <!--<label>Station/Place:</label>-->
+            <!--<span>{{currentFn.transporterStation}}</span>-->
+            <!--<div class="clrBt"></div>-->
+          <!--</div>-->
+          <!--<div class="clrBt"></div>-->
+          <!--<div class="textBox flt_L">-->
+            <!--<label>Customer Name:</label>-->
+            <!--<span>{{currentFn.customer.name}}</span>-->
+            <!--<div class="clrBt"></div>-->
+          <!--</div>-->
+          <!--<div class="textBox flt_L" style="padding-right:0; padding-left:8px;">-->
+            <!--<label>Station/Place:</label>-->
+            <!--<span>{{currentFn.customer.city}}</span>-->
+            <!--<div class="clrBt"></div>-->
+          <!--</div>-->
+          <!--<div class="clrBt"></div>-->
+          <!--<div class="textBox flt_L">-->
+            <!--<label>Bill No:</label>-->
+            <!--<span>{{currentFn.billNumber}}</span>-->
+            <!--<div class="clrBt"></div>-->
+          <!--</div>-->
+          <!--<div class="textBox flt_L" style="padding-right:0; padding-left:8px;">-->
+            <!--<label>Bill Date:</label>-->
+            <!--<span>{{currentFn.billDates}}</span>-->
+            <!--<div class="clrBt"></div>-->
+          <!--</div>-->
+          <!--<div class="clrBt"></div>-->
+          <!--<div class="textBox flt_L">-->
+            <!--<label>Bill Value:</label>-->
+            <!--<span>{{currentFn.billValues}}</span>-->
+            <!--<div class="clrBt"></div>-->
+          <!--</div>-->
+          <!--<div class="textBox flt_L" style="padding-right:0; padding-left:8px;">-->
+            <!--<label>Cases:</label>-->
+            <!--<span>{{currentFn.cases}}</span>-->
+            <!--<div class="clrBt"></div>-->
+          <!--</div>-->
+          <!--<div class="clrBt"></div>-->
+          <!--<div class="textBox flt_L">-->
+            <!--<label>Pvt. Marka:</label>-->
+            <!--<span>{{currentFn.marka}}</span>-->
+            <!--<div class="clrBt"></div>-->
+          <!--</div>-->
+          <!--<div class="textBox flt_L" style="padding-right:0; padding-left:8px;">-->
+            <!--<label>Permit No.:</label>-->
+            <!--<span>{{currentFn.permitNo}}</span>-->
+            <!--<div class="clrBt"></div>-->
+          <!--</div>-->
+          <!--<div class="clrBt"></div>-->
+          <!--<div class="textBox flt_L">-->
+            <!--<label>Comments:</label>-->
+            <!--<span>{{currentFn.comments}}</span>-->
+            <!--<div class="clrBt"></div>-->
+          <!--</div>-->
+          <!--<div class="textBox flt_L" style="padding-right:0; padding-left:8px;">-->
+            <!--<label>Company/Division:</label>-->
+            <!--<span>{{currentFn.company}}</span>-->
+            <!--<div class="clrBt"></div>-->
+          <!--</div>-->
+          <!--<div class="clrBt"></div>-->
+        <!--</div>-->
+
+
+
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div> &lt;!&ndash; Forwarding Note Popup Box Style End &ndash;&gt;-->
+  </div>
   <div id="pforwardingNote_id" class="confirmBoxStyle" style="display:none;"> <!-- Forwarding Note Popup Box Style Start -->
     <div class="confirmBoxOuter" id="forwardingNote_id" style="width:650px;">
       <div class="confirmBoxStyleInner">
@@ -210,32 +301,54 @@
             <div class="logoPMain"><img src="/com/images/logo.png" alt="" title="" style="width:120px;" /></div>
             <div class="adrsLP">Kalpataru Tower Patna Gaya Road Elahibagh<br/> Patna-800007</div>
           </div>
-          <div class="textBox" style="width:auto; border-right:none;">
+
+          <div style="border:1px solid #ddd; border-radius:5px; box-shadow:0 0 2px #ddd; margin-bottom:10px; padding:8px;">
+            <div style="border-bottom:1px solid #e1e1e1; color:#02486d; font-size:15px; margin:0; padding:0 0 7px 5px; text-shadow:1px 1px 1px #ddd; text-transform:uppercase;">Company</div>
+            <div class="textBox flt_L" style="width:296px;">
+              <label>Name:</label>
+              <span>{{currentFn.company.name}}</span>
+              <div class="clrBt"></div>
+            </div>
+            <div class="textBox flt_L" style="width:296px; padding-right:0; padding-left:8px;">
+              <label>Code:</label>
+              <span>{{currentFn.company.code}}</span>
+              <div class="clrBt"></div>
+            </div>
+            <div class="clrBt"></div>
+            <div class="textBox" style="width:auto;">
+              <label>Address:</label>
+              <span>{{getCompleteAddress(currentFn.country)}}</span>
+              <div class="clrBt"></div>
+            </div>
+            <div class="clrBt"></div>
+          </div>
+
+          <div class="textBox" style="width:auto;">
             <label>Forwarding Date:</label>
             <span>{{currentFn.fnDate | date:'dd/MM/yyyy'}}</span>
             <div class="clrBt"></div>
           </div>
-          <div class="clrBt"></div>
 
+          <div class="clrBt"></div>
           <div class="textBox flt_L">
             <label>Transport Name:</label>
-            <span>{{currentFn.transporter.name}}</span>
+            <span style="text-transform: uppercase">{{currentFn.transporter.name}}</span>
             <div class="clrBt"></div>
           </div>
           <div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
             <label>Station/Place:</label>
-            <span>{{currentFn.transporterStation}}</span>
+            <span style="text-transform: uppercase">{{currentFn.transporterStation}}</span>
             <div class="clrBt"></div>
           </div>
           <div class="clrBt"></div>
           <div class="textBox flt_L">
             <label>Customer Name:</label>
-            <span>{{currentFn.customer.name}}</span>
+            <span style="text-transform: uppercase">{{currentFn.customer.name}}</span>
             <div class="clrBt"></div>
           </div>
           <div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
             <label>Station/Place:</label>
-            <span>{{currentFn.customer.city}}</span>
+            <span style="text-transform: uppercase">{{currentFn.customer.city}}</span>
             <div class="clrBt"></div>
           </div>
           <div class="clrBt"></div>
@@ -252,7 +365,7 @@
           <div class="clrBt"></div>
           <div class="textBox flt_L">
             <label>Bill Value:</label>
-            <span>{{currentFn.billValues}}</span>
+            <span>{{getBillValues(currentFn.billValues)}}</span>
             <div class="clrBt"></div>
           </div>
           <div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
@@ -263,25 +376,21 @@
           <div class="clrBt"></div>
           <div class="textBox flt_L">
             <label>Pvt. Marka:</label>
-            <span>{{currentFn.marka}}</span>
+            <span style="text-transform: uppercase">{{currentFn.marka}}</span>
             <div class="clrBt"></div>
           </div>
           <div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
             <label>Permit No.:</label>
-            <span>{{currentFn.permitNo}}</span>
+            <span style="text-transform: uppercase">{{currentFn.permitNo}}</span>
             <div class="clrBt"></div>
           </div>
           <div class="clrBt"></div>
           <div class="textBox flt_L">
             <label>Comments:</label>
-            <span>{{currentFn.comments}}</span>
+            <span style="text-transform: uppercase">{{currentFn.comments}}</span>
             <div class="clrBt"></div>
           </div>
-          <div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
-            <label>Company/Division:</label>
-            <span>{{currentFn.company}}</span>
-            <div class="clrBt"></div>
-          </div>
+
           <div class="clrBt"></div>
         </div>
 
@@ -290,7 +399,6 @@
       </div>
     </div>
   </div> <!-- Forwarding Note Popup Box Style End -->
-
 
 
 </body>

@@ -150,18 +150,18 @@
         <div style="border-bottom:1px solid #e1e1e1; color:#02486d; font-size:15px; margin:0; padding:0 0 7px 5px; text-shadow:1px 1px 1px #ddd; text-transform:uppercase;">Company</div>
 		<div class="textBox flt_L" style="width:296px;">
         	<label>Name:</label>
-            <span>Name</span>
+            <span>{{currentFn.company.name}}</span>
             	<div class="clrBt"></div>
         </div>
 		<div class="textBox flt_L" style="width:296px; padding-right:0; padding-left:8px;">
         	<label>Code:</label>
-            <span>Code</span>
+            <span>{{currentFn.company.code}}</span>
             	<div class="clrBt"></div>
         </div>
         	<div class="clrBt"></div>
 		<div class="textBox" style="width:auto;">
         	<label>Address:</label>
-            <span>Address</span>
+            <span>{{getCompleteAddress(currentFn.country)}}</span>
             	<div class="clrBt"></div>
         </div>
         <div class="clrBt"></div>
@@ -209,7 +209,7 @@
         <div class="clrBt"></div>
 		<div class="textBox flt_L">
         	<label>Bill Value:</label>
-            <span>{{currentFn.billValues}}</span>
+            <span>{{totalBillValue}}</span>
             	<div class="clrBt"></div>
         </div>
 		<div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
@@ -234,11 +234,7 @@
             <span style="text-transform: uppercase">{{currentFn.comments}}</span>
             	<div class="clrBt"></div>
         </div>
-		<div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
-        	<label>Company/Division:</label>
-            <span style="text-transform: uppercase">{{currentFn.company}}</span>
-            	<div class="clrBt"></div>
-        </div>
+
         <div class="clrBt"></div>
     </div>
       
