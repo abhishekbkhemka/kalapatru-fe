@@ -119,8 +119,9 @@ var initTransporter = function(){
 
         })
 
-        kalapatruService.getCompanies(function(res){
-            $scope.companies = res
+        kalapatruService.getSettings(function(res){
+            $scope.companies = res.companies
+            $scope.commodities = res.commodities
         },function(err){
 
         })
@@ -251,34 +252,7 @@ var initTransporter = function(){
   }
 
     $scope.getCompleteAddress = function(location){
-        if(location == undefined){
-            return 'NA'
-        }
-        var add = ""
-        if(!Helpers.isBlank(location.addressLine1)){
-            add +=  location.addressLine1
-        }
-        if(!Helpers.isBlank(location.addressLine2)){
-            add +=  "," + location.addressLine2
-        }
-        if(!Helpers.isBlank(location.city)){
-            add +=  "-" + location.city
-        }
-
-        if(!Helpers.isBlank(location.state)){
-            add +=  "-" + location.state
-        }
-        if(!Helpers.isBlank(location.country)){
-            add +=  "-" + location.country
-        }
-
-        if(!Helpers.isBlank(location.zipCode)){
-            add +=  "-" + location.zipCode
-        }
-        if(Helpers.isBlank(add)){
-            return 'NA'
-        }
-        return add;
+       return getCompleteAddress(location)
     }
 
 }]);

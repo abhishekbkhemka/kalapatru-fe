@@ -72,3 +72,35 @@ var  clone = function(obj) {
     }
     return copy;
 }
+
+var getCompleteAddress = function(location){
+    console.log(location)
+    if(location == undefined){
+        return 'NA'
+    }
+    var add = ""
+    if(!isBlank(location.addressLine1)){
+        add +=  location.addressLine1
+    }
+    if(!isBlank(location.addressLine2)){
+        add +=  "," + location.addressLine2
+    }
+    if(!isBlank(location.city)){
+        add +=  "-" + location.city
+    }
+
+    if(!isBlank(location.state)){
+        add +=  "-" + location.state
+    }
+    if(!isBlank(location.country)){
+        add +=  "-" + location.country
+    }
+
+    if(!isBlank(location.zipCode)){
+        add +=  "-" + location.zipCode
+    }
+    if(isBlank(add)){
+        return 'NA'
+    }
+    return add;
+}
