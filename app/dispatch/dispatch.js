@@ -120,8 +120,15 @@ angular.module('myApp.dispatch', ['ngRoute'])
     return totalBillValue
   }
 
+  $scope.getCompleteAddress = function(location){
+    return getCompleteAddress(location)
+  }
+
+
   $scope.printFn = function(eve,fn){
+
     $scope.currentFn = fn;
+    console.log(fn)
     $('#pforwardingNote_id').show()
     var t =  setTimeout(function(){
       clearTimeout(t)

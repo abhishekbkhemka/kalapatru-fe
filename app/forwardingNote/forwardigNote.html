@@ -111,7 +111,7 @@
                     <label>Commodity</label>
                     <!--<input tabindex="12" type="text" ng-model="currentFn.comments" />-->
                     <div class="selectSty1 flt_L" style="height:35px;">
-                    <label style="margin-top:0; width:250px;"><span><select ng-model="currentFn.comments"></select></span></label>
+                    <label style="margin-top:0; width:250px;"><span><select ng-model="currentFn.commodity" ng-options="cd.name as cd.name for cd in commodities"></select></span></label>
                     </div>
                     <div class="clrBt"></div>
                 </div>
@@ -145,7 +145,12 @@
             	<div class="logoPMain"><img src="/com/images/logo.png" alt="" title="" style="width:120px;" /></div>
                 <div class="adrsLP">Kalpataru Tower Patna Gaya Road Elahibagh<br/> Patna-800007</div>
             </div>
-
+        <div class="textBox flt_L" style="width:296px;">
+            <label>Serial No::</label>
+            <span>{{currentFn.id}}</span>
+            <div class="clrBt"></div>
+        </div>
+        <div class="clrBt"></div>
 <div style="border:1px solid #ddd; border-radius:5px; box-shadow:0 0 2px #ddd; margin-bottom:10px; padding:8px;">
         <div style="border-bottom:1px solid #e1e1e1; color:#02486d; font-size:15px; margin:0; padding:0 0 7px 5px; text-shadow:1px 1px 1px #ddd; text-transform:uppercase;">Company</div>
 		<div class="textBox flt_L" style="width:296px;">
@@ -161,7 +166,7 @@
         	<div class="clrBt"></div>
 		<div class="textBox" style="width:auto;">
         	<label>Address:</label>
-            <span>{{getCompleteAddress(currentFn.country)}}</span>
+            <span>{{getCompleteAddress(currentFn.company)}}</span>
             	<div class="clrBt"></div>
         </div>
         <div class="clrBt"></div>
@@ -230,8 +235,8 @@
         </div>
         <div class="clrBt"></div>
 		<div class="textBox flt_L">
-        	<label>Comments:</label>
-            <span style="text-transform: uppercase">{{currentFn.comments}}</span>
+        	<label>Commodity:</label>
+            <span style="text-transform: uppercase">{{currentFn.commodity}}</span>
             	<div class="clrBt"></div>
         </div>
 
