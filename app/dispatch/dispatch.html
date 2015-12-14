@@ -73,11 +73,11 @@
           <ul class="checkBoxSectionMain">
             <li ng-repeat="fns in forwardingNotes | daterange:filterFromDate:filterToDate| filter:transportFilter" daterange class="chkBox" disabled>
               <div class="linkStyleLst" ng-show="!fns.isDispatched"><input ng-checked="fns.isDisabled" ng-click="addToVanData(fns)" type="checkbox" />
-              <a href="" ng-click="addToVanData(fns)"><span class="flt_L" style="width:255px;">{{getDisplayNameforFn(fns)}}</span> <div class="clrBt"></div></a><img ng-click="printFn($event,fns)" src="/com/images/viewiconUL.png" alt="" style="cursor:pointer;margin:2px 0 0;" title="" class="flt_R" /><div class="clrBt"></div></div>
+              <a href="" ng-click="addToVanData(fns)" style="width:250px;"><span>{{getDisplayNameforFn(fns)}}</span> <div class="clrBt"></div></a><img ng-click="printFn($event,fns)" src="/com/images/viewiconUL.png" alt="" style="cursor:pointer;margin:2px 0 0;" title="" class="flt_R" /><div class="clrBt"></div></div>
               <div class="clrBt"></div>
               <div class="unlinkStyleLst" ng-show="fns.isDispatched">
                   <img src="/com/images/bulletWhite.png" alt="" title="" class="flt_L" />
-                  <span class="flt_L"><div class="flt_L" style="width:255px;">{{getDisplayNameforFn(fns)}}</div> <img ng-click="printFn($event,fns)" src="/com/images/viewiconUL.png" alt="" title="" style="cursor:pointer;margin:2px 0 0;" class="flt_R" /><div class="clrBt"></div></span>
+                  <span class="flt_L"><div class="flt_L" style="width:250px;">{{getDisplayNameforFn(fns)}}</div> <img ng-click="printFn($event,fns)" src="/com/images/viewiconUL.png" alt="" title="" style="cursor:pointer;margin:2px 0 0;" class="flt_R" /><div class="clrBt"></div></span>
                   <div class="clrBt"></div>
               </div>
               <div class="clrBt"></div>
@@ -294,37 +294,17 @@
   <div id="pforwardingNote_id" class="confirmBoxStyle" style="display:none;"> <!-- Forwarding Note Popup Box Style Start -->
     <div class="confirmBoxOuter" id="forwardingNote_id" style="width:650px;">
       <div class="confirmBoxStyleInner">
-        <h3 class="titleCB"><span class="confTxt flt_L">Forwarding Note</span><div class="clrBt"></div></h3>
-
+        <h3 class="titleCB" style="background:#d3d3d3; padding:5px 10px; color:#814b27;"><span class="confTxt flt_L" style="margin-top:5px;">Forwarding Note</span> <div class="logoPMain flt_R"><img src="/com/images/logo.png" alt="" title="" style="width:100px;" /></div><div class="clrBt"></div></h3>
         <div class="formViewStyleM">
-          <div class="logoPartMain">
-            <div class="logoPMain"><img src="/com/images/logo.png" alt="" title="" style="width:120px;" /></div>
-            <div class="adrsLP">Kalpataru Tower Patna Gaya Road Elahibagh<br/> Patna-800007</div>
-          </div>
-          <div class="textBox flt_L" style="width:296px;">
+        	<div class="logoPartMain">
+                <div class="compNameCodeM"><span class="compName">{{currentFn.company.name}}</span> <span class="compCode"> ({{currentFn.company.code}})</span></div>
+                <div class="adrsLP">{{getCompleteAddress(currentFn.company)}}</div>
+            </div>
+
+
+          <div class="textBox" style="width:auto;">
             <label>Serial No::</label>
             <span>{{currentFn.id}}</span>
-            <div class="clrBt"></div>
-          </div>
-          <div class="clrBt"></div>
-          <div style="border:1px solid #ddd; border-radius:5px; box-shadow:0 0 2px #ddd; margin-bottom:10px; padding:8px;">
-            <div style="border-bottom:1px solid #e1e1e1; color:#02486d; font-size:15px; margin:0; padding:0 0 7px 5px; text-shadow:1px 1px 1px #ddd; text-transform:uppercase;">Company</div>
-            <div class="textBox flt_L" style="width:296px;">
-              <label>Name:</label>
-              <span>{{currentFn.company.name}}</span>
-              <div class="clrBt"></div>
-            </div>
-            <div class="textBox flt_L" style="width:296px; padding-right:0; padding-left:8px;">
-              <label>Code:</label>
-              <span>{{currentFn.company.code}}</span>
-              <div class="clrBt"></div>
-            </div>
-            <div class="clrBt"></div>
-            <div class="textBox" style="width:auto;">
-              <label>Address:</label>
-              <span>{{getCompleteAddress(currentFn.company)}}</span>
-              <div class="clrBt"></div>
-            </div>
             <div class="clrBt"></div>
           </div>
 
@@ -340,7 +320,7 @@
             <span style="text-transform: uppercase">{{currentFn.transporter.name}}</span>
             <div class="clrBt"></div>
           </div>
-          <div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
+          <div class="textBox flt_L" style="padding-right:0; padding-left:8px; width:230px;">
             <label>Station/Place:</label>
             <span style="text-transform: uppercase">{{currentFn.transporterStation}}</span>
             <div class="clrBt"></div>
@@ -351,7 +331,7 @@
             <span style="text-transform: uppercase">{{currentFn.customer.name}}</span>
             <div class="clrBt"></div>
           </div>
-          <div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
+          <div class="textBox flt_L" style="padding-right:0; padding-left:8px; width:230px;">
             <label>Station/Place:</label>
             <span style="text-transform: uppercase">{{currentFn.customer.city}}</span>
             <div class="clrBt"></div>
@@ -362,18 +342,18 @@
             <span>{{currentFn.billNumber}}</span>
             <div class="clrBt"></div>
           </div>
-          <div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
-            <label>Bill Date:</label>
-            <span>{{currentFn.billDates}}</span>
-            <div class="clrBt"></div>
-          </div>
-          <div class="clrBt"></div>
-          <div class="textBox flt_L">
+          <div class="textBox flt_L" style="padding-right:0; padding-left:8px; width:230px;">
             <label>Bill Value:</label>
             <span>{{getBillValues(currentFn.billValues)}}</span>
             <div class="clrBt"></div>
           </div>
-          <div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
+          <div class="clrBt"></div>
+          <div class="textBox flt_L">
+            <label>Bill Date:</label>
+            <span>{{currentFn.billDates}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="textBox flt_L" style="padding-right:0; padding-left:8px; width:230px;">
             <label>Cases:</label>
             <span>{{currentFn.cases}}</span>
             <div class="clrBt"></div>
@@ -384,7 +364,7 @@
             <span style="text-transform: uppercase">{{currentFn.marka}}</span>
             <div class="clrBt"></div>
           </div>
-          <div class="textBox flt_L" style="padding-right:0; padding-left:8px;">
+          <div class="textBox flt_L" style="padding-right:0; padding-left:8px; width:230px;">
             <label>Permit No.:</label>
             <span style="text-transform: uppercase">{{currentFn.permitNo}}</span>
             <div class="clrBt"></div>
@@ -393,6 +373,11 @@
           <div class="textBox flt_L">
             <label>Commodity:</label>
             <span style="text-transform: uppercase">{{currentFn.commodity}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="textBox flt_L" style="padding-right:0; padding-left:8px; width:230px;">
+            <label>FRIEGHT TO BE BILLED </label>
+            <span style="text-transform:uppercase;"></span>
             <div class="clrBt"></div>
           </div>
 
