@@ -142,8 +142,8 @@
       
     <div class="formViewStyleM">
         	<div class="logoPartMain">
-                <div class="compNameCodeM"><span class="compName">Company Name</span> <span class="compCode">(Code:5225)</span></div>
-                <div class="adrsLP">Kalpataru Tower Patna Gaya Road Elahibagh<br/> Patna-800007</div>
+                <div class="compNameCodeM"><span class="compName">{{currentFn.company.name}}</span> <span class="compCode">( {{currentFn.company.name}})</span></div>
+                <div class="adrsLP">{{getCompleteAddress(currentFn.company)}}</div>
             </div>
 
 <!--<div style="border:1px solid #ddd; border-radius:5px; box-shadow:0 0 2px #ddd; margin-bottom:10px; padding:8px;">
@@ -241,7 +241,7 @@
             	<div class="clrBt"></div>
         </div>
 		<div class="textBox flt_L" style="padding-right:0; padding-left:8px; width:230px;">
-        	<label>Dummy Text:</label>
+        	<label>FRIEGHT TO BE BILLED</label>
             <span style="text-transform:uppercase;"></span>
             	<div class="clrBt"></div>
         </div>
