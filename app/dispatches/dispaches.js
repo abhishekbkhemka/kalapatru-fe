@@ -47,9 +47,10 @@ angular.module('myApp.dispatches', ['ngRoute'])
 
         $scope.print = function(){
             $scope.visibleForDisplay = false
-
+            //$("#dischsTblouter").removeAttr("style")
             $('#print_btn_id').hide()
             $('#close_btn_id').hide()
+
             setTimeout(function(){
                 //var scaledElement = $("#vanDetails_id").clone().css({
                 //    'transform': 'scale(3,3)',
