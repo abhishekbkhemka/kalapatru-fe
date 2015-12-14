@@ -129,7 +129,7 @@
     </div>
     
     <div style="border-bottom:4px double #aec6dc; margin-bottom:15px;"></div>
-    <table cellpadding="0" cellspacing="0" width="100%" class="sortable dischsTblStyle">
+    <div id="dischsTblouter" style="overflow-y:auto; height:240px;"><table cellpadding="0" cellspacing="0" width="100%" class="sortable dischsTblStyle">
     <tr>
       <th ng-show="visibleForDisplay">Date</th>
       <th>Transport Name</th>
@@ -156,7 +156,7 @@
       <td>{{fn.customer.name}}</td>
       <td>{{fn.customer.city}}</td>
     </tr>
-    </table>
+    </table></div>
 </div>
     <div style="margin:10px 0 0 0;" class="buttonMain flt_R">
     	<button id="print_btn_id" type="button" ng-click="print()" class="flt_L">Print</button>
@@ -167,19 +167,6 @@
 </div>
 </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
