@@ -146,7 +146,7 @@
     <tr ng-repeat="fn in currentDispatch.forwardingNote">
       <td ng-show="visibleForDisplay">{{fn.fnDate | date:'dd-MM-yyyy'}}</td>
       <td>{{fn.transporter.name}}</td>
-      <td>{{fn.transporter.city}}</td>
+      <td>{{fn.transporterStation}}</td>
       <td ng-show="visibleForDisplay">{{fn.billNo}}</td>
       <td ng-show="visibleForDisplay">{{fn.billDate | date:'dd-MM-yyyy'}}</td>
       <td ng-show="visibleForDisplay">{{fn.billValue}}</td>
