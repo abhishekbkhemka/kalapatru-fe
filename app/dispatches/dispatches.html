@@ -66,7 +66,7 @@
             <div class="clrBt"></div>
           </form>
           <div class="contRightMain" style="width:100%; border:medium none; box-shadow:none; padding:0;">
-<table cellpadding="0" cellspacing="0" width="100%" class="sortable" >
+<table cellpadding="0" cellspacing="0" width="100%" class="sortable">
             <tr>
               <th>Date</th>
               <th>Van No.</th>
@@ -88,80 +88,79 @@
           </div>
         </section>
 
-        
         <div class="clrBt"></div>
-        
+
 <div class="confirmBoxStyle" ng-if="isDispatchView"> <!-- Van Details Popup Box Style Start -->
   <div id="vanDetails_id" class="confirmBoxOuter" style="margin:40px auto 0; width:880px;">
     <div class="confirmBoxStyleInner">
       <h3 class="titleCB"><span class="confTxt flt_L">Van Details</span> <span  id="close_btn_id" ng-click="closeDispatch()" class="windowCloseIcon flt_R"></span><div class="clrBt"></div></h3>
-        
-        <div class="contRightMain" style="width:98.3%; padding:8px; border:medium none; box-shadow:none;">
-        
-        	<div class="logoPartMain">
-            	<div class="logoPMain"><img src="/com/images/logo.png" alt="" title="" style="width:120px;" /></div>
-                <div class="adrsLP">Kalpataru Tower Patna Gaya Road Elahibagh<br/> Patna-800007</div>
-            </div>
-        
-<div >
-          <div class=" vanDetailsTbl">
-            <div class="textBoxVD flt_L">
-              <label>Date: </label>
-              <span>{{currentDispatch.date | date:'dd-MM-yyyy'}}</span>
-              <div class="clrBt"></div>
-            </div>
-            <div class="textBoxVD flt_R" style="padding-right:10px;">
-              <label>Van No.: </label>
-              <span>{{currentDispatch.vanNo}}</span>
-              <div class="clrBt"></div>
-            </div>
-            <div class="clrBt"></div>
-            <div class="textBoxVD">
-              <label>Driver Name: </label>
-              <span>{{currentDispatch.name}}</span>
-              <div class="clrBt"></div>
-            </div>
-            <div class="textBoxVD">
-              <label>Remarks: </label>
-              <span style="margin-left:3px;">{{currentDispatch.remarks}}</span>
-              <div class="clrBt"></div>
-            </div>
-            <div class="clrBt"></div>
-          </div>
 
-          <div style="border-bottom:4px double #aec6dc; margin-bottom:15px;"></div>
-          <table cellpadding="0" cellspacing="0" width="100%" class="sortable" >
-            <tr>
-              <th ng-show="visibleForDisplay">Date</th>
-              <th >Transport Name</th>
-              <th>Station / Place</th>
-              <th ng-show="visibleForDisplay" >Bill No.</th>
-              <th ng-show="visibleForDisplay">Bill Date.</th>
-              <th ng-show="visibleForDisplay">Value</th>
-              <th>Cases</th>
-              <th>Pvt. Marka</th>
-              <th ng-show="visibleForDisplay">Permit No.</th>
-              <th>Customer name</th>
-              <th>Customer City</th>
-            </tr>
-            <tr ng-repeat="fn in currentDispatch.forwardingNote">
-              <td ng-show="visibleForDisplay">{{fn.fnDate | date:'dd-MM-yyyy'}}</td>
-              <td >{{fn.transporter.name}}</td>
-              <td>{{fn.transporter.city}}</td>
-              <td ng-show="visibleForDisplay">{{fn.billNo}}</td>
-              <td ng-show="visibleForDisplay">{{fn.billDate | date:'dd-MM-yyyy'}}</td>
-              <td ng-show="visibleForDisplay">{{fn.billValue}}</td>
-              <td>{{fn.cases}}</td>
-              <td>{{fn.marka}}</td>
-              <td ng-show="visibleForDisplay">{{fn.permitNo}}</td>
-              <td>{{fn.customer.name}}</td>
-              <td>{{fn.customer.city}}</td>
-            </tr>
-          </table>
-          </div>
-          <div style="margin:10px 0 0 0;" class="buttonMain flt_R">
-            <button id="print_btn_id" type="button" ng-click="print()" class="flt_L">Print</button>
-          </div>
+	<div class="contRightMain" style="width:98.3%; padding:8px; border:medium none; box-shadow:none;">
+
+    <div class="logoPartMain">
+        <div class="logoPMain"><img src="/com/images/logo.png" alt="" title="" style="width:120px;" /></div>
+        <div class="adrsLP">Kalpataru Tower Patna Gaya Road Elahibagh<br/> Patna-800007</div>
+    </div>
+
+<div>
+    <div class="vanDetailsTbl">
+    <div class="textBoxVD flt_L">
+      <label>Date: </label>
+      <span style="font-family: 'open_sanssemibold'; font-size:13px;">{{currentDispatch.date | date:'dd-MM-yyyy'}}</span>
+      <div class="clrBt"></div>
+    </div>
+    <div class="textBoxVD flt_R" style="padding-right:10px;">
+      <label>Van No.: </label>
+      <span style="font-family: 'open_sanssemibold'; font-size:13px;">{{currentDispatch.vanNo}}</span>
+      <div class="clrBt"></div>
+    </div>
+    <div class="clrBt"></div>
+    <div class="textBoxVD">
+      <label>Driver Name: </label>
+      <span style="font-family: 'open_sanssemibold'; font-size:13px;">{{currentDispatch.name}}</span>
+      <div class="clrBt"></div>
+    </div>
+    <div class="textBoxVD">
+      <label>Remarks: </label>
+      <span style="font-family: 'open_sanssemibold'; font-size:13px; margin-left:3px;">{{currentDispatch.remarks}}</span>
+      <div class="clrBt"></div>
+    </div>
+    <div class="clrBt"></div>
+    </div>
+    
+    <div style="border-bottom:4px double #aec6dc; margin-bottom:15px;"></div>
+    <table cellpadding="0" cellspacing="0" width="100%" class="sortable dischsTblStyle">
+    <tr>
+      <th ng-show="visibleForDisplay">Date</th>
+      <th>Transport Name</th>
+      <th>Station / Place</th>
+      <th ng-show="visibleForDisplay" >Bill No.</th>
+      <th ng-show="visibleForDisplay">Bill Date.</th>
+      <th ng-show="visibleForDisplay">Value</th>
+      <th>Cases</th>
+      <th>Pvt. Marka</th>
+      <th ng-show="visibleForDisplay">Permit No.</th>
+      <th>Customer name</th>
+      <th>Customer City</th>
+    </tr>
+    <tr ng-repeat="fn in currentDispatch.forwardingNote">
+      <td ng-show="visibleForDisplay">{{fn.fnDate | date:'dd-MM-yyyy'}}</td>
+      <td>{{fn.transporter.name}}</td>
+      <td>{{fn.transporter.city}}</td>
+      <td ng-show="visibleForDisplay">{{fn.billNo}}</td>
+      <td ng-show="visibleForDisplay">{{fn.billDate | date:'dd-MM-yyyy'}}</td>
+      <td ng-show="visibleForDisplay">{{fn.billValue}}</td>
+      <td>{{fn.cases}}</td>
+      <td>{{fn.marka}}</td>
+      <td ng-show="visibleForDisplay">{{fn.permitNo}}</td>
+      <td>{{fn.customer.name}}</td>
+      <td>{{fn.customer.city}}</td>
+    </tr>
+    </table>
+</div>
+    <div style="margin:10px 0 0 0;" class="buttonMain flt_R">
+    	<button id="print_btn_id" type="button" ng-click="print()" class="flt_L">Print</button>
+    </div>
         </section>
         <div class="clrBt"></div>
       </div>
