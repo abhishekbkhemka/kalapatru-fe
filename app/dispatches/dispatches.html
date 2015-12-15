@@ -145,16 +145,16 @@
     </tr>
     <tr ng-repeat="fn in currentDispatch.forwardingNote">
       <td ng-show="visibleForDisplay">{{fn.fnDate | date:'dd-MM-yyyy'}}</td>
-      <td>{{fn.transporter.name}}</td>
-      <td>{{fn.transporterStation}}</td>
-      <td ng-show="visibleForDisplay">{{fn.billNo}}</td>
-      <td ng-show="visibleForDisplay">{{fn.billDate | date:'dd-MM-yyyy'}}</td>
+      <td style="text-transform: uppercase">{{fn.transporter.name}}</td>
+      <td style="text-transform: uppercase">{{fn.transporterStation}}</td>
+      <td ng-show="visibleForDisplay" style="text-transform: uppercase">{{fn.billNo}}</td>
+      <td ng-show="visibleForDisplay" >{{fn.billDate | date:'dd-MM-yyyy'}}</td>
       <td ng-show="visibleForDisplay">{{fn.billValue}}</td>
       <td>{{fn.cases}}</td>
       <td>{{fn.marka}}</td>
-      <td ng-show="visibleForDisplay">{{fn.permitNo}}</td>
-      <td>{{fn.customer.name}}</td>
-      <td>{{fn.customer.city}}</td>
+      <td ng-show="visibleForDisplay" style="text-transform: uppercase">{{fn.permitNo}}</td>
+      <td style="text-transform: uppercase">{{fn.customer.name}}</td>
+      <td style="text-transform: uppercase">{{fn.customer.city}}</td>
     </tr>
     </table></div>
 </div>
