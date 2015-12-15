@@ -149,3 +149,9 @@ transition:border 0.25s linear 0s, color 0.25s linear 0s, background-color 0.25s
 .compNameCodeM{}
 .compNameCodeM .compName{color:#333; font-size:14px; font-family: 'open_sanssemibold';}
 .compNameCodeM .compCode{font-family: 'open_sanssemibold'; color:#2587a7; font-size:13px;}
+
+.printStyleDispcs{width:930px !important;}
+.printStyleDispcs .logoPartMain .adrsLP{color:#000; font-weight:bold;}
+.printStyleDispcs .dischsTblStyle th, .printStyleDispcs .dischsTblStyle td{font-size:15px !important; color:#000;}
+.vanDetailsTbl .textBoxVD label, .vanDetailsTbl .textBoxVD span{font-size:15px !important; color:#000 !important;}
+
