@@ -299,8 +299,7 @@
         	<div class="logoPartMain">
                 <div class="compNameCodeM"><span class="compName">{{currentFn.company.name}}</span> <span class="compCode"> ({{currentFn.company.code}})</span></div>
                 <div class="adrsLP">{{getCompleteAddress(currentFn.company)}}</div>
-                <div class="adrsLP">VAT : {{currentFn.company.vat}}</div>
-                <div class="adrsLP">TIN/CST : {{currentFn.company.cst_or_tin}}</div>
+              <div class="adrsLP">VAT : {{currentFn.company.vat}} &nbsp;&nbsp; CST : {{currentFn.company.cst_or_tin}}</div>
             </div>
 <!--          <div class="textBox" style="width:auto;">
             <label>Serial No::</label>
@@ -354,7 +353,7 @@
           <div class="clrBt"></div>
           <div class="textBox flt_L">
             <label>Bill No:</label>
-            <span>{{currentFn.billNumber}}</span>
+            <span>{{currentFn.billNo}}</span>
             <div class="clrBt"></div>
           </div>
           <div class="textBox flt_L" style="padding-right:0; padding-left:8px; width:230px;">

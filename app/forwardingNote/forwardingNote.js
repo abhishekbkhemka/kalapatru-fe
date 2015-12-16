@@ -136,11 +136,14 @@ var initTransporter = function(){
 
       $scope.totalBillValue += parseInt(values[i])
     }
+      return $scope.totalBillValue
   }
 
     var printFNData = function() {
         $('#pforwardingNote_id').show()
+
        var t =  setTimeout(function(){
+           $scope.$apply()
             clearTimeout(t)
            html2canvas([ document.getElementById('forwardingNote_id') ], {
                onrendered: function (canvas) {
@@ -158,7 +161,7 @@ var initTransporter = function(){
                }
 
            })
-        },250)
+        },500)
 
     }
 
@@ -235,6 +238,8 @@ var initTransporter = function(){
     showLoadingBar()
     kalapatruService.addForwardingNote($scope.currentFn,function(res){
         if(isPrint){
+            $scope.currentFn = res
+
             printFNData()
         }else{
             $scope.currentFn = {billDates:[]}
