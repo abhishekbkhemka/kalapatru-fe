@@ -127,41 +127,40 @@
     </div>
     <div class="clrBt"></div>
     </div>
-    
+
     <div style="border-bottom:4px double #aec6dc; margin-bottom:15px;"></div>
-    <div id="dischsTblouter" style="overflow-y:auto; height:240px;"><table cellpadding="0" cellspacing="0" width="100%" class="sortable dischsTblStyle">
+    <div id="dischsTblouter" class="printClass" style="overflow-y:auto; height:240px;"><table cellpadding="0" cellspacing="0" width="100%" class="sortable dischsTblStyle">
     <tr>
-      <th ng-show="visibleForDisplay">Date</th>
+      <th class="id_date_th">Date</th>
       <th>Transport Name</th>
       <th>Station / Place</th>
-      <th ng-show="visibleForDisplay" >Bill No.</th>
-      <th ng-show="visibleForDisplay">Bill Date.</th>
-      <th>Value</th>
+      <th class="id_bill_th" >Bill No.</th>
+      <th class="id_bdate_th">Bill Date.</th>
+      <th class="id_value_th">Value</th>
       <th>Cases</th>
       <th>Pvt. Marka</th>
-      <th ng-show="visibleForDisplay">Permit No.</th>
+      <th class="id_permit_th">Permit No.</th>
       <th>Customer name</th>
       <th>Customer City</th>
     </tr>
-    <tr ng-repeat="fn in currentDispatch.forwardingNote" ng-class="{'bigTd':fn.isValue}">
-      <td ng-show="visibleForDisplay">{{fn.fnDate | date:'dd-MM-yyyy'}}</td>
-      <td style="text-transform: uppercase"><span ng-show="!fn.isValue">{{fn.transporter.name}}</span><span ng-show="fn.isValue">Receiver :</span></td>
+    <tr ng-repeat="fn in currentDispatch.forwardingNote" ng-class="{'bigTd':fn.isCases}">
+      <td class="id_date_td">{{fn.fnDate | date:'dd-MM-yyyy'}}</td>
+      <td style="text-transform: uppercase"><span ng-show="!fn.isCases">{{fn.transporter.name}}</span><span ng-show="fn.isCases">Receiver :</span></td>
       <td style="text-transform: uppercase">{{fn.transporterStation}}</td>
-      <td ng-show="visibleForDisplay" style="text-transform: uppercase">{{fn.billNo}}</td>
-      <td ng-show="visibleForDisplay" >{{fn.billDates}}</td>
-      <td><span ng-show="!fn.isValue">{{fn.billValues}}</span><span ng-show="fn.isValue">{{fn.values}}</span></td>
-      <td>{{fn.cases}}</td>
-      <td>{{fn.marka}}</td>
-      <td ng-show="visibleForDisplay" style="text-transform: uppercase">{{fn.permitNo}}</td>
+      <td class="id_bill_td"  style="text-transform: uppercase">{{fn.billNo}}</td>
+      <td class="id_bdate_td" >{{fn.billDates}}</td>
+      <td class="id_value_td">{{fn.billValues}}</td>
+      <td><span ng-show="!fn.isCases">{{fn.cases}}</span><span ng-show="fn.isCases">{{fn.totalCases}}</span></td>
+      <td >{{fn.marka}}</td>
+      <td class="id_permit_td" style="text-transform: uppercase">{{fn.permitNo}}</td>
       <td style="text-transform: uppercase">{{fn.customer.name}}</td>
-      <td style="text-transform: uppercase">{{fn.customer.city}}</td>
-
       <td style="text-transform: uppercase">{{fn.customer.city}}</td>
     </tr>
     </table></div>
 </div>
     <div style="margin:10px 0 0 0;" class="buttonMain flt_R">
     	<button id="print_btn_id" type="button" ng-click="print()" class="flt_L">Print</button>
+        <div class="clrBt"></div>
     </div>
         </section>
         <div class="clrBt"></div>
@@ -179,6 +178,6 @@
 
 </div> <!-- Page Main Section End -->
 
-
+</div>
 </body>
 </html>
