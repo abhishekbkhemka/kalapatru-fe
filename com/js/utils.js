@@ -63,6 +63,16 @@ var getFormatedDate = function(dateStr){
     var d = new Date(dateStr.replace(' ',"T"))
     return d.toDateString()
 }
+var getBillValues = function(values){
+    if(values == undefined){return 0}
+    var values =values.split('+')
+    var totalBillValue = 0;
+    for(var i =0 ;i<values.length;i++){
+
+        totalBillValue += parseInt(values[i])
+    }
+    return totalBillValue
+}
 
 var  clone = function(obj) {
     if (null == obj || "object" != typeof obj) return obj;

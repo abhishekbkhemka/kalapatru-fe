@@ -34,7 +34,7 @@ angular.module('myApp.dispatches', ['ngRoute'])
         }
 
         $scope.showDispatch = function(dis){
-
+            $scope.arangeDataForPrint(dis)
             $scope.isDispatchView = true
             $scope.currentDispatch  = dis
         }
@@ -43,6 +43,35 @@ angular.module('myApp.dispatches', ['ngRoute'])
 
             $scope.isDispatchView = false
             $scope.currentDispatch  = {}
+        }
+
+        $scope.arangeDataForPrint = function(dispatch){
+            var fnMap = {}
+            var fns =[]
+            for(var i=0;i<dispatch.forwardingNote.length;i++){
+                var fn = dispatch.forwardingNote[i]
+
+                if(fnMap[fn.transporter.name]==undefined){
+                    fnMap[fn.transporter.name] = {ar:[fn,],values:getBillValues(fn.billValues)}
+                    //fns.push(fn)
+                }else{
+                    fnMap[fn.transporter.name].ar.push(fn)
+                    fnMap[fn.transporter.name].values +=getBillValues(fn.billValues)
+                }
+            }
+            console.log(fnMap)
+
+            for(var obj in fnMap ){
+                //console.log(obj)
+                var fn=fnMap[obj]
+                console.log(fn)
+                fn.ar.push({isValue:true,values: fn.values})
+                fns = fns.concat(fn.ar)
+            }
+
+            console.log(fns)
+
+            dispatch.forwardingNote=fns
         }
 
         $scope.print = function(){

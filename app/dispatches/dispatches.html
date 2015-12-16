@@ -136,24 +136,26 @@
       <th>Station / Place</th>
       <th ng-show="visibleForDisplay" >Bill No.</th>
       <th ng-show="visibleForDisplay">Bill Date.</th>
-      <th ng-show="visibleForDisplay">Value</th>
+      <th>Value</th>
       <th>Cases</th>
       <th>Pvt. Marka</th>
       <th ng-show="visibleForDisplay">Permit No.</th>
       <th>Customer name</th>
       <th>Customer City</th>
     </tr>
-    <tr ng-repeat="fn in currentDispatch.forwardingNote">
+    <tr ng-repeat="fn in currentDispatch.forwardingNote" ng-class="{'bigTd':fn.isValue}">
       <td ng-show="visibleForDisplay">{{fn.fnDate | date:'dd-MM-yyyy'}}</td>
-      <td style="text-transform: uppercase">{{fn.transporter.name}}</td>
+      <td style="text-transform: uppercase"><span ng-show="!fn.isValue">{{fn.transporter.name}}</span><span ng-show="fn.isValue">Receiver :</span></td>
       <td style="text-transform: uppercase">{{fn.transporterStation}}</td>
       <td ng-show="visibleForDisplay" style="text-transform: uppercase">{{fn.billNo}}</td>
-      <td ng-show="visibleForDisplay" >{{fn.billDate | date:'dd-MM-yyyy'}}</td>
-      <td ng-show="visibleForDisplay">{{fn.billValue}}</td>
+      <td ng-show="visibleForDisplay" >{{fn.billDates}}</td>
+      <td><span ng-show="!fn.isValue">{{fn.billValues}}</span><span ng-show="fn.isValue">{{fn.values}}</span></td>
       <td>{{fn.cases}}</td>
       <td>{{fn.marka}}</td>
       <td ng-show="visibleForDisplay" style="text-transform: uppercase">{{fn.permitNo}}</td>
       <td style="text-transform: uppercase">{{fn.customer.name}}</td>
+      <td style="text-transform: uppercase">{{fn.customer.city}}</td>
+
       <td style="text-transform: uppercase">{{fn.customer.city}}</td>
     </tr>
     </table></div>
