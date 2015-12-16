@@ -299,20 +299,34 @@
         	<div class="logoPartMain">
                 <div class="compNameCodeM"><span class="compName">{{currentFn.company.name}}</span> <span class="compCode"> ({{currentFn.company.code}})</span></div>
                 <div class="adrsLP">{{getCompleteAddress(currentFn.company)}}</div>
+                <div class="adrsLP">Dummy Text</div>
             </div>
-
-
-          <div class="textBox" style="width:auto;">
+<!--          <div class="textBox" style="width:auto;">
             <label>Serial No::</label>
             <span>{{currentFn.id}}</span>
             <div class="clrBt"></div>
           </div>
 
           <div class="textBox" style="width:auto;">
+			<label>Forwarding Date:</label>
+            <span>{{currentFn.fnDate | date:'dd/MM/yyyy'}}</span>
+            <div class="clrBt"></div>
+          </div>
+
+-->
+          <div class="clrBt"></div>
+          <div class="textBox flt_L">
+            <label>Serial No.:</label>
+            <span>{{currentFn.id}}</span>
+            <div class="clrBt"></div>
+          </div>
+          <div class="textBox flt_L" style="padding-right:0; padding-left:8px; width:230px;">
             <label>Forwarding Date:</label>
             <span>{{currentFn.fnDate | date:'dd/MM/yyyy'}}</span>
             <div class="clrBt"></div>
           </div>
+
+
 
           <div class="clrBt"></div>
           <div class="textBox flt_L">
