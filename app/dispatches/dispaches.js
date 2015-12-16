@@ -46,17 +46,20 @@ angular.module('myApp.dispatches', ['ngRoute'])
         }
 
         $scope.arangeDataForPrint = function(dispatch){
+            if(dispatch.isRendered){
+                return
+            }
             var fnMap = {}
             var fns =[]
             for(var i=0;i<dispatch.forwardingNote.length;i++){
                 var fn = dispatch.forwardingNote[i]
 
                 if(fnMap[fn.transporter.name]==undefined){
-                    fnMap[fn.transporter.name] = {ar:[fn,],values:getBillValues(fn.billValues)}
+                    fnMap[fn.transporter.name] = {ar:[fn,],totalCases:parseInt(fn.cases)}
                     //fns.push(fn)
                 }else{
                     fnMap[fn.transporter.name].ar.push(fn)
-                    fnMap[fn.transporter.name].values +=getBillValues(fn.billValues)
+                    fnMap[fn.transporter.name].totalCases +=parseInt(fn.cases)
                 }
             }
             console.log(fnMap)
@@ -65,20 +68,39 @@ angular.module('myApp.dispatches', ['ngRoute'])
                 //console.log(obj)
                 var fn=fnMap[obj]
                 console.log(fn)
-                fn.ar.push({isValue:true,values: fn.values})
+                fn.ar.push({isCases:true,totalCases: fn.totalCases})
                 fns = fns.concat(fn.ar)
             }
 
             console.log(fns)
 
             dispatch.forwardingNote=fns
+            dispatch.isRendered = true
         }
 
         $scope.print = function(){
-            $scope.visibleForDisplay = false
-            //$("#dischsTblouter").removeAttr("style")
+            $("#dischsTblouter").removeAttr("style")
+
+
+            //$("#dischsTblouter").addClass("printClass")
+
             $('#print_btn_id').hide()
             $('#close_btn_id').hide()
+
+            $('.id_date_th').hide()
+            $('.id_date_td').hide()
+
+            $('.id_bill_th').hide()
+            $('.id_bill_td').hide()
+
+            $('.id_bdate_th').hide()
+            $('.id_bdate_td').hide()
+
+            $('.id_value_th').hide()
+            $('.id_value_td').hide()
+
+            $('.id_permit_th').hide()
+            $('.id_permit_td').hide()
 
             setTimeout(function(){
                 //var scaledElement = $("#vanDetails_id").clone().css({
@@ -108,13 +130,26 @@ angular.module('myApp.dispatches', ['ngRoute'])
                         var myImage = canvas.toDataURL("image/png");
                         var printWin = window.open();
                         //printWin.moveTo(200, 100);
-                        printWin.document.write("<img  src='" + myImage + "'/>");
+                        //printWin.document.write("<img class='printClass'  src='" + myImage + "'/>");
+                        var div = '<head><link rel="stylesheet" href="/com/css/style.css"></head><body><div>'
+                        div +=document.getElementById('vanDetails_id').innerHTML+'</div></body>'
+                        printWin.document.write(div)
                         printWin.focus();
                         printWin.print();
                         printWin.close();
+                        $('#dischsTblouter').css({'overflow-y':'auto', 'height':'240px'})
                         $('#print_btn_id').show()
                         $('#close_btn_id').show()
-                        $scope.visibleForDisplay = true
+                        $('.id_date_th').show()
+                        $('.id_date_td').show()
+                        $('.id_bill_th').show()
+                        $('.id_bill_td').show()
+                        $('.id_bdate_th').show()
+                        $('.id_bdate_td').show()
+                        $('.id_value_th').show()
+                        $('.id_value_td').show()
+                        $('.id_permit_th').show()
+                        $('.id_permit_td').show()
                         $scope.$apply()
                         return
                     }

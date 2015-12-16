@@ -155,4 +155,11 @@ transition:border 0.25s linear 0s, color 0.25s linear 0s, background-color 0.25s
 .printStyleDispcs .dischsTblStyle th, .printStyleDispcs .dischsTblStyle td{font-size:15px !important; color:#000;}
 .vanDetailsTbl .textBoxVD label, .vanDetailsTbl .textBoxVD span{font-size:15px !important; color:#000 !important;}
 .bigTd td{padding: 20px 5px !important;color: #be4954 !important;background-color: azure;border-left: none !important;}
+@media print and (-webkit-min-device-pixel-ratio:0) {
+    .printClass{
+        height: auto !important;
+        width:768px;
+
+    }
+}
 
