@@ -14,6 +14,7 @@ angular.module('myApp.dispatch', ['ngRoute'])
   $scope.forwardingNotes = []
   $scope.filter = {transporterName:''}
   $scope.vanData = undefined
+  $scope.visibleForDisplay = true
 
     $scope.getForwardingNotes = function(){
 
@@ -47,6 +48,9 @@ angular.module('myApp.dispatch', ['ngRoute'])
     }
 
   $scope.getDisplayNameforFn = function(fns){
+    if(isBlank(fns.customer)){
+      fns.customer = {}
+    }
     return fns.id+ '  --' +fns.transporter.name +' - '+fns.customer.name+' - '+fns.customer.city+' - '+fns.marka
   }
 
@@ -94,19 +98,24 @@ angular.module('myApp.dispatch', ['ngRoute'])
   }
 
   var printVanData = function() {
-    html2canvas([ document.getElementById('vanDetails_id') ], {
-      onrendered: function (canvas) {
-        var myImage = canvas.toDataURL("image/png");
-        var printWin = window.open('', '', 'width=340,height=260');
-        printWin.moveTo(200, 100);
-        printWin.document.write('<img src="' + myImage + '"/>');
-        printWin.focus();
-        printWin.print();
-        printWin.close();
-        return
-      }
+    $scope.visibleForDisplay = false
+    setTimeout(function(){
+      html2canvas([ document.getElementById('vanDetails_id') ], {
+        onrendered: function (canvas) {
+          var myImage = canvas.toDataURL("image/png");
+          var printWin = window.open('', '', 'width=340,height=260');
+          printWin.moveTo(200, 100);
+          printWin.document.write('<img src="' + myImage + '"/>');
+          printWin.focus();
+          printWin.print();
+          printWin.close();
+          $scope.visibleForDisplay = true
+          return
+        }
 
-    })
+      })
+    },500)
+
   }
 
   $scope.getBillValues = function(values){

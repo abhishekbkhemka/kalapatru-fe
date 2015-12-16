@@ -131,7 +131,7 @@
               <th>Permit No.</th>
               <th>Customer name</th>
               <th>Customer City</th>
-              <th>Action</th>
+              <th ng-show="visibleForDisplay">Action</th>
             </tr>
             <tr ng-repeat="fn in vanData.fns">
               <td>{{getFormattedDate(fn.fnDate)}}</td>
@@ -145,7 +145,7 @@
               <td>{{fn.permitNo}}</td>
               <td>{{fn.customer.name}}</td>
               <td>{{fn.customer.city}}</td>
-              <td style="text-align:center;">
+              <td ng-show="visibleForDisplay" style="text-align:center;">
                 <a href="" ng-click="removeFN(fn)" style="margin:2px 0 0; display:inline-block;"><img src="/com/images/cancelD.png" alt="Delete" style="width:15px;" title="Delete" /></a><div class="clrBt"></div>
 			  </td>
             </tr>         
@@ -299,7 +299,8 @@
         	<div class="logoPartMain">
                 <div class="compNameCodeM"><span class="compName">{{currentFn.company.name}}</span> <span class="compCode"> ({{currentFn.company.code}})</span></div>
                 <div class="adrsLP">{{getCompleteAddress(currentFn.company)}}</div>
-                <div class="adrsLP">Dummy Text</div>
+                <div class="adrsLP">VAT : {{currentFn.company.vat}}</div>
+                <div class="adrsLP">TIN/CST : {{currentFn.company.cst_or_tin}}</div>
             </div>
 <!--          <div class="textBox" style="width:auto;">
             <label>Serial No::</label>
