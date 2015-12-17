@@ -145,7 +145,7 @@
     </tr>
     <tr ng-repeat="fn in currentDispatch.forwardingNote" ng-class="{'bigTd':fn.isCases}">
       <td class="id_date_td">{{fn.fnDate | date:'dd-MM-yyyy'}}</td>
-      <td style="text-transform: uppercase"><span ng-show="!fn.isCases">{{fn.transporter.name}}</span><span ng-show="fn.isCases">Receiver :</span></td>
+      <td style="text-transform: uppercase"><span ng-show="!fn.isCases">{{fn.transporter.name}}</span><span ng-show="fn.isCases">{{fn.receiver}}</span></td>
       <td style="text-transform: uppercase">{{fn.transporterStation}}</td>
       <td class="id_bill_td"  style="text-transform: uppercase">{{fn.billNo}}</td>
       <td class="id_bdate_td" >{{fn.billDates}}</td>
