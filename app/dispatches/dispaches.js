@@ -68,7 +68,7 @@ angular.module('myApp.dispatches', ['ngRoute'])
                 //console.log(obj)
                 var fn=fnMap[obj]
                 console.log(fn)
-                fn.ar.push({isCases:true,totalCases: fn.totalCases})
+                fn.ar.push({isCases:true,totalCases: fn.totalCases,receiver:"RECEIVER :"})
                 fns = fns.concat(fn.ar)
             }
 
