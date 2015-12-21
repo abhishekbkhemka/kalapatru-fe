@@ -111,7 +111,7 @@
                     <label>Commodity</label>
                     <!--<input tabindex="12" type="text" ng-model="currentFn.comments" />-->
                     <div class="selectSty1 flt_L" style="height:35px;">
-                    <label style="margin-top:0; width:250px;"><span><select ng-model="currentFn.commodity" ng-options="cd.name as cd.name for cd in commodities"></select></span></label>
+                    <label style="margin-top:0; width:250px;"><span><select tabindex="12" ng-model="currentFn.commodity" ng-options="cd.name as cd.name for cd in commodities"></select></span></label>
                     </div>
                     <div class="clrBt"></div>
                 </div>
@@ -119,14 +119,14 @@
                 <div class="textBox">
                     <label>Company/Division</label>
                     <div class="selectSty1 flt_L" style="height:35px;">
-                    <label style="margin-top:0;"><span><select ng-model="currentFn.companyId" ng-options="com.id as com.code for com in companies"></select></span></label>
+                    <label style="margin-top:0;"><span><select tabindex="13" ng-model="currentFn.companyId" ng-options="com.id as com.code for com in companies"></select></span></label>
                     </div>
                     <div class="clrBt"></div>
                 </div>
                 <div class="clrBt"></div>
                 <div class="buttonMain flt_R" style="margin-right:70px;">
-                    <button type="button" class="flt_L" ng-click="addForwardingNote()" style="margin-right:10px;" type="button">Save</button>
-                    <button type="button" class="flt_R" ng-click="addForwardingNote(true)" type="button">Save & Print</button>
+                    <button type="button" class="flt_L" ng-click="addForwardingNote()"  tabindex="14" style="margin-right:10px;" type="button">Save</button>
+                    <button type="button" class="flt_R" ng-click="addForwardingNote(true)" tabindex="15" type="button">Save & Print</button>
                     	<div class="clrBt"></div>
                 </div>
                 <div class="clrBt"></div>

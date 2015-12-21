@@ -13,8 +13,9 @@ angular.module('myApp.forwardingNote', ['ngRoute'])
   $scope.transporters = []
   $scope.transportersStations = []
   $scope.customers = []
-  $scope.currentFn = {fnDate:new Date(),billDates:[]}
   $scope.totalBillValue = 0;
+    var today = new Date()
+    $scope.currentFn = {fnDate:today,billDates:[],billDate:today}
     $scope.billDates = []
 
     var transporterStationAutoComplete = function(){
@@ -155,7 +156,7 @@ var initTransporter = function(){
                    printWin.print();
                    printWin.close();
                    $('#pforwardingNote_id').hide()
-                   $scope.currentFn = {fnDate:new Date(),billDates:[]}
+                   $scope.currentFn = {fnDate:today,billDates:[],billDate:today}
                    $scope.$apply()
                    return
                }
@@ -242,7 +243,7 @@ var initTransporter = function(){
 
             printFNData()
         }else{
-            $scope.currentFn = {fnDate:new Date(),billDates:[]}
+            $scope.currentFn = {fnDate:today,billDates:[],billDate:today}
 
         }
         $scope.totalBillValue = 0
