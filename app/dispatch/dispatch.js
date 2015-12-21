@@ -13,7 +13,8 @@ angular.module('myApp.dispatch', ['ngRoute'])
 
   $scope.forwardingNotes = []
   $scope.filter = {transporterName:''}
-  $scope.vanData = undefined
+  var today = new Date()
+  $scope.vanData = {date:today}
   $scope.visibleForDisplay = true
 
     $scope.getForwardingNotes = function(){
@@ -55,7 +56,7 @@ angular.module('myApp.dispatch', ['ngRoute'])
   }
 
   $scope.addToVanData = function(data){
-    if(!$scope.vanData){
+    if(!$scope.vanData.name){
       data.isDisabled = false
       showMessage('Please enter Van Details first','error')
       return
@@ -81,7 +82,7 @@ angular.module('myApp.dispatch', ['ngRoute'])
   $scope.showVanDataPopUp = function(){
     $scope.vanDataPopUP = true
     if(!$scope.vanData){
-      $scope.vanData = {fns:[]}
+      $scope.vanData = {fns:[],date:today}
     }
 
     $scope.closeVanDataPopUp = function(){
@@ -226,7 +227,7 @@ angular.module('myApp.dispatch', ['ngRoute'])
         showMessage('Data Saved', 'success')
       }
 
-      $scope.vanData = {fns:[]}
+      $scope.vanData = {fns:[],date:today}
       $scope.getForwardingNotes()
     }, function (err) {
       hideLoadingBar()
