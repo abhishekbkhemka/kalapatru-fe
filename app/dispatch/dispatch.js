@@ -14,7 +14,7 @@ angular.module('myApp.dispatch', ['ngRoute'])
   $scope.forwardingNotes = []
   $scope.filter = {transporterName:''}
   var today = new Date()
-  $scope.vanData = {date:today}
+  $scope.vanData = {fns:[],date:today}
   $scope.visibleForDisplay = true
 
     $scope.getForwardingNotes = function(){
