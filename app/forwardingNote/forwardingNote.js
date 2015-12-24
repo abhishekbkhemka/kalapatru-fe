@@ -51,29 +51,29 @@ angular.module('myApp.forwardingNote', ['ngRoute'])
 var initTransporter = function(){
 
 
-  $("#transporter_name_id").autocomplete({
-        minLength: 1,
-        source: $scope.transporters,
-        focus: function (event, ui) {
-          return true;
-        },
-        select: function (ev, ui) {
-          $scope.currentFn.transporter = ui.item
-            $scope.isTransporterDisabled = true
-
-            $scope.transportersStations = $scope.currentFn.transporter.stations
-            transporterStationAutoComplete()
-          //$scope.selectedTransporter =ui.item
-          $scope.$apply()
-          return false
-        }
-      })
-      .autocomplete("instance")._renderItem = function (ul, item) {
-    $(ul).addClass('autoCompTxtmine')
-    return $("<li class='autoCompTxtouter'>")
-        .append("<a class='autoCompTxt'>" + item.label + "</a>")
-        .appendTo(ul);
-  };
+  //$("#transporter_name_id").autocomplete({
+  //      minLength: 1,
+  //      source: $scope.transporters,
+  //      focus: function (event, ui) {
+  //        return true;
+  //      },
+  //      select: function (ev, ui) {
+  //        $scope.currentFn.transporter = ui.item
+  //          $scope.isTransporterDisabled = true
+  //
+  //          $scope.transportersStations = $scope.currentFn.transporter.stations
+  //          transporterStationAutoComplete()
+  //        //$scope.selectedTransporter =ui.item
+  //        $scope.$apply()
+  //        return false
+  //      }
+  //    })
+  //    .autocomplete("instance")._renderItem = function (ul, item) {
+  //  $(ul).addClass('autoCompTxtmine')
+  //  return $("<li class='autoCompTxtouter'>")
+  //      .append("<a class='autoCompTxt'>" + item.label + "</a>")
+  //      .appendTo(ul);
+  //};
 
 
 }
@@ -123,6 +123,7 @@ var initTransporter = function(){
         kalapatruService.getSettings(function(res){
             $scope.companies = res.companies
             $scope.commodities = res.commodities
+            $scope.transportersStations = res.stations
         },function(err){
 
         })

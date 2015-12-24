@@ -42,15 +42,17 @@
                 </div>
                 <div class="textBox">
                     <label>Transport Name<span style="color:red;">*</span></label>
-                    <input tabindex="2" style="text-transform: uppercase" id="transporter_name_id" ng-class="{'redBorder':isNotTransporter}" ng-disabled="isTransporterDisabled" ng-model="currentFn.transporter.name" type="text" />
-                  <div style="margin-top:4px;" class="buttonMain flt_R">
-                    <button type="button" ng-click="clearTransporter()">Clear</button>
-                  </div>
+                    <!--<input tabindex="2" style="text-transform: uppercase" id="transporter_name_id" ng-class="{'redBorder':isNotTransporter}" ng-disabled="isTransporterDisabled" ng-model="currentFn.transporter.name" type="text" />-->
+                    <select tabindex="2"  ng-class="{'redBorder':isNotTransporter}" ng-disabled="isTransporterDisabled" ng-model="currentFn.transporter.name" ng-options="trans.name as trans.name for trans in transporters" ></select>
+                  <!--<div style="margin-top:4px;" class="buttonMain flt_R">-->
+                    <!--<button type="button" ng-click="clearTransporter()">Clear</button>-->
+                  <!--</div>-->
                     <div class="clrBt"></div>
                 </div>
                 <div class="textBox">
                     <label>Station/Place<span style="color:red;">*</span></label>
-                    <input tabindex="3" style="text-transform: uppercase"  id="t_station_id" ng-class="{'redBorder':isNotTransporter}" ng-model="currentFn.transporterStation" type="text" />
+                    <!--<input tabindex="3" style="text-transform: uppercase"  id="t_station_id" ng-class="{'redBorder':isNotTransporter}" ng-model="currentFn.transporterStation" type="text" />-->
+                    <select tabindex="3" style="text-transform: uppercase"   ng-class="{'redBorder':isNotTransporter}" ng-model="currentFn.transporterStation" ng-options="st.label as st.name for st in transportersStations" ></select>
                     <div class="clrBt"></div>
 
                 </div>
