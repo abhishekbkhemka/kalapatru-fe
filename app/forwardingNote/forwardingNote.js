@@ -132,6 +132,7 @@ var initTransporter = function(){
 
 
   $scope.calculateBillValue = function(){
+      if($scope.currentFn.billValues == undefined){return 0}
     var values = $scope.currentFn.billValues.split('+')
     $scope.totalBillValue = 0;
     for(var i =0 ;i<values.length;i++){
@@ -193,7 +194,7 @@ var initTransporter = function(){
           return
       }
 
-      if(isBlank($scope.currentFn.transporter.name)){
+      if(isBlank($scope.currentFn.transporter.id)){
           showMessage('Please enter transporter name','error')
           $scope.isNotTransporter = true
           return
