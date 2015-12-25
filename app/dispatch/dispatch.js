@@ -16,6 +16,7 @@ angular.module('myApp.dispatch', ['ngRoute'])
   var today = new Date()
   $scope.vanData = {fns:[],date:today}
   $scope.visibleForDisplay = true
+  $scope.viewName  = 'grid'
 
     $scope.getForwardingNotes = function(){
 
@@ -196,6 +197,10 @@ angular.module('myApp.dispatch', ['ngRoute'])
 
   $scope.reset = function(){
     $scope.getForwardingNotes()
+  }
+
+  $scope.showMe = function(viewName){
+    $scope.viewName = viewName
   }
 
 

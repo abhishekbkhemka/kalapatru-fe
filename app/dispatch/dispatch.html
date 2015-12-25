@@ -73,42 +73,42 @@
           
 <div class="tabMenuDispc">
 	<div class="tabMenuInrDispc">
-        <a href="#" class="flt_L activeTabDisc" style="border-right:2px solid #aec6dc; padding-right:8px;">List View</a>
-        <a href="#" class="flt_R">Grid View</a>
+        <a href="" ng-click="showMe('list')" class="flt_L " ng-class="{'activeTabDisc':viewName=='list'}" style="border-right:2px solid #aec6dc; padding-right:8px;">List View</a>
+        <a href="" ng-click="showMe('grid')" class="flt_R" ng-class="{'activeTabDisc':viewName=='grid'}">Grid View</a>
             <div class="clrBt"></div>
 	</div>
 </div>
           
-          <ul class="checkBoxSectionMain listViewDsp">
+          <ul class="checkBoxSectionMain listViewDsp" ng-show="viewName=='list'">
             <li ng-repeat="fns in forwardingNotes | daterange:filterFromDate:filterToDate| filter:transportFilter" daterange class="chkBox" disabled>
-              <div class="linkStyleLst" ng-show="!fns.isDispatched"><input ng-checked="fns.isDisabled" ng-click="addToVanData(fns)" type="checkbox" />
+              <div class="linkStyleLst" ><input ng-checked="fns.isDisabled" ng-click="addToVanData(fns)" type="checkbox" />
               <a href="" ng-click="addToVanData(fns)" style="width:250px;"><span>{{getDisplayNameforFn(fns)}}</span> <div class="clrBt"></div></a><img ng-click="printFn($event,fns)" src="/com/images/viewiconUL.png" alt="" style="cursor:pointer;margin:2px 0 0;" title="" class="flt_R" /><div class="clrBt"></div></div>
               <div class="clrBt"></div>
-              <div class="unlinkStyleLst" ng-show="fns.isDispatched">
-                  <img src="/com/images/bulletWhite.png" alt="" title="" class="flt_L" />
-                  <span class="flt_L"><div class="flt_L" style="width:250px;">{{getDisplayNameforFn(fns)}}</div> <img ng-click="printFn($event,fns)" src="/com/images/viewiconUL.png" alt="" title="" style="cursor:pointer;margin:2px 0 0;" class="flt_R" /><div class="clrBt"></div></span>
-                  <div class="clrBt"></div>
-              </div>
+              <!--<div class="unlinkStyleLst" ng-show="fns.isDispatched">-->
+                  <!--<img src="/com/images/bulletWhite.png" alt="" title="" class="flt_L" />-->
+                  <!--<span class="flt_L"><div class="flt_L" style="width:250px;">{{getDisplayNameforFn(fns)}}</div> <img ng-click="printFn($event,fns)" src="/com/images/viewiconUL.png" alt="" title="" style="cursor:pointer;margin:2px 0 0;" class="flt_R" /><div class="clrBt"></div></span>-->
+                  <!--<div class="clrBt"></div>-->
+              <!--</div>-->
               <div class="clrBt"></div>
             </li>
           </ul>
           
-<div class="gridViewDsp" style="display:none;">
-    <div class="gridSty">100</div>
-    <div class="gridSty">200</div>
-    <div class="gridSty">300</div>
-    <div class="gridSty enableGVD">400</div>
-    <div class="gridSty">500</div>
-    <div class="gridSty">600</div>
-    <div class="gridSty disableGVD">700</div>
-    <div class="gridSty">800</div>
-    <div class="gridSty">900</div>
-    <div class="gridSty">1000</div>
-    <div class="gridSty">100</div>
-    <div class="gridSty">800</div>
-    <div class="gridSty">900</div>
-    <div class="gridSty">1000</div>
-    <div class="gridSty">100</div>
+<div class="gridViewDsp"  ng-show="viewName=='grid'">
+    <div style="cursor: pointer;" ng-repeat="fns in forwardingNotes | daterange:filterFromDate:filterToDate| filter:transportFilter" class="gridSty enableGV" ng-click="addToVanData(fns)" ng-class="{'disableGVD':fns.isDisabled}">{{fns.id}}</div>
+    <!--<div class="gridSty">200</div>-->
+    <!--<div class="gridSty">300</div>-->
+    <!--<div class="gridSty enableGVD">400</div>-->
+    <!--<div class="gridSty">500</div>-->
+    <!--<div class="gridSty">600</div>-->
+    <!--<div class="gridSty disableGVD">700</div>-->
+    <!--<div class="gridSty">800</div>-->
+    <!--<div class="gridSty">900</div>-->
+    <!--<div class="gridSty">1000</div>-->
+    <!--<div class="gridSty">100</div>-->
+    <!--<div class="gridSty">800</div>-->
+    <!--<div class="gridSty">900</div>-->
+    <!--<div class="gridSty">1000</div>-->
+    <!--<div class="gridSty">100</div>-->
     	<div class="clrBt"></div>
 </div>
           
