@@ -155,11 +155,14 @@ transition:border 0.25s linear 0s, color 0.25s linear 0s, background-color 0.25s
 .printStyleDispcs .dischsTblStyle th, .printStyleDispcs .dischsTblStyle td{font-size:15px !important; color:#000;}
 .vanDetailsTbl .textBoxVD label, .vanDetailsTbl .textBoxVD span{font-size:15px !important; color:#000 !important;}
 .bigTd td{padding: 20px 5px !important;color: #be4954 !important;background-color: azure;border-left: none !important;}
-@media print and (-webkit-min-device-pixel-ratio:0) {
-    .printClass{
-        height: auto !important;
-        width:800px;
+@media print and (-webkit-min-device-pixel-ratio:0) { .printClass{height:auto !important; width:800px;} }
 
-    }
-}
+.tabMenuDispc{border-bottom:1px solid #aec6dc; margin-bottom:10px;}
+.tabMenuInrDispc{width:150px; margin:0 auto;}
+.tabMenuDispc a{padding:5px; color:#256f9c; font-size:14px; font-family: 'open_sanssemibold'; text-decoration:none;}
+.tabMenuDispc a:hover, .tabMenuDispc a.activeTabDisc{color:#be4954;}
 
+.gridViewDsp{border-top:1px solid #ccc;border-left:1px solid #ccc;}
+.gridViewDsp .gridSty{float:left; background:#f9ffff; border-right:1px solid #ccc; border-bottom:1px solid #ccc; font-size:14px; padding:7px; text-align:center; width:44.6px;}
+.gridViewDsp .disableGVD{background:#e4e4e4; color:#b8b8b8;}
+.gridViewDsp .enableGVD{background:#e2f2ce;}
