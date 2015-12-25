@@ -79,7 +79,7 @@
 	</div>
 </div>
           
-          <ul class="checkBoxSectionMain listViewDsp" style="display:none;">
+          <ul class="checkBoxSectionMain listViewDsp">
             <li ng-repeat="fns in forwardingNotes | daterange:filterFromDate:filterToDate| filter:transportFilter" daterange class="chkBox" disabled>
               <div class="linkStyleLst" ng-show="!fns.isDispatched"><input ng-checked="fns.isDisabled" ng-click="addToVanData(fns)" type="checkbox" />
               <a href="" ng-click="addToVanData(fns)" style="width:250px;"><span>{{getDisplayNameforFn(fns)}}</span> <div class="clrBt"></div></a><img ng-click="printFn($event,fns)" src="/com/images/viewiconUL.png" alt="" style="cursor:pointer;margin:2px 0 0;" title="" class="flt_R" /><div class="clrBt"></div></div>
@@ -93,7 +93,7 @@
             </li>
           </ul>
           
-<div class="gridViewDsp">
+<div class="gridViewDsp" style="display:none;">
     <div class="gridSty">100</div>
     <div class="gridSty">200</div>
     <div class="gridSty">300</div>
