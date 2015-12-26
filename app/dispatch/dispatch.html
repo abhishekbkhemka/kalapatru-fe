@@ -93,8 +93,8 @@
             </li>
           </ul>
           
-<div class="gridViewDsp"  ng-show="viewName=='grid'">
-    <div style="cursor: pointer;" ng-repeat="fns in forwardingNotes | daterange:filterFromDate:filterToDate| filter:transportFilter" class="gridSty enableGV" ng-click="addToVanData(fns)" ng-class="{'disableGVD':fns.isDisabled}">{{fns.id}}</div>
+<div class="gridViewDsp" ng-show="viewName=='grid'">
+    <div style="cursor:pointer;" ng-repeat="fns in forwardingNotes | daterange:filterFromDate:filterToDate| filter:transportFilter" class="gridSty enableGV"  ng-class="{'disableGVD':fns.isDisabled}"><div ng-click="addToVanData(fns)">{{fns.id}}</div> <a href="">i</a></div>
     <!--<div class="gridSty">200</div>-->
     <!--<div class="gridSty">300</div>-->
     <!--<div class="gridSty enableGVD">400</div>-->
