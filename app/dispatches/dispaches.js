@@ -17,7 +17,7 @@ angular.module('myApp.dispatches', ['ngRoute'])
             showLoadingBar()
             kalapatruService.getDispatches(fromDate,toDate,function(res){
                 hideLoadingBar()
-                $scope.dispacthes = res
+                $scope.dispacthes = res.reverse()
 
             },function(err){
                 showMessage(err)
@@ -102,6 +102,9 @@ angular.module('myApp.dispatches', ['ngRoute'])
             $('.id_permit_th').hide()
             $('.id_permit_td').hide()
 
+            $('.id_id_th').hide()
+            $('.id_id_td').hide()
+
             setTimeout(function(){
                 //var scaledElement = $("#vanDetails_id").clone().css({
                 //    'transform': 'scale(3,3)',
@@ -150,6 +153,8 @@ angular.module('myApp.dispatches', ['ngRoute'])
                         $('.id_value_td').show()
                         $('.id_permit_th').show()
                         $('.id_permit_td').show()
+                        $('.id_id_th').show()
+                        $('.id_id_td').show()
                         $scope.$apply()
                         return
                     }
