@@ -163,6 +163,8 @@ transition:border 0.25s linear 0s, color 0.25s linear 0s, background-color 0.25s
 .tabMenuDispc a:hover, .tabMenuDispc a.activeTabDisc{color:#be4954;}
 
 .gridViewDsp{border-top:1px solid #ccc;border-left:1px solid #ccc;}
-.gridViewDsp .gridSty{float:left; background:#f9ffff; border-right:1px solid #ccc; border-bottom:1px solid #ccc; font-size:14px; padding:7px; text-align:center; width:44.6px;}
+.gridViewDsp .gridSty{float:left; background:#f9ffff; border-right:1px solid #ccc; border-bottom:1px solid #ccc; position:relative; font-size:14px; padding:7px; text-align:center; width:59.7px;}
 .gridViewDsp .disableGVD{background:#e4e4e4; color:#b8b8b8;}
 .gridViewDsp .enableGVD{background:#e2f2ce;}
+.gridViewDsp .gridSty a{background:#e4e4e4; border-radius:50%; color:#cf6000; display:block; font-family: "open_sansregular"; font-size:12px; 
+font-weight:600; height:16px; position:absolute; right:2px; text-align:center; text-decoration:none; top:2px; width:16px;}
