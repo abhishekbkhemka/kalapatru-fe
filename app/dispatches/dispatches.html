@@ -111,11 +111,22 @@
       <span style="font-family: 'open_sanssemibold'; font-size:13px;">{{currentDispatch.date | date:'dd-MM-yyyy'}}</span>
       <div class="clrBt"></div>
     </div>
+        <div class="textBoxVD flt_R" style="padding-right:10px;">
+            <label>Sr No.: </label>
+            <span style="font-family: 'open_sanssemibold'; font-size:13px;">{{currentDispatch.id}}</span>
+            <div class="clrBt"></div>
+        </div>
+        <div class="clrBt"></div>
     <div class="textBoxVD flt_R" style="padding-right:10px;">
       <label>Van No.: </label>
       <span style="font-family: 'open_sanssemibold'; font-size:13px;">{{currentDispatch.vanNo}}</span>
       <div class="clrBt"></div>
     </div>
+        <div class="textBoxVD flt_R" style="padding-right:10px;">
+            <label>Tota Cases.: </label>
+            <span style="font-family: 'open_sanssemibold'; font-size:13px;">{{getTotalCase(currentDispatch)}}</span>
+            <div class="clrBt"></div>
+        </div>
     <div class="clrBt"></div>
     <div class="textBoxVD">
       <label>Driver Name: </label>
@@ -148,7 +159,7 @@
       <!--<th>Customer City</th>-->
         <th>Cases</th>
     </tr>
-    <tr ng-repeat="fn in currentDispatch.forwardingNote" ng-class="{'bigTd':fn.isCases}">
+    <tr ng-repeat="fn in currentDispatch.forwardingNote" ng-class="{'bigTd':fn.isCases}" >
       <td class="id_id_td" >{{fn.id}}</td>
       <td class="id_date_td">{{fn.fnDate | date:'dd-MM-yyyy'}}</td>
       <td style="text-transform: uppercase"><span ng-show="!fn.isCases">{{fn.transporter.name}}</span><span ng-show="fn.isCases">{{fn.receiver}}</span></td>

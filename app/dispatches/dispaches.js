@@ -45,6 +45,18 @@ angular.module('myApp.dispatches', ['ngRoute'])
             $scope.currentDispatch  = {}
         }
 
+        $scope.getTotalCase = function(cd){
+            var fns = cd.forwardingNote
+            var tc = 0
+            for(var i=0;i<fns.length;i++){
+                var cases = parseInt(fns[i].cases)
+                if(!isNaN(cases))
+                tc +=cases
+            }
+            return tc
+        }
+
+
         $scope.arangeDataForPrint = function(dispatch){
             if(dispatch.isRendered){
                 return
