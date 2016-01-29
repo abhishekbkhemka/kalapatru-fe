@@ -24,6 +24,8 @@ angular.module('myApp.dispatches', ['ngRoute'])
                 hideLoadingBar()
             })
         }
+        $scope.filterFromDate = new Date()
+        $scope.filterToDate = new Date()
 
         $scope.getFormattedDate = function(date){
             if(date instanceof Date){
@@ -31,6 +33,9 @@ angular.module('myApp.dispatches', ['ngRoute'])
             }
             return getFormatedDate(date)
 
+        }
+        $scope.initData = function(){
+            $scope.getDispatches($scope.filterFromDate,$scope.filterToDate)
         }
 
         $scope.showDispatch = function(dis){

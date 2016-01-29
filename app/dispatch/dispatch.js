@@ -39,6 +39,29 @@ angular.module('myApp.dispatch', ['ngRoute'])
     })
 
   }
+  var initVanAutoComplete = function(){
+    $("#t_van_id").autocomplete({
+          minLength: 1,
+          source: $scope.vans,
+          focus: function (event, ui) {
+            return true;
+          },
+          select: function (ev, ui) {
+            $scope.vanData.vanNo = ui.item.vanNo
+            $scope.vanData.name = ui.item.name
+            $scope.$apply()
+            return false
+          }
+        })
+        .autocomplete("instance")._renderItem = function (ul, item) {
+      $(ul).addClass('autoCompTxtmine')
+      $(ul).addClass('autoCompDis')
+      return $("<li class='autoCompTxtouter'>")
+          .append("<a class='autoCompTxt'>" + item.label + "</a>")
+          .appendTo(ul);
+    };
+
+  }
 
 
     $scope.initData = function(){
@@ -47,6 +70,11 @@ angular.module('myApp.dispatch', ['ngRoute'])
       if(obj.id>0){
         $scope.getDispatch(obj.id)
       }
+      kalapatruService.getVans(function(res){
+        $scope.vans = res
+        console.log($scope.vans)
+        initVanAutoComplete()
+      })
     }
 
   $scope.getDisplayNameforFn = function(fns){
