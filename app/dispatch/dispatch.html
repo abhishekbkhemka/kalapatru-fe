@@ -202,14 +202,14 @@
 
 </div> <!-- Page Main Section End -->
 
-<div ng-if="vanDataPopUP" class="confirmBoxStyle"> <!-- Enter Van Details Popup Box Style Start -->
+<div ng-show="vanDataPopUP" class="confirmBoxStyle"> <!-- Enter Van Details Popup Box Style Start -->
   <div class="confirmBoxOuter">
     <div class="confirmBoxStyleInner">
       <h3 class="titleCB"><span class="confTxt flt_L">Enter Van Details</span> <span ng-click="closeVanDataPopUp()" class="windowCloseIcon flt_R"></span><div class="clrBt"></div></h3>
       <form class="formStyleMain formLightBoxMain">
         <div class="textBox">
           <label>Van No.</label>
-          <input ng-model="vanData.vanNo" type="text" />
+          <input id="t_van_id" ng-model="vanData.vanNo" type="text" />
           <div class="clrBt"></div>
         </div>
         <div class="textBox">
