@@ -163,8 +163,44 @@ angular.module('myApp.dispatch', ['ngRoute'])
     return getCompleteAddress(location)
   }
 
+    $scope.printFn = function(eve,fn)
+    {
 
-  $scope.printFn = function(eve,fn){
+        var divToPrint=document.getElementById('forwardingNote_id');
+        $('#id_company_name').html(fn.company.name)
+        $('#id_company_code').html('('+fn.company.code+')')
+        $('#id_add_div').html(getCompleteAddress(fn.company))
+        $('#id_tax').html("VAT :"+ fn.company.vat+ "   GST :"+fn.company.cst_or_tin)
+        $('#id_serial').html(fn.id)
+        $('#id_fd').html(new Date(fn.fnDate).toDateString())
+        $('#id_trans').html(fn.transporter.name)
+        $('#id_trans_station').html(fn.transporterStation)
+        $('#id_customer_name').html(fn.customer.name)
+        $('#id_customer_city').html(fn.customer.city)
+        $('#id_billno').html(fn.billNo)
+        $('#id_bill_value').html(getBillValues(fn.billValues))
+        $('#id_bill_date').html(fn.billDates)
+        $('#id_cases').html(fn.cases)
+        $('#id_marka').html(fn.marka)
+        $('#id_permit').html(fn.permitNo)
+        $('#id_commodity').html(fn.commodity)
+
+        var newWin=window.open('','Print-Window');
+
+        newWin.document.open();
+
+        newWin.document.write('<head> <link rel="stylesheet" href="/com/css/style.css"></head><html><body onload="window.print()">'+divToPrint.innerHTML+'</body></html>');
+
+        newWin.document.close();
+
+        setTimeout(function(){newWin.close();},10);
+        // $scope.currentFn = {billDates:[]}
+        // $scope.$apply()
+
+    }
+
+
+  $scope.printFna = function(eve,fn){
 
     $scope.currentFn = fn;
     console.log(fn)
