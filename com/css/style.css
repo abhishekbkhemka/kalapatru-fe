@@ -147,7 +147,7 @@ transition:border 0.25s linear 0s, color 0.25s linear 0s, background-color 0.25s
 .selectSty1 select option:hover{background:#ccc;}
 
 .compNameCodeM{}
-.compNameCodeM .compName{color:#333; font-size:14px; font-family: 'open_sanssemibold';}
+.compNameCodeM .compName{color:#333; font-size:16px; font-family: 'open_sanssemibold';}
 .compNameCodeM .compCode{font-family: 'open_sanssemibold'; color:#2587a7; font-size:13px;}
 
 .printStyleDispcs{width:930px !important;}

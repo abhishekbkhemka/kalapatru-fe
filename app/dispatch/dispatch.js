@@ -172,6 +172,10 @@ angular.module('myApp.dispatch', ['ngRoute'])
     var t =  setTimeout(function(){
       clearTimeout(t)
       html2canvas([ document.getElementById('forwardingNote_id') ], {
+	useCORS: true,
+	allowTaint: false,
+	letterRendering: true,
+	logging:true,
         onrendered: function (canvas) {
           var myImage = canvas.toDataURL("image/png");
           var printWin = window.open('', '', 'width=340,height=260');
@@ -187,7 +191,7 @@ angular.module('myApp.dispatch', ['ngRoute'])
         }
 
       })
-    },500)
+    },1000)
     return true
   }
 
