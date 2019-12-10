@@ -3,6 +3,23 @@
 <head>
   <meta charset="utf-8">
   <title>Dispatch Note</title>
+
+  <style>
+    @media print {
+        
+/* print css */
+
+.layout-consignor{
+    width: 100%;
+    border:1px solid #eee;
+}
+
+span{
+    color:red !important;
+}
+
+}
+  </style>
 </head>
 <body>
 <div id="pageMainKT" ng-init="initData()"> <!-- Page Main Section Start -->
@@ -331,25 +348,26 @@
     <div class="confirmBoxOuter" id="forwardingNote_id" style="width:650px;">
       <div class="confirmBoxStyleInner">
         <h3 class="titleCB" style="background:#d3d3d3; padding:5px 10px; color:#814b27;"><span class="confTxt flt_L" style="margin-top:5px;">Forwarding Note</span> <div class="logoPMain flt_R"><img src="/com/images/logo.png" alt="" title="" style="width:100px;" /></div><div class="clrBt"></div></h3>
-        <div class="formViewStyleM">
-        	<div class="logoPartMain">
-                <div  class="compNameCodeM"><span id="id_company_name" class="compName" style="font-weight:bold"></span> <span id="id_company_code" class="compCode"></span></div>
-                <div id="id_add_div" class="adrsLP">{{}}</div>
-              <div id="id_tax" class="adrsLP"></div>
-            </div>
-<!--          <div class="textBox" style="width:auto;">
+       <!--          <div class="textBox" style="width:auto;">
             <label>Serial No::</label>
             <span>{{currentFn.id}}</span>
             <div class="clrBt"></div>
           </div>
 
           <div class="textBox" style="width:auto;">
-			<label>Forwarding Date:</label>
+		    	<label>Forwarding Date:</label>
             <span>{{currentFn.fnDate | date:'dd/MM/yyyy'}}</span>
             <div class="clrBt"></div>
           </div>
 
--->
+        -->
+        <!-- <div class="formViewStyleM">
+        	<div class="logoPartMain">
+                <div  class="compNameCodeM"><span id="id_company_name" class="compName" style="font-weight:bold"></span> <span id="id_company_code" class="compCode"></span></div>
+                <div id="id_add_div" class="adrsLP">{{}}</div>
+              <div id="id_tax" class="adrsLP"></div>
+            </div>
+
           <div class="clrBt"></div>
           <div class="textBox flt_L">
             <label>Serial No.:</label>
@@ -432,13 +450,249 @@
           </div>
 
           <div class="clrBt"></div>
+        </div> -->
+        <div class="layout-consignor">
+        <table style="width: 100%; display: table;">
+          <tr>
+            <td style="width: 100%;">
+           <table style="width: 100%;border-bottom: 1px solid #ccc">
+             <tr style="width: 100%;display: table;">
+               <td style="width: 40%;border-right: 1px solid #ccc;padding:8px 10px">
+                 <h3 style="font-size: 35px;">Sarvottam</h3>
+               </td>
+               <td style="width: 60%;font-size: 11px;padding:8px 10px;">
+                <span style="display:table;width: 100%;margin-bottom: 5px;"><b style="color: #814b27;"> Regd.Office: </b> A-100,P.C.Colony,Kankarbagh,Patna</span>
+                <span  style="display:table;width: 100%;margin-bottom: 5px;"> <b style="color: #814b27;">Booking Office: </b> <b>PATNA</b>:B-52/54,Transport,Nagar,Patna,Ph,:9523597561,62</span>
+                <span  style="display:table;width: 100%;margin-bottom: 5px;"><b style="color: #814b27;"> Booking Office: </b> <b>SURAT</b>:Godown No.19,VRL Side,Oppsite Aishwarya Mills,Vareli</span>
+                <span style="display:table;width: 100%;margin-bottom: 5px;">
+                  <label><b style="color: #814b27;"> Kadodra,Ph: </b> 9523597563</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label><b style="color: #814b27;"> Email : </b> sarvottamcarriers@gmail.com</label>
+                </span>
+                <span style="display:table;width: 100%;"><b style="color: #814b27;">Website: </b> www.sarvottamcarriers.com</span>
+               </td>
+             </tr>
+           </table>
+           </td>
+           </tr>
+
+           <tr>
+              <td>
+                <table style="width:100%;border-bottom:1px solid #ccc">
+                  <tr>
+                    <td style="padding-right: 15px;font-size: 13px;">
+                      <label style="color: #814b27;"><b>From :</b> </label>
+                      <span>PATNA BOOKING</span>
+                    </td>
+
+                    <td style="padding-right: 15px;font-size: 13px;">
+                        <label style="color: #814b27;"><b>To :</b> </label>
+                        <span>KTR : KATIHAR</span>
+                    </td>
+
+                    <td style="padding-right: 15px;font-size: 13px;">
+                      <label style="color: #814b27;"><b> Date :</b> </label>
+                      <span> 16/11/2019 </span>
+                  </td>
+
+                  <td style="font-size: 13px;">
+                    <label style="color: #814b27;">LR No : </label>
+                    <span> 380010909</span>
+                </td>
+                    
+                  </tr>
+                </table>
+             </td>
+             </tr>
+            
+             
+           <tr>
+              <td>
+                <table style="width:100%">
+                  <tr>
+                    <td style="padding-right: 15px;font-size: 13px;">
+                      <label style="color: #814b27;"><b>Consignor :</b> </label>
+                      <span></span>
+                    </td>
+
+                    <td style="padding-right: 15px;font-size: 13px;">
+                        <label style="color: #814b27;"><b>Consignee :</b> </label>
+                        <span></span>
+                      </td>
+                     
+                    </tr>  
+                    </table>
+                    </td>
+           </tr>
+
+
+             <tr>
+              <td>
+                <table style="width:100%;border-bottom:1px solid #ccc">
+                  <thead>
+                    <tr style="width: 100%;font-size: 13px;">
+                    <th style="border-left: 1px solid #ccc; border-top: 1px solid #ccc;border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">Packages</th>
+                    <th style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">Description (Said to contain)</th>
+                    <th style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">Weight/Kg</th>
+                    <th style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">Freight Rs.</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="width: 100%; font-size: 13px;">
+                      <td style="border-left: 1px solid #ccc; border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">
+                        <span style="display:table;width: 100%;margin-bottom: 0px;text-align: center;">10</span>
+                        <label style="display:table;width: 100%;margin-bottom: 0px;text-align: center;">CARTON</label>
+                      </td>
+                      <td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">
+                          <span style="display:table;width: 100%;margin-bottom: 0px;text-align: center;">STATIONARY</span>
+                          <label style="display:table;width: 100%;margin-bottom: 0px;text-align: center;">Mode of Booking : TBB</label>
+                          <label style="display:table;width: 100%;margin-bottom: 0px;text-align: center;">E-Way Bill No. 801077619751</label>
+                          <label style="display:table;width: 100%;margin-bottom: 0px;text-align: center;">C.C. Attached : YES</label>
+                          <label style="display:table;width: 100%;margin-bottom: 0px;text-align: center;">Invoice No. : 16148</label>
+                        </td>
+                        <td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc; width:20%">
+                            <label style="display:table;width: 100%;color: #814b27;text-align: center;"><b>Freight :</b> </label>
+                            <label style="display:table;width: 100%;color: #814b27;text-align: center;"><b>Sur Charge :</b> </label>
+                            <label style="display:table;width: 100%;color: #814b27;text-align: center;"><b>Misc Charge :</b> </label>
+                            <label style="display:table;width: 100%;color: #814b27;text-align: center;"><b>Insurance. Chg :</b> </label>
+                            <label style="display:table;width: 100%;color: #814b27;text-align: center;"><b>Statical. Chgs :</b> </label>
+                        </td>
+                        <td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc; width:10%">
+                            <span style="display:table;width: 100%;margin-bottom: 0px;">0.00</span>
+                            <span style="display:table;width: 100%;margin-bottom: 0px;">0.00</span>
+                            <span style="display:table;width: 100%;margin-bottom: 0px;">0.00</span>
+                            <span style="display:table;width: 100%;margin-bottom: 0px;">0.00</span>
+                            <span style="display:table;width: 100%;margin-bottom: 0px;">0.00</span>
+                       </td>  
+                    </tr>
+                  </tbody>
+                  </table>
+              </td>
+              </tr>
+
+              <tr>
+                  <td style="padding:0">
+                    <table style="width:100%">
+                      <tr>
+                        <td style="padding:0;width: 70%;border-left:1px solid #ccc;border-right: 1px solid #cccccc;border-bottom: 1px solid #cccccc;">
+                            <table style="width:100%;display: table;">
+                              <tr>
+                                <td colspan="2" style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">
+                                 <label> Pvt. Mark</label>
+                                 <span>16148/10</span>
+                                </td>
+
+                                <td  style="border-bottom: 1px solid #ccc;">
+                                    <label> OR/CR</label>
+                                    <span>OR</span>
+                                   </td>
+                              </tr>
+
+                              <tr>
+                                
+                                  <td style="border-right: 1px solid #ccc;">
+                                      <table style="width: 100%;">
+                                          <tr>
+                                            <td style="border-right: 1px solid #ccc;"> <label style="color: #814b27;"> Act.Wt</label></td>
+                                            <td> <label> 0</label></td>
+                                          </tr>
+                                        </table>
+                                        
+                                  </td>
+  
+                                  <td style="border-right: 1px solid #ccc;padding:0">
+                                      <table style="width: 100%;">
+                                          <tr>
+                                            <td style="border-right: 1px solid #ccc;">
+                                              <label style="color: #814b27;">Charge </label>
+                                             </td>
+
+                                             <td>
+                                                <label> Wt. 50</label>
+                                               </td>
+                                               </td>
+                                          </tr>
+                                          </table>
+
+                                     </td>
+
+                                     <td style="padding:0; height: 30px;">
+                                        <table style="width: 100%;">
+                                            <tr>
+                                              <td style="border-right: 1px solid #ccc; height: 30px; line-height: 35px;">
+                                                <label style="color: #814b27;">Rate </label>
+                                               </td>
+  
+                                               <td>
+                                                  <label> 0.00</label>
+                                                 </td>
+                                                 </td>
+                                            </tr>
+                                            </table>
+                                      </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td  style="width: 30%;padding: 0;">
+                            <table style="width: 100%; padding:0">
+                                <tr style="padding:0;line-height:32px">
+                                    <td style="width:100%;border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;padding: 0;">
+                                        <label style="color: #814b27;"><b>Total</b></label>&nbsp;&nbsp;
+                                        <span>0.00</span>
+                                      </td>
+                                </tr>
+                              <tr style="line-height:32px">
+                                  <td style="width:100%;border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;padding:0">
+                                      <label style="color: #814b27;"><b>Value</b></label>&nbsp;&nbsp;
+                                      <span>0.00</span>
+                                    </td>
+                              </tr>
+                            </table>
+                        </td>
+                      
+                      </tr>  
+                        </table>
+                 </td>
+                
+               </tr>
+
+
+               <tr>
+                <td style="width: 100%;display: table;border-bottom: 1px solid #ccc;">
+                  <table style="width: 100%;">
+                    <tr style="width:100%;border-right: 1px solid #ccc;padding:0">
+                      <td style="width: 100%;">
+                        <label style="color: red;"><b>Rupees</b> : </label>
+                        <span>123455554</span>
+                      </td>
+                    </tr>
+                  
+                    
+                  </table>
+                </td>
+
+               </tr>
+
+               <tr>
+                 <td>
+                   <table style="width: 100%;border-bottom: 1px solid #ccc;">
+                    <tr style="height: 60px;">
+                      <td style="width: 70%;"></td>
+                      <td style="padding-left:10px;width: 30%;border-left: 1px solid #ccc;">
+                        <label  style="color: #814b27;">Prepared By : </label>
+                        <span>Signature</span>
+                       </td>
+                    </tr>
+                   </table>
+                 </td>
+               </tr>
+           </table>
         </div>
-
-
 
       </div>
     </div>
-  </div> <!-- Forwarding Note Popup Box Style End -->
+  </div> 
+  
+  <!-- Forwarding Note Popup Box Style End -->
 
 
 </body>

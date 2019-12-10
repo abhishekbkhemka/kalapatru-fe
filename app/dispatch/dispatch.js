@@ -165,7 +165,6 @@ angular.module('myApp.dispatch', ['ngRoute'])
 
     $scope.printFn = function(eve,fn)
     {
-
         var divToPrint=document.getElementById('forwardingNote_id');
         $('#id_company_name').html(fn.company.name)
         $('#id_company_code').html('('+fn.company.code+')')
