@@ -162,7 +162,7 @@
               <th>Bill No.</th>
               <th>Bill Date.</th>
               <th>Values</th>
-              <th>Cases</th>
+              <th style="width: 65px">Cases</th>
               <th>Pvt. Marka</th>
               <th>Permit No.</th>
               <th>Customer name</th>
@@ -176,7 +176,7 @@
               <td>{{fn.billNo}}</td>
               <td>{{fn.billDates}}</td>
               <td>{{getBillValues(fn.billValues)}}</td>
-              <td>{{fn.cases}}</td>
+              <td>{{fn.cases + '('+fn.regularCases+'+'+fn.bigCases+')'}}</td>
               <td>{{fn.marka}}</td>
               <td>{{fn.permitNo}}</td>
               <td>{{fn.customer.name}}</td>

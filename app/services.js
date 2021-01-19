@@ -93,7 +93,7 @@ app.factory('kalapatruService', ['$http',function($http) {
 
     obj.addForwardingNote = function(forwardinNote,successCB,failCB){
         var params = {fnDate:serverDate(forwardinNote.fnDate),billValues:forwardinNote.billValues,billNo:forwardinNote.billNumber
-        ,cases:forwardinNote.cases,marka:forwardinNote.marka,permitNo:forwardinNote.permitNo,commodity:forwardinNote.commodity,companyId:forwardinNote.companyId,transporterStation:forwardinNote.transporterStation}
+        ,regularCases:forwardinNote.regularCases,bigCases:forwardinNote.bigCases,cases:forwardinNote.cases,marka:forwardinNote.marka,permitNo:forwardinNote.permitNo,commodity:forwardinNote.commodity,companyId:forwardinNote.companyId,transporterStation:forwardinNote.transporterStation}
         if(forwardinNote.transporter.id){
             params.transporter_id = forwardinNote.transporter.id
         }else{

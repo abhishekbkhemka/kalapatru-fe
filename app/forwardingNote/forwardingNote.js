@@ -129,8 +129,22 @@ var initTransporter = function(){
         })
     }
 
+    $scope.calculateCases = function(){
 
+        if( $scope.currentFn.regularCases && $scope.currentFn.bigCases) {
+            $scope.currentFn.cases = parseInt($scope.currentFn.regularCases) + parseInt($scope.currentFn.bigCases)
+            return
+        }
+        if($scope.currentFn.regularCases){
+            $scope.currentFn.cases = $scope.currentFn.regularCases
+            return
+        }
+        if($scope.currentFn.bigCases){
+            $scope.currentFn.cases = $scope.currentFn.bigCases
+            return
+        }
 
+    }
   $scope.calculateBillValue = function(){
       if($scope.currentFn.billValues == undefined){return 0}
     var values = $scope.currentFn.billValues.split('+')

@@ -104,7 +104,9 @@
                 </div>
                 <div class="textBox">
                     <label>Cases<span style="color:red;">*</span></label>
-                    <input tabindex="9" type="text" ng-class="{'redBorder':isNotCases}" ng-model="currentFn.cases" />
+                    <input placeholder="Regular" style="width: auto" tabindex="9" ng-change="calculateCases()" type="text" ng-class="{'redBorder':isNotCases}" ng-model="currentFn.regularCases" />
+                    <input placeholder="Big" style="width: auto; margin-left:10px" ng-change="calculateCases()" tabindex="9" type="text" ng-class="{'redBorder':isNotCases}" ng-model="currentFn.bigCases" />
+                    <label style="margin:0; text-align:center; width:67px; color:#3588ae;"><span style="display:block; color:#3588ae;">Total</span> <span style="display:block; color:#3588ae;">{{currentFn.cases}}</span></label>
                     <div class="clrBt"></div>
                 </div>
                 <div class="textBox">
