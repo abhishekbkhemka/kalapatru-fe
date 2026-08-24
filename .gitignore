@@ -1,5 +1,25 @@
-logs/*
-!.gitkeep
-tmp
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependencies
+node_modules
+
+# Build
+dist
+dist-ssr
+*.local
+
+# Env
+.env
+.env.local
+
+# Editor
 .DS_Store
 .idea
+.vscode
+
+# Legacy tooling
+_legacy/node_modules
+_legacy/app/bower_components
