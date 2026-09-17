@@ -17,7 +17,7 @@ const emptyForm = () => ({
   customerName: '',
   customerCity: '',
   billNumber: '',
-  billDate: '',
+  billDate: todayInput(),
   billDates: [],
   billValues: '',
   regularCases: '',
@@ -85,7 +85,7 @@ export default function ForwardingNote() {
     setForm((prev) => ({
       ...prev,
       billDates: [...prev.billDates, formatted],
-      billDate: '',
+      billDate: todayInput(),
     }))
     setError('')
   }
@@ -169,152 +169,194 @@ export default function ForwardingNote() {
     }
   }
 
-  const filteredCustomers = customers.filter((c) => {
-    if (!form.customerName || customerLocked) return true
-    return String(c.label || c.name || '')
-      .toLowerCase()
-      .includes(form.customerName.toLowerCase())
-  }).slice(0, 8)
+  const filteredCustomers = customers
+    .filter((c) => {
+      if (!form.customerName || customerLocked) return false
+      return String(c.label || c.name || '')
+        .toLowerCase()
+        .includes(form.customerName.toLowerCase())
+    })
+    .slice(0, 8)
 
   return (
-    <section className="panel">
+    <section className="panel fn-panel">
       <h2 className="page-title">Forwarding Note</h2>
 
       {error && <div className="alert error">{error}</div>}
       {message && <div className="alert success">{message}</div>}
 
       <form
-        className="form-grid"
+        className="classic-form"
         onSubmit={(e) => {
           e.preventDefault()
           handleSave(false)
         }}
       >
-        <label>
-          Forwarding Date *
-          <input
-            type="date"
-            value={form.fnDate}
-            onChange={(e) => update('fnDate', e.target.value)}
-          />
-        </label>
-
-        <label>
-          Transport Name *
-          <select
-            value={form.transporterId}
-            onChange={(e) => {
-              update('transporterId', e.target.value)
-              update('transporterStation', '')
-            }}
-          >
-            <option value="">Select transporter</option>
-            {transporters.map((t) => (
-              <option key={t.id} value={t.id}>
-                {t.name}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <label>
-          Station / Place *
-          <select
-            value={form.transporterStation}
-            onChange={(e) => update('transporterStation', e.target.value)}
-          >
-            <option value="">Select station</option>
-            {stations.map((s) => (
-              <option key={s.label || s.id} value={s.label}>
-                {s.label}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <label className="span-2">
-          Customer Name *
-          <div className="inline-row">
+        <div className="form-row">
+          <label htmlFor="fnDate">
+            Forwarding Date<span className="req">*</span>
+          </label>
+          <div className="field">
             <input
-              style={{ textTransform: 'uppercase' }}
-              value={form.customerName}
-              disabled={customerLocked}
-              onChange={(e) => update('customerName', e.target.value)}
-              list="customer-suggestions"
+              id="fnDate"
+              type="date"
+              value={form.fnDate}
+              onChange={(e) => update('fnDate', e.target.value)}
             />
-            <button type="button" className="btn ghost" onClick={clearCustomer}>
+          </div>
+        </div>
+
+        <div className="form-row">
+          <label htmlFor="transporterId">
+            Transport Name<span className="req">*</span>
+          </label>
+          <div className="field">
+            <select
+              id="transporterId"
+              value={form.transporterId}
+              onChange={(e) => {
+                update('transporterId', e.target.value)
+                update('transporterStation', '')
+              }}
+            >
+              <option value="">Select</option>
+              {transporters.map((t) => (
+                <option key={t.id} value={t.id}>
+                  {t.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div className="form-row">
+          <label htmlFor="transporterStation">
+            Station/Place<span className="req">*</span>
+          </label>
+          <div className="field">
+            <select
+              id="transporterStation"
+              value={form.transporterStation}
+              onChange={(e) => update('transporterStation', e.target.value)}
+            >
+              <option value="">Select</option>
+              {stations.map((s) => (
+                <option key={s.label || s.id} value={s.label}>
+                  {s.label}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div className="form-row">
+          <label htmlFor="customerName">
+            Customer Name<span className="req">*</span>
+          </label>
+          <div className="field field-with-btn">
+            <div className="input-suggest">
+              <input
+                id="customerName"
+                style={{ textTransform: 'uppercase' }}
+                value={form.customerName}
+                disabled={customerLocked}
+                onChange={(e) => update('customerName', e.target.value)}
+                autoComplete="off"
+              />
+              {!customerLocked && filteredCustomers.length > 0 && (
+                <ul className="suggest-list">
+                  {filteredCustomers.map((c) => (
+                    <li key={c.id}>
+                      <button type="button" onClick={() => selectCustomer(c)}>
+                        {c.label || `${c.name} ${c.city || ''}`}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+            <button type="button" className="btn primary small" onClick={clearCustomer}>
               Clear
             </button>
           </div>
-          <datalist id="customer-suggestions">
-            {filteredCustomers.map((c) => (
-              <option key={c.id} value={c.name} />
-            ))}
-          </datalist>
-          {!customerLocked && form.customerName && (
-            <ul className="suggest-list">
-              {filteredCustomers.map((c) => (
-                <li key={c.id}>
-                  <button type="button" onClick={() => selectCustomer(c)}>
-                    {c.label || `${c.name} ${c.city || ''}`}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
-        </label>
+        </div>
 
-        <label>
-          Customer Station / Place *
-          <input
-            style={{ textTransform: 'uppercase' }}
-            value={form.customerCity}
-            disabled={customerLocked}
-            onChange={(e) => update('customerCity', e.target.value)}
-          />
-        </label>
-
-        <label>
-          Bill No
-          <input value={form.billNumber} onChange={(e) => update('billNumber', e.target.value)} />
-        </label>
-
-        <label>
-          Bill Date
-          <div className="inline-row">
+        <div className="form-row">
+          <label htmlFor="customerCity">
+            Station/Place<span className="req">*</span>
+          </label>
+          <div className="field">
             <input
+              id="customerCity"
+              style={{ textTransform: 'uppercase' }}
+              value={form.customerCity}
+              disabled={customerLocked}
+              onChange={(e) => update('customerCity', e.target.value)}
+            />
+          </div>
+        </div>
+
+        <div className="form-row">
+          <label htmlFor="billNumber">Bill No</label>
+          <div className="field">
+            <input
+              id="billNumber"
+              value={form.billNumber}
+              onChange={(e) => update('billNumber', e.target.value)}
+            />
+          </div>
+        </div>
+
+        <div className="form-row">
+          <label htmlFor="billDate">Bill Date</label>
+          <div className="field field-with-btn">
+            <input
+              id="billDate"
               type="date"
               value={form.billDate}
               onChange={(e) => update('billDate', e.target.value)}
             />
-            <button type="button" className="btn ghost" onClick={addBillDate}>
+            <button type="button" className="btn primary small" onClick={addBillDate}>
               Add
             </button>
           </div>
-          <div className="chip-row">
-            {form.billDates.map((d, i) => (
-              <span key={`${d}-${i}`} className="chip">
-                {d}
-              </span>
-            ))}
-          </div>
-        </label>
+        </div>
 
-        <label>
-          Bill Value *
-          <div className="inline-row">
+        {form.billDates.length > 0 && (
+          <div className="form-row">
+            <label />
+            <div className="field chip-row">
+              {form.billDates.map((d, i) => (
+                <span key={`${d}-${i}`} className="chip">
+                  {d}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div className="form-row">
+          <label htmlFor="billValues">
+            Bill Value<span className="req">*</span>
+          </label>
+          <div className="field field-with-total">
             <input
+              id="billValues"
               value={form.billValues}
               onChange={(e) => update('billValues', e.target.value)}
-              placeholder="e.g. 1000+250"
             />
-            <span className="muted">Total {totalBillValue}</span>
+            <div className="total-box">
+              <span>Total</span>
+              <strong>{totalBillValue}</strong>
+            </div>
           </div>
-        </label>
+        </div>
 
-        <label>
-          Cases *
-          <div className="inline-row">
+        <div className="form-row">
+          <label>
+            Cases<span className="req">*</span>
+          </label>
+          <div className="field field-with-total cases-field">
             <input
               placeholder="Regular"
               value={form.regularCases}
@@ -325,55 +367,81 @@ export default function ForwardingNote() {
               value={form.bigCases}
               onChange={(e) => update('bigCases', e.target.value)}
             />
-            <span className="muted">Total {form.cases || 0}</span>
+            <div className="total-box">
+              <span>Total</span>
+              <strong>{form.cases || 0}</strong>
+            </div>
           </div>
-        </label>
+        </div>
 
-        <label>
-          Pvt. Marka *
-          <input
-            style={{ textTransform: 'uppercase' }}
-            value={form.marka}
-            onChange={(e) => update('marka', e.target.value)}
-          />
-        </label>
+        <div className="form-row">
+          <label htmlFor="marka">
+            Pvt. Marka<span className="req">*</span>
+          </label>
+          <div className="field">
+            <input
+              id="marka"
+              style={{ textTransform: 'uppercase' }}
+              value={form.marka}
+              onChange={(e) => update('marka', e.target.value)}
+            />
+          </div>
+        </div>
 
-        <label>
-          Permit No
-          <input value={form.permitNo} onChange={(e) => update('permitNo', e.target.value)} />
-        </label>
+        <div className="form-row">
+          <label htmlFor="permitNo">Permit No</label>
+          <div className="field">
+            <input
+              id="permitNo"
+              value={form.permitNo}
+              onChange={(e) => update('permitNo', e.target.value)}
+            />
+          </div>
+        </div>
 
-        <label>
-          Commodity
-          <select value={form.commodity} onChange={(e) => update('commodity', e.target.value)}>
-            <option value="">Select</option>
-            {commodities.map((c) => (
-              <option key={c.name} value={c.name}>
-                {c.name}
-              </option>
-            ))}
-          </select>
-        </label>
+        <div className="form-row">
+          <label htmlFor="commodity">Commodity</label>
+          <div className="field">
+            <select
+              id="commodity"
+              value={form.commodity}
+              onChange={(e) => update('commodity', e.target.value)}
+            >
+              <option value="">Select</option>
+              {commodities.map((c) => (
+                <option key={c.name} value={c.name}>
+                  {c.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
 
-        <label>
-          Company / Division
-          <select value={form.companyId} onChange={(e) => update('companyId', e.target.value)}>
-            <option value="">Select</option>
-            {companies.map((c) => (
-              <option key={c.id} value={c.id}>
-                {c.code || c.name}
-              </option>
-            ))}
-          </select>
-        </label>
+        <div className="form-row">
+          <label htmlFor="companyId">Company/Division</label>
+          <div className="field field-narrow">
+            <select
+              id="companyId"
+              value={form.companyId}
+              onChange={(e) => update('companyId', e.target.value)}
+            >
+              <option value="">Select</option>
+              {companies.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.code || c.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
 
-        <div className="form-actions">
+        <div className="classic-actions">
           <button type="submit" className="btn primary" disabled={!canWrite || saving}>
             {saving ? 'Saving…' : 'Save'}
           </button>
           <button
             type="button"
-            className="btn secondary"
+            className="btn primary"
             disabled={!canWrite || saving}
             onClick={() => handleSave(true)}
           >

@@ -29,6 +29,11 @@ export async function getForwardingNotes({ fromDate, toDate, transporterName = '
   return data
 }
 
+export async function getForwardingNote(id) {
+  const { data } = await api.get('/api/forwardingNote/', { params: { id } })
+  return data
+}
+
 export async function getDispatch(id) {
   const { data } = await api.get('/api/dispatch/', { params: { id } })
   return data

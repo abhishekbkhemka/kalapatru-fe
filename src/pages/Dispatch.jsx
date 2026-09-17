@@ -4,11 +4,29 @@ import { useAuth } from '../auth/AuthContext'
 import { getErrorMessage } from '../api/client'
 import {
   getDispatch,
+  getForwardingNote,
   getForwardingNotes,
   getVans,
   saveDispatch,
 } from '../api/kalapatru'
+import ForwardingNotePrintModal from '../components/ForwardingNotePrintModal'
 import { formatDisplayDate, toServerDate, todayInput } from '../utils/dates'
+
+function billTotal(values) {
+  if (!values) return 0
+  return String(values)
+    .split('+')
+    .reduce((sum, part) => sum + (parseFloat(part) || 0), 0)
+}
+
+function casesLabel(fn) {
+  if (fn.regularCases && fn.bigCases) {
+    return `${fn.cases}(R-${fn.regularCases} B-${fn.bigCases})`
+  }
+  if (fn.regularCases) return `${fn.cases}(R-${fn.regularCases})`
+  if (fn.bigCases) return `${fn.cases}(B-${fn.bigCases})`
+  return fn.cases || ''
+}
 
 export default function DispatchPage() {
   const { canWrite } = useAuth()
@@ -16,28 +34,64 @@ export default function DispatchPage() {
   const editId = searchParams.get('id')
 
   const [filter, setFilter] = useState({
-    fromDate: '',
-    toDate: '',
+    fromDate: todayInput(),
+    toDate: todayInput(),
     transporterName: '',
   })
+  const [fnId, setFnId] = useState('')
   const [notes, setNotes] = useState([])
   const [selected, setSelected] = useState([])
+  const [viewName, setViewName] = useState('grid')
   const [vans, setVans] = useState([])
   const [vanNo, setVanNo] = useState('')
   const [driver, setDriver] = useState('')
   const [date, setDate] = useState(todayInput())
   const [remarks, setRemarks] = useState('')
   const [dispatchId, setDispatchId] = useState(null)
+  const [vanPopup, setVanPopup] = useState(false)
+  const [previewFn, setPreviewFn] = useState(null)
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
   const [saving, setSaving] = useState(false)
+  const [loading, setLoading] = useState(false)
+
+  const selectedNotes = useMemo(() => {
+    const byId = new Map(notes.map((n) => [n.id, n]))
+    return selected.map((id) => byId.get(id)).filter(Boolean)
+  }, [notes, selected])
+
+  const filteredNotes = useMemo(() => {
+    const q = filter.transporterName.trim().toLowerCase()
+    if (!q) return notes
+    return notes.filter((fn) => {
+      const hay = [
+        fn.id,
+        fn.transporter?.name,
+        fn.customer?.name,
+        fn.customer?.city,
+        fn.marka,
+        fn.transporterStation,
+      ]
+        .join(' ')
+        .toLowerCase()
+      return hay.includes(q)
+    })
+  }, [notes, filter.transporterName])
 
   async function loadNotes() {
+    setLoading(true)
+    setError('')
     try {
-      const data = await getForwardingNotes(filter)
+      const data = await getForwardingNotes({
+        fromDate: filter.fromDate,
+        toDate: filter.toDate,
+        transporterName: '',
+      })
       setNotes(data || [])
     } catch (err) {
       setError(getErrorMessage(err))
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -58,9 +112,10 @@ export default function DispatchPage() {
         setDriver(data.name || '')
         setRemarks(data.remarks || '')
         setDate(data.date ? String(data.date).slice(0, 10) : todayInput())
-        setSelected((data.forwardingNote || []).map((fn) => fn.id))
+        const linked = data.forwardingNote || []
+        setSelected(linked.map((fn) => fn.id))
         setNotes((prev) => {
-          const merged = [...(data.forwardingNote || [])]
+          const merged = [...linked]
           const ids = new Set(merged.map((n) => n.id))
           prev.forEach((n) => {
             if (!ids.has(n.id)) merged.push(n)
@@ -71,15 +126,43 @@ export default function DispatchPage() {
       .catch((err) => setError(getErrorMessage(err)))
   }, [editId])
 
-  const selectedNotes = useMemo(
-    () => notes.filter((n) => selected.includes(n.id)),
-    [notes, selected],
-  )
+  function requireVanDetails() {
+    if (!vanNo || !driver) {
+      setError('Please enter Van Details first')
+      setVanPopup(true)
+      return false
+    }
+    return true
+  }
 
-  function toggleNote(id) {
+  function toggleNote(fn) {
+    setError('')
+    if (!requireVanDetails()) return
     setSelected((prev) =>
-      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id],
+      prev.includes(fn.id) ? prev.filter((x) => x !== fn.id) : [fn.id, ...prev],
     )
+  }
+
+  function removeNote(fn) {
+    setSelected((prev) => prev.filter((id) => id !== fn.id))
+  }
+
+  async function applyFnId() {
+    if (!fnId) {
+      setError('Enter a forwarding number id')
+      return
+    }
+    setLoading(true)
+    setError('')
+    try {
+      const note = await getForwardingNote(fnId)
+      setNotes([note])
+      setMessage(`Loaded forwarding note #${note.id}`)
+    } catch (err) {
+      setError(getErrorMessage(err, 'Forwarding note not found'))
+    } finally {
+      setLoading(false)
+    }
   }
 
   async function handleSave() {
@@ -89,8 +172,9 @@ export default function DispatchPage() {
       setError('Your role is read-only')
       return
     }
-    if (!vanNo || !driver || selected.length === 0) {
-      setError('Van number, driver and at least one forwarding note are required')
+    if (!requireVanDetails()) return
+    if (selected.length === 0) {
+      setError('Select at least one forwarding note')
       return
     }
     setSaving(true)
@@ -116,126 +200,317 @@ export default function DispatchPage() {
   }
 
   return (
-    <section className="panel">
+    <section className="panel dispatch-panel">
       <h2 className="page-title">Dispatch</h2>
+
       {error && <div className="alert error">{error}</div>}
       {message && <div className="alert success">{message}</div>}
 
-      <div className="split">
-        <div className="split-left">
-          <div className="filter-row">
-            <input
-              placeholder="Transporter"
-              value={filter.transporterName}
-              onChange={(e) =>
-                setFilter((f) => ({ ...f, transporterName: e.target.value }))
-              }
-            />
-            <input
-              type="date"
-              value={filter.fromDate}
-              onChange={(e) => setFilter((f) => ({ ...f, fromDate: e.target.value }))}
-            />
-            <input
-              type="date"
-              value={filter.toDate}
-              onChange={(e) => setFilter((f) => ({ ...f, toDate: e.target.value }))}
-            />
-            <button type="button" className="btn ghost" onClick={loadNotes}>
-              Filter
+      <div className="dispatch-toolbar">
+        <div className="fn-id-bar">
+          <label htmlFor="fnIdInput">Forwarding Number Id</label>
+          <input
+            id="fnIdInput"
+            type="number"
+            value={fnId}
+            onChange={(e) => setFnId(e.target.value)}
+          />
+          <button type="button" className="btn primary small" onClick={applyFnId} disabled={loading}>
+            Apply
+          </button>
+          <button
+            type="button"
+            className="btn primary small"
+            onClick={() => {
+              setFnId('')
+              loadNotes()
+            }}
+          >
+            Reset
+          </button>
+        </div>
+        <button type="button" className="btn primary" onClick={() => setVanPopup(true)}>
+          Add Van Details
+        </button>
+      </div>
+
+      <div className="dispatch-split">
+        <aside className="dispatch-left">
+          <div className="dispatch-filters">
+            <div className="date-pair">
+              <div>
+                <label>From Date</label>
+                <input
+                  type="date"
+                  value={filter.fromDate}
+                  onChange={(e) => setFilter((f) => ({ ...f, fromDate: e.target.value }))}
+                />
+              </div>
+              <div>
+                <label>To Date</label>
+                <input
+                  type="date"
+                  value={filter.toDate}
+                  onChange={(e) => setFilter((f) => ({ ...f, toDate: e.target.value }))}
+                />
+              </div>
+            </div>
+            <div className="filter-field">
+              <label>Filter</label>
+              <input
+                value={filter.transporterName}
+                onChange={(e) => setFilter((f) => ({ ...f, transporterName: e.target.value }))}
+                onBlur={loadNotes}
+              />
+            </div>
+            <button type="button" className="btn primary small" onClick={loadNotes} disabled={loading}>
+              {loading ? 'Loading…' : 'Refresh'}
             </button>
           </div>
 
-          <ul className="note-list">
-            {notes.map((fn) => (
-              <li key={fn.id}>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={selected.includes(fn.id)}
-                    onChange={() => toggleNote(fn.id)}
-                    disabled={!canWrite}
-                  />
-                  <span>
-                    #{fn.id} · {fn.transporter?.name} · {fn.marka} ·{' '}
-                    {formatDisplayDate(fn.fnDate)} · {fn.cases} cases
-                  </span>
-                </label>
-              </li>
-            ))}
-            {notes.length === 0 && <li className="muted">No open forwarding notes</li>}
-          </ul>
-        </div>
-
-        <div className="split-right">
-          <div className="form-grid compact">
-            <label>
-              Date
-              <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
-            </label>
-            <label>
-              Van No
-              <input
-                list="van-list"
-                value={vanNo}
-                onChange={(e) => {
-                  const value = e.target.value
-                  setVanNo(value)
-                  const match = vans.find((v) => v.vanNo === value)
-                  if (match?.name) setDriver(match.name)
-                }}
-              />
-              <datalist id="van-list">
-                {vans.map((v, i) => (
-                  <option key={`${v.vanNo}-${i}`} value={v.vanNo}>
-                    {v.label || v.name}
-                  </option>
-                ))}
-              </datalist>
-            </label>
-            <label>
-              Driver
-              <input value={driver} onChange={(e) => setDriver(e.target.value)} />
-            </label>
-            <label className="span-2">
-              Remarks
-              <input value={remarks} onChange={(e) => setRemarks(e.target.value)} />
-            </label>
+          <div className="view-toggle">
+            <button
+              type="button"
+              className={viewName === 'list' ? 'active' : ''}
+              onClick={() => setViewName('list')}
+            >
+              List View
+            </button>
+            <button
+              type="button"
+              className={viewName === 'grid' ? 'active' : ''}
+              onClick={() => setViewName('grid')}
+            >
+              Grid View
+            </button>
           </div>
 
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Transporter</th>
-                <th>Marka</th>
-                <th>Cases</th>
-              </tr>
-            </thead>
-            <tbody>
-              {selectedNotes.map((fn) => (
-                <tr key={fn.id}>
-                  <td>{fn.id}</td>
-                  <td>{fn.transporter?.name}</td>
-                  <td>{fn.marka}</td>
-                  <td>{fn.cases}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          {viewName === 'grid' ? (
+            <div className="fn-grid">
+              {filteredNotes.map((fn) => {
+                const active = selected.includes(fn.id)
+                return (
+                  <div
+                    key={fn.id}
+                    className={`fn-grid-cell ${active ? 'selected' : ''} ${fn.isDispatched ? 'disabled' : ''}`}
+                  >
+                    <button
+                      type="button"
+                      className="fn-id-btn"
+                      disabled={!canWrite || fn.isDispatched}
+                      onClick={() => toggleNote(fn)}
+                    >
+                      {fn.id}
+                    </button>
+                    <button
+                      type="button"
+                      className="fn-info"
+                      title="View details"
+                      onClick={() => setPreviewFn(fn)}
+                    >
+                      i
+                    </button>
+                  </div>
+                )
+              })}
+              {filteredNotes.length === 0 && (
+                <div className="muted empty-notes">No open forwarding notes</div>
+              )}
+            </div>
+          ) : (
+            <ul className="fn-list">
+              {filteredNotes.map((fn) => {
+                const active = selected.includes(fn.id)
+                return (
+                  <li key={fn.id} className={active ? 'selected' : ''}>
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={active}
+                        disabled={!canWrite || fn.isDispatched}
+                        onChange={() => toggleNote(fn)}
+                      />
+                      <span>
+                        {fn.id} -- {fn.transporter?.name} - {fn.customer?.name} -{' '}
+                        {fn.customer?.city} - {fn.marka}
+                      </span>
+                    </label>
+                    <button
+                      type="button"
+                      className="fn-info inline"
+                      onClick={() => setPreviewFn(fn)}
+                    >
+                      i
+                    </button>
+                  </li>
+                )
+              })}
+              {filteredNotes.length === 0 && (
+                <li className="muted">No open forwarding notes</li>
+              )}
+            </ul>
+          )}
+        </aside>
 
-          <div className="form-actions">
+        <section className="dispatch-right" id="vanDetails_id">
+          <div className="dispatch-brand">
+            <img src="/logo.png" alt="Kalpataru" />
+            <div className="adrs">
+              Kalpataru Tower Patna Gaya Road Elahibagh
+              <br />
+              Patna-800007
+            </div>
+          </div>
+
+          <div className="van-meta">
+            <div className="van-meta-row">
+              <div>
+                <label>Date: </label>
+                <span>{date ? new Date(date).toDateString() : ''}</span>
+              </div>
+              <div>
+                <label>Van No.: </label>
+                <span>{vanNo}</span>
+              </div>
+            </div>
+            <div className="van-meta-row">
+              <div>
+                <label>Driver Name: </label>
+                <span>{driver}</span>
+              </div>
+            </div>
+            <div className="van-meta-row">
+              <div>
+                <label>Remarks: </label>
+                <span>{remarks}</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="dispatch-divider" />
+
+          <div className="dispatch-table-wrap">
+            <table className="data-table dispatch-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Transport Name</th>
+                  <th>Station / Place</th>
+                  <th>Bill No.</th>
+                  <th>Bill Date.</th>
+                  <th>Values</th>
+                  <th>Cases</th>
+                  <th>Pvt. Marka</th>
+                  <th>Permit No.</th>
+                  <th>Customer name</th>
+                  <th>Customer City</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {selectedNotes.map((fn) => (
+                  <tr key={fn.id}>
+                    <td>{formatDisplayDate(fn.fnDate)}</td>
+                    <td>{fn.transporter?.name}</td>
+                    <td>{fn.transporterStation || fn.transporter?.city}</td>
+                    <td>{fn.billNo}</td>
+                    <td>{fn.billDates}</td>
+                    <td>{billTotal(fn.billValues)}</td>
+                    <td>{casesLabel(fn)}</td>
+                    <td>{fn.marka}</td>
+                    <td>{fn.permitNo}</td>
+                    <td>{fn.customer?.name}</td>
+                    <td>{fn.customer?.city}</td>
+                    <td>
+                      <button
+                        type="button"
+                        className="link-btn danger"
+                        onClick={() => removeNote(fn)}
+                        disabled={!canWrite}
+                      >
+                        Remove
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="classic-actions">
             <button
               type="button"
               className="btn primary"
               disabled={!canWrite || saving}
               onClick={handleSave}
             >
-              {saving ? 'Saving…' : dispatchId ? 'Update Dispatch' : 'Create Dispatch'}
+              {saving ? 'Saving…' : 'Save'}
             </button>
           </div>
-        </div>
+        </section>
       </div>
+
+      {vanPopup && (
+        <div className="modal-backdrop" onClick={() => setVanPopup(false)}>
+          <div className="modal van-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-head">
+              <h3>Enter Van Details</h3>
+              <button type="button" className="link-btn" onClick={() => setVanPopup(false)}>
+                Close
+              </button>
+            </div>
+            <div className="van-form">
+              <label>
+                Van No.
+                <input
+                  list="van-list"
+                  value={vanNo}
+                  onChange={(e) => {
+                    const value = e.target.value
+                    setVanNo(value)
+                    const match = vans.find((v) => v.vanNo === value)
+                    if (match?.name) setDriver(match.name)
+                  }}
+                />
+                <datalist id="van-list">
+                  {vans.map((v, i) => (
+                    <option key={`${v.vanNo}-${i}`} value={v.vanNo}>
+                      {v.label || v.name}
+                    </option>
+                  ))}
+                </datalist>
+              </label>
+              <label>
+                Date
+                <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+              </label>
+              <label>
+                Driver Name
+                <input value={driver} onChange={(e) => setDriver(e.target.value)} />
+              </label>
+              <label>
+                Remarks
+                <textarea
+                  rows={3}
+                  value={remarks}
+                  onChange={(e) => setRemarks(e.target.value)}
+                />
+              </label>
+              <button type="button" className="btn primary" onClick={() => setVanPopup(false)}>
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {previewFn && (
+        <ForwardingNotePrintModal
+          note={previewFn}
+          autoPrint
+          onClose={() => setPreviewFn(null)}
+        />
+      )}
     </section>
   )
 }

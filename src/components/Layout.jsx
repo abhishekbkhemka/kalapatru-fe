@@ -17,7 +17,7 @@ export default function Layout() {
           </div>
           <div className="header-user">
             <span>
-              {user?.first_name || user?.username}
+              Welcome {user?.first_name || user?.username}
               <em className="role-pill">{user?.role}</em>
             </span>
             <button type="button" className="link-btn" onClick={logout}>

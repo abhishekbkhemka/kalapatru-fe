@@ -29,6 +29,23 @@ export function formatDisplayDate(value) {
   })
 }
 
+/** Legacy display: dd-MM-yyyy */
+export function formatDdMmYyyy(value) {
+  if (!value) return ''
+  const d = value instanceof Date ? value : new Date(value)
+  if (Number.isNaN(d.getTime())) {
+    if (typeof value === 'string' && value.includes('-')) {
+      const parts = value.split(/[-T]/)
+      if (parts[0].length === 4) return `${parts[2]}-${parts[1]}-${parts[0]}`
+    }
+    return String(value)
+  }
+  const dd = String(d.getDate()).padStart(2, '0')
+  const mm = String(d.getMonth() + 1).padStart(2, '0')
+  const yyyy = d.getFullYear()
+  return `${dd}-${mm}-${yyyy}`
+}
+
 export function todayInput() {
   return toInputDate(new Date())
 }
