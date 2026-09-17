@@ -49,6 +49,7 @@ export default function DispatchPage() {
   const [remarks, setRemarks] = useState('')
   const [dispatchId, setDispatchId] = useState(null)
   const [vanPopup, setVanPopup] = useState(false)
+  const [pendingNoteId, setPendingNoteId] = useState(null)
   const [previewFn, setPreviewFn] = useState(null)
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
@@ -137,7 +138,14 @@ export default function DispatchPage() {
 
   function toggleNote(fn) {
     setError('')
-    if (!requireVanDetails()) return
+    // First click with no van details: open popup and still add this FN to the list
+    if (!vanNo || !driver) {
+      setPendingNoteId(fn.id)
+      setSelected((prev) => (prev.includes(fn.id) ? prev : [fn.id, ...prev]))
+      setError('Please enter Van Details first')
+      setVanPopup(true)
+      return
+    }
     setSelected((prev) =>
       prev.includes(fn.id) ? prev.filter((x) => x !== fn.id) : [fn.id, ...prev],
     )
@@ -145,6 +153,25 @@ export default function DispatchPage() {
 
   function removeNote(fn) {
     setSelected((prev) => prev.filter((id) => id !== fn.id))
+  }
+
+  function saveVanDetails() {
+    setError('')
+    if (!vanNo.trim() || !driver.trim()) {
+      setError('Van No. and Driver Name are required')
+      return
+    }
+    const toAdd = pendingNoteId
+    setPendingNoteId(null)
+    setVanPopup(false)
+    if (toAdd != null) {
+      setSelected((prev) => (prev.includes(toAdd) ? prev : [toAdd, ...prev]))
+    }
+  }
+
+  function closeVanPopup() {
+    setPendingNoteId(null)
+    setVanPopup(false)
   }
 
   async function applyFnId() {
@@ -477,11 +504,11 @@ export default function DispatchPage() {
       </div>
 
       {vanPopup && (
-        <div className="modal-backdrop" onClick={() => setVanPopup(false)}>
+        <div className="modal-backdrop" onClick={closeVanPopup}>
           <div className="modal van-modal" onClick={(e) => e.stopPropagation()}>
             <div className="modal-head">
               <h3>Enter Van Details</h3>
-              <button type="button" className="link-btn" onClick={() => setVanPopup(false)}>
+              <button type="button" className="link-btn" onClick={closeVanPopup}>
                 Close
               </button>
             </div>
@@ -522,7 +549,7 @@ export default function DispatchPage() {
                   onChange={(e) => setRemarks(e.target.value)}
                 />
               </label>
-              <button type="button" className="btn primary" onClick={() => setVanPopup(false)}>
+              <button type="button" className="btn primary" onClick={saveVanDetails}>
                 Save
               </button>
             </div>
