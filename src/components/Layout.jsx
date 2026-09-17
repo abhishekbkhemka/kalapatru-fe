@@ -9,11 +9,7 @@ export default function Layout() {
       <header className="app-header">
         <div className="header-inner">
           <div className="brand">
-            <span className="brand-mark">K</span>
-            <div>
-              <strong>Kalapatru</strong>
-              <span className="brand-sub">Logistics</span>
-            </div>
+            <img src="/logo.png" alt="Kalapatru" className="brand-logo" />
           </div>
           <div className="header-user">
             <span>

@@ -69,25 +69,8 @@ function absolutizeHtml(html) {
     .replace(/(<img[^>]+src=["'])(?!https?:|data:)([^"']+)(["'])/gi, `$1${origin}/$2$3`)
 }
 
-export function printElementById(elementId, title = 'Print', options = {}) {
-  const el = document.getElementById(elementId)
-  if (!el) return
-
-  const hidePrintOnlyCols = Boolean(options.hidePrintOnlyCols)
-  let html = absolutizeHtml(el.innerHTML)
-
-  const win = window.open('', '_blank', 'noopener,noreferrer')
-  if (!win) {
-    window.print()
-    return
-  }
-
-  win.document.open()
-  win.document.write(`<!doctype html>
-<html>
-<head>
-  <title>${title}</title>
-  <style>
+function printStyles(hidePrintOnlyCols) {
+  return `
     * { box-sizing: border-box; }
     body {
       font-family: Arial, Helvetica, sans-serif;
@@ -149,13 +132,76 @@ export function printElementById(elementId, title = 'Print', options = {}) {
       body { margin: 8px; }
       .no-print, .print-hide { display: none !important; }
     }
-  </style>
+  `
+}
+
+/** Print via hidden iframe — avoids popup blockers that break window.open(). */
+export function printHtml(html, title = 'Print', options = {}) {
+  const hidePrintOnlyCols = Boolean(options.hidePrintOnlyCols)
+  const content = absolutizeHtml(html)
+
+  const iframe = document.createElement('iframe')
+  iframe.setAttribute('title', title)
+  iframe.style.cssText =
+    'position:fixed;right:0;bottom:0;width:0;height:0;border:0;opacity:0;pointer-events:none;'
+  document.body.appendChild(iframe)
+
+  const doc = iframe.contentDocument || iframe.contentWindow.document
+  doc.open()
+  doc.write(`<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>${title}</title>
+  <style>${printStyles(hidePrintOnlyCols)}</style>
 </head>
-<body>${html}</body>
+<body>${content}</body>
 </html>`)
-  win.document.close()
-  win.focus()
-  setTimeout(() => {
-    win.print()
-  }, 300)
+  doc.close()
+
+  const win = iframe.contentWindow
+  let printed = false
+  const cleanup = () => {
+    setTimeout(() => {
+      if (iframe.parentNode) iframe.parentNode.removeChild(iframe)
+    }, 1000)
+  }
+
+  const trigger = () => {
+    if (printed) return
+    printed = true
+    try {
+      win.focus()
+      win.print()
+    } finally {
+      cleanup()
+    }
+  }
+
+  // Wait for images (logo) before printing
+  const images = Array.from(doc.images || [])
+  if (images.length === 0) {
+    setTimeout(trigger, 80)
+    return
+  }
+  let pending = images.length
+  const done = () => {
+    pending -= 1
+    if (pending <= 0) setTimeout(trigger, 80)
+  }
+  images.forEach((img) => {
+    if (img.complete) done()
+    else {
+      img.addEventListener('load', done)
+      img.addEventListener('error', done)
+    }
+  })
+  // Safety timeout if image events never fire
+  setTimeout(trigger, 2000)
+}
+
+export function printElementById(elementId, title = 'Print', options = {}) {
+  const el = document.getElementById(elementId)
+  if (!el) return
+  printHtml(el.innerHTML, title, options)
 }

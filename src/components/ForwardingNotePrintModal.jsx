@@ -1,24 +1,16 @@
-import { useEffect } from 'react'
 import { billTotal, casesLabel, companyAddress, formatDdMmYyyy, printElementById } from '../utils/printHelpers'
 
-export default function ForwardingNotePrintModal({ note, onClose, autoPrint = false }) {
-  const printId = 'forwarding-note-print'
-
-  useEffect(() => {
-    if (!note || !autoPrint) return
-    const t = setTimeout(() => printElementById(printId, `FN-${note.id}`), 120)
-    return () => clearTimeout(t)
-  }, [note, autoPrint])
-
+export default function ForwardingNotePrintModal({ note, onClose }) {
   if (!note) return null
 
+  const printId = 'forwarding-note-print'
   const company = note.company || {}
 
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal fn-print-modal" onClick={(e) => e.stopPropagation()}>
         <div className="modal-head no-print">
-          <h3>Forwarding Note</h3>
+          <h3>Forwarding Note #{note.id}</h3>
           <div className="row-actions">
             <button
               type="button"
@@ -44,7 +36,10 @@ export default function ForwardingNotePrintModal({ note, onClose, autoPrint = fa
               <strong>{company.name || 'Kalpataru'}</strong>
               {company.code ? <span> ({company.code})</span> : null}
             </div>
-            <div>{companyAddress(company) || 'Kalpataru Tower Patna Gaya Road Elahibagh Patna-800007'}</div>
+            <div>
+              {companyAddress(company) ||
+                'Kalpataru Tower Patna Gaya Road Elahibagh Patna-800007'}
+            </div>
             <div>
               VAT : {company.vat || '-'} &nbsp;&nbsp; GST : {company.cst_or_tin || '-'}
             </div>

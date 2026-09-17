@@ -55,7 +55,7 @@ select {
 
 .header-inner,
 .app-main {
-  width: min(1000px, calc(100% - 2rem));
+  width: min(1280px, calc(100% - 1.5rem));
   margin: 0 auto;
 }
 
@@ -81,6 +81,12 @@ select {
   background: var(--accent-btn);
   color: white;
   font-weight: 700;
+}
+
+.brand-logo {
+  width: 120px;
+  height: auto;
+  display: block;
 }
 
 .brand-mark.large {
@@ -124,7 +130,7 @@ select {
   display: flex;
   justify-content: center;
   gap: 0.15rem;
-  width: min(420px, calc(100% - 2rem));
+  width: min(720px, calc(100% - 1.5rem));
   margin: 0.85rem auto 0;
   padding-bottom: 0.4rem;
   border-bottom: 4px double var(--nav-line);
@@ -590,7 +596,7 @@ select {
 
   .app-nav {
     flex-wrap: wrap;
-    width: min(1000px, calc(100% - 2rem));
+    width: min(1280px, calc(100% - 1.5rem));
   }
 
   .app-nav a {
@@ -663,7 +669,7 @@ select {
 
 .dispatch-split {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
   gap: 0.85rem;
   align-items: start;
 }
@@ -676,6 +682,11 @@ select {
   box-shadow: 0 0 2px #ddd;
   padding: 0.75rem;
   min-height: 470px;
+  min-width: 0;
+}
+
+.dispatch-left {
+  overflow: hidden;
 }
 
 .dispatch-filters label {
@@ -737,16 +748,22 @@ select {
 
 .fn-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.4rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  max-height: 520px;
+  overflow: auto;
+  padding-right: 0.15rem;
 }
 
 .fn-grid-cell {
   position: relative;
+  display: flex;
+  align-items: stretch;
   border: 1px solid #d7d7d7;
   background: #fff;
-  border-radius: 3px;
-  min-height: 34px;
+  border-radius: 4px;
+  min-height: 40px;
+  overflow: hidden;
 }
 
 .fn-grid-cell.selected {
@@ -759,13 +776,47 @@ select {
 }
 
 .fn-id-btn {
-  width: 100%;
+  flex: 1;
   border: none;
   background: transparent;
-  padding: 0.45rem 0.3rem;
+  padding: 0.55rem 2.4rem 0.55rem 0.45rem;
   cursor: pointer;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 600;
+  text-align: left;
+  min-width: 0;
+}
+
+.fn-print-btn {
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  border: 1px solid #c5d8e6;
+  border-radius: 999px;
+  background: #fff;
+  color: #256f9c;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  z-index: 2;
+}
+
+.fn-print-btn:hover {
+  background: #256f9c;
+  color: #fff;
+  border-color: #256f9c;
+}
+
+.fn-print-btn.inline {
+  position: static;
+  transform: none;
+  flex-shrink: 0;
 }
 
 .fn-info {
@@ -798,9 +849,9 @@ select {
 .fn-list li {
   display: flex;
   align-items: flex-start;
-  gap: 0.35rem;
+  gap: 0.45rem;
   border-bottom: 1px solid #f1f1f1;
-  padding: 0.4rem 0;
+  padding: 0.45rem 0;
   font-size: 0.8rem;
 }
 
@@ -813,6 +864,7 @@ select {
   gap: 0.4rem;
   flex: 1;
   cursor: pointer;
+  min-width: 0;
 }
 
 .empty-notes {
@@ -860,6 +912,7 @@ select {
 
 .dispatch-table-wrap {
   overflow-x: auto;
+  max-width: 100%;
 }
 
 .dispatch-table {

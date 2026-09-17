@@ -165,6 +165,19 @@ export default function DispatchPage() {
     }
   }
 
+  async function openPrintPreview(fn, event) {
+    event?.stopPropagation?.()
+    event?.preventDefault?.()
+    setError('')
+    try {
+      // List payloads can be partial — fetch full note for print slip
+      const full = await getForwardingNote(fn.id)
+      setPreviewFn(full || fn)
+    } catch {
+      setPreviewFn(fn)
+    }
+  }
+
   async function handleSave() {
     setError('')
     setMessage('')
@@ -304,11 +317,17 @@ export default function DispatchPage() {
                     </button>
                     <button
                       type="button"
-                      className="fn-info"
-                      title="View details"
-                      onClick={() => setPreviewFn(fn)}
+                      className="fn-print-btn"
+                      title="Print forwarding note"
+                      aria-label={`Print forwarding note ${fn.id}`}
+                      onClick={(e) => openPrintPreview(fn, e)}
                     >
-                      i
+                      <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+                        <path
+                          fill="currentColor"
+                          d="M19 8h-1V3H6v5H5c-1.1 0-2 .9-2 2v7h4v4h10v-4h4v-7c0-1.1-.9-2-2-2zm-3 11H8v-4h8v4zm0-11H8V5h8v3zm2 4.5c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"
+                        />
+                      </svg>
                     </button>
                   </div>
                 )
@@ -337,10 +356,17 @@ export default function DispatchPage() {
                     </label>
                     <button
                       type="button"
-                      className="fn-info inline"
-                      onClick={() => setPreviewFn(fn)}
+                      className="fn-print-btn inline"
+                      title="Print forwarding note"
+                      aria-label={`Print forwarding note ${fn.id}`}
+                      onClick={(e) => openPrintPreview(fn, e)}
                     >
-                      i
+                      <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+                        <path
+                          fill="currentColor"
+                          d="M19 8h-1V3H6v5H5c-1.1 0-2 .9-2 2v7h4v4h10v-4h4v-7c0-1.1-.9-2-2-2zm-3 11H8v-4h8v4zm0-11H8V5h8v3zm2 4.5c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"
+                        />
+                      </svg>
                     </button>
                   </li>
                 )
@@ -505,11 +531,7 @@ export default function DispatchPage() {
       )}
 
       {previewFn && (
-        <ForwardingNotePrintModal
-          note={previewFn}
-          autoPrint
-          onClose={() => setPreviewFn(null)}
-        />
+        <ForwardingNotePrintModal note={previewFn} onClose={() => setPreviewFn(null)} />
       )}
     </section>
   )
