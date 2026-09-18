@@ -28,3 +28,32 @@ export async function updateUser(id, payload) {
 export async function deactivateUser(id) {
   await api.delete(`/api/auth/users/${id}/`)
 }
+
+export async function resolveLrUploadToken(token) {
+  const { data } = await api.get('/api/auth/lr-upload-tokens/resolve/', {
+    params: { token },
+  })
+  return data
+}
+
+export async function listLrUploadTokens({ userId, activeOnly } = {}) {
+  const params = {}
+  if (userId) params.userId = userId
+  if (activeOnly) params.activeOnly = true
+  const { data } = await api.get('/api/auth/lr-upload-tokens/', { params })
+  return data
+}
+
+export async function createLrUploadToken({ userId, label, revokeOthers = true }) {
+  const { data } = await api.post('/api/auth/lr-upload-tokens/', {
+    userId,
+    label,
+    revokeOthers,
+  })
+  return data
+}
+
+export async function revokeLrUploadToken(id) {
+  const { data } = await api.post(`/api/auth/lr-upload-tokens/${id}/revoke/`)
+  return data
+}

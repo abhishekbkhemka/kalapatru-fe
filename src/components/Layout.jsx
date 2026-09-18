@@ -27,6 +27,8 @@ export default function Layout() {
         <NavLink to="/forwarding-note">Forwarding Note</NavLink>
         <NavLink to="/dispatch">Dispatch</NavLink>
         <NavLink to="/dispatches">Dispatches</NavLink>
+        <NavLink to="/attach-lr">Attach LR</NavLink>
+        {canManageUsers && <NavLink to="/customers">Customers</NavLink>}
         {canManageUsers && <NavLink to="/users">Users</NavLink>}
       </nav>
 
